@@ -1,29 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import '..//Styles/Landing.css';
 
 class Landing extends Component {
   render() {
     return (
-      <div className="landing">
-        <div className="light-overlay landing-inner text-dark">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">
-                  Person Management Tool
-                </h1>
-                <p className="lead">
-                  Create your account to join 
-                </p>
-                <hr />
-                <Link className="btn btn-lg btn-primary mr-2" to="/register">
-                  Sign Up
-                </Link>
-                <Link className="btn btn-lg btn-secondary mr-2" to="/login">
-                  Login
-                </Link>
-              </div>
-            </div>
+      <div>
+        <div className="content">
+          <h1>Welcome to Bookeroo</h1>
+          <p className="slogan">Fill your mind with happy thoughts. <span className="advert">Join the Book Club now!</span></p>
+          <hr></hr>
+          <div>
+            <button className="create-account-button"><a href="/register">Create Account</a></button>
           </div>
         </div>
       </div>
