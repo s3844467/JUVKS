@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.rmit.sept.bk_loginservices.msloginTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.466 s <<< FAILURE! - in com.rmit.sept.bk_loginservices.msloginTests
+com.rmit.sept.bk_loginservices.msloginTests  Time elapsed: 0.466 s  <<< ERROR!
+java.lang.IllegalStateException: Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test
+
