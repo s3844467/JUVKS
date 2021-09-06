@@ -6,7 +6,7 @@ import React, { Component } from 'react'
             <div>
             <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
             <div className="container">
-                <a className="navbar-brand" href="/dashboard">
+                <a className="navbar-brand" href="/">
                     Person Management Tool
                 </a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
@@ -14,14 +14,14 @@ import React, { Component } from 'react'
                 </button>
     
                 <div className="collapse navbar-collapse" id="mobile-nav">
-                    <ul className="navbar-nav mr-auto">
+                    {/* <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
                             <a className="nav-link" href="/dashboard">
                                 Dashboard
                             </a>
                         </li>
                     </ul>
-    
+     */}
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <a className="nav-link " href="/register">
