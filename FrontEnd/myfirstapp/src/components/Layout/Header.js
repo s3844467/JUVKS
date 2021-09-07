@@ -12,12 +12,12 @@ class Header extends Component {
                         </a> 
                         <ul className="navbar-partials">
                             <li className="navbar-item">
-                                <a className="navbar-page-registerlink" href="register.html">
+                                <a className="navbar-page-registerlink" href="register">
                                     Register
                                 </a>
                             </li>
                             <li className="navbar-item">
-                                <a className="navbar-page-loginlink" href="login.html">
+                                <a className="navbar-page-loginlink" href="login">
                                     Login
                                 </a>
                             </li>
