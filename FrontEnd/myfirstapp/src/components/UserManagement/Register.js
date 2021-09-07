@@ -13,6 +13,12 @@ class Register extends Component {
       fullName: "",
       password: "",
       confirmPassword: "",
+      address: "",
+      phoneNum: "",
+      accountType: "",
+      abn: "",
+      businessName: "",
+
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -25,7 +31,12 @@ class Register extends Component {
       username: this.state.username,
       fullName: this.state.fullName,
       password: this.state.password,
-      confirmPassword: this.state.confirmPassword
+      confirmPassword: this.state.confirmPassword,
+      address: this.state.address,
+      phoneNum: this.state.phoneNum,
+      accountType: this.state.accountType,
+      abn: this.state.abn,
+      businessName: this.state.businessName,
     };
 
     this.props.createNewUser(newUser, this.props.history);
@@ -81,6 +92,59 @@ class Register extends Component {
                     placeholder="Confirm Password"
                     name="confirmPassword"
                     value={this.state.confirmPassword}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Address"
+                    name="address"
+                    value={this.state.address}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Phone Number"
+                    name="phoneNum"
+                    value={this.state.phoneNum}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <p>
+                  TODO: make the account type a radio button
+                </p>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Account Type"
+                    name="accountType"
+                    value={this.state.accountType}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="ABN"
+                    name="abn"
+                    value={this.state.abn}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Business Name"
+                    name="businessName"
+                    value={this.state.businessName}
                     onChange={this.onChange}
                   />
                 </div>
