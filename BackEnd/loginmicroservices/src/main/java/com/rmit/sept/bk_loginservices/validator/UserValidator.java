@@ -17,7 +17,15 @@ public class UserValidator implements Validator {
     public void validate(Object object, Errors errors) {
 
         User user = (User) object;
-
+        
+        if(user.getAccountType().equals("Business") && (user.getAbn() == null || user.getAbn().equals("")) ){
+            errors.rejectValue("accountType","Null value", "ABN is required for business account");
+        }
+        
+        if(user.getAccountType().equals("Business") && (user.getBusinessName() == null || user.getAbn().equals(""))){
+            errors.rejectValue("accountType","Null value", "Business Name is required for business account");
+        }
+        
         if(user.getPassword().length() <6){
             errors.rejectValue("password","Length", "Password must be at least 6 characters");
         }

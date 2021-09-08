@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import Person from './Persons/Person'
 import CreatePersonButton from './Persons/CreatePersonButton';
-import initial from '../reducers/securityReducer';
+
 
 class Dashboard extends Component {
 
     render() {
+        
         return (
         <div className="userInfo">
-
             <p>TODO: Retrieve and render user information (username, address and phone number) from securityReducer
             </p>
             <p>clickable UI components: 
@@ -16,7 +16,7 @@ class Dashboard extends Component {
                 <li>Shopping Cart</li>
                 <li>View Transaction</li>
                 
-                </p>
+            </p>
             
         </div>
 
