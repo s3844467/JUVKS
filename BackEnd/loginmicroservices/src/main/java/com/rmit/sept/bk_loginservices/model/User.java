@@ -1,6 +1,8 @@
 package com.rmit.sept.bk_loginservices.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,13 +25,21 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String username;
     @NotBlank(message = "Please enter your full name")
+    @Column(name = "fullname", nullable = false, unique = true)
     private String fullname;
     @NotBlank(message = "Password field is required")
     private String password;
     @Transient
     private String confirmPassword;
+
+    @Column(nullable = false)
     private Date created_at;
+    @Column(nullable = false)
     private Date updated_at;
+
+    @Column(nullable = false)
+    @Value("${some.key:public}")
+    private String account_type;
 
     //OneToMany with Project
 
@@ -90,6 +100,14 @@ public class User implements UserDetails {
 
     public void setUpdate_At(Date updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getAccountType() {
+        return account_type;
+    }
+
+    public void setAccountType(String account_type) {
+        this.account_type = account_type;
     }
 
     @PrePersist
