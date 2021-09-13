@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import Person from './Persons/Person'
 import CreatePersonButton from './Persons/CreatePersonButton';
 import initial from '../reducers/securityReducer';
+import { getAllBooks } from "../actions/bookActions";
+
+
 
 class Dashboard extends Component {
 
     render() {
         return (
+        <div className="container">
         <div className="userInfo">
 
             <p>TODO: Retrieve and render user information (username, address and phone number) from securityReducer
@@ -18,7 +22,13 @@ class Dashboard extends Component {
                 
                 </p>
             
+            <h3>List of All books</h3>
+            <p>{getAllBooks.title}</p>
+
+            
         </div>
+        </div>
+        
         )
     }
 }
@@ -62,5 +72,5 @@ class Dashboard extends Component {
 //         )
 //     }
 // }
-// export default Dashboard;
+export default Dashboard;
         

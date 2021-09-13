@@ -2,6 +2,10 @@ img {
   width: 100%;
 }
 
+p, h3{
+  color: #e3f2fd;
+}
+
 .navbar {
   background-color: #e3f2fd;
 }
