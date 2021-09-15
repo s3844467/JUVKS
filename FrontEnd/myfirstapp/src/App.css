@@ -2,7 +2,10 @@ img {
   width: 100%;
 }
 
-p, h3{
+.container{
+  color: #e3f2fd;
+}
+tr{
   color: #e3f2fd;
 }
 
