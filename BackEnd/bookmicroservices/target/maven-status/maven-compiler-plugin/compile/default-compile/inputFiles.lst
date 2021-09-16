@@ -27,4 +27,5 @@ C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_book
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\security\JwtAuthenticationFilter.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\Repositories\BookRepository.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\exceptions\CustomResponseEntityExceptionHandler.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\exceptions\IsbnAlreadyExistsResponse.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\model\User.java

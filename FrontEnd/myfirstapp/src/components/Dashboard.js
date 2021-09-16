@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Person from './Persons/Person'
 import CreatePersonButton from './Persons/CreatePersonButton';
 import initial from '../reducers/securityReducer';
-import { getAllBooks, searchBooksTitle, getAllCategories, addBook} from "../actions/bookActions";
+import { getAllBooks, searchBooksTitle, searchBooksAuthor,searchBooksIsbn, getAllCategories, addBook} from "../actions/bookActions";
 import { login } from "../actions/securityActions";
 import { connect } from "react-redux";
 
@@ -48,13 +48,22 @@ class Dashboard extends Component {
     }
 
     onClick(e){
-        // e.preventDefault();
+        e.preventDefault();
         // const SearchRequest = {
         //     search: this.state.search,
         //     search_by: this.state.search_by
         // };
         // this.searchBooksTitle("s");
-        this.props.searchBooksTitle(this.state.search)
+        if(this.state.search_by == "title"){
+            this.props.searchBooksTitle(this.state.search);
+        }
+        else if(this.state.search_by == "author"){
+            this.props.searchBooksAuthor(this.state.search);
+        }
+        else if(this.state.search_by == "isbn"){
+            this.props.searchBooksIsbn(this.state.search);
+        }
+
         // this.props.searchBook(SearcRequest);
     }
     onChange(e){
@@ -281,6 +290,8 @@ export default connect(mapStateToProps, {
     getAllBooks,
     getAllCategories,
     searchBooksTitle,
+    searchBooksAuthor,
+    searchBooksIsbn,
     login,
     addBook
 })(Dashboard);

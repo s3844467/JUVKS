@@ -18,6 +18,24 @@ export const searchBooksTitle = (title) => async dispatch => {
     console.log(res.data);
 };
 
+export const searchBooksAuthor = (author) => async dispatch => {
+  const res = await axios.get("http://localhost:8081/api/books/searchByAuthor/"+author);
+  dispatch({
+    type: GET_BOOKS,
+    payload: res.data
+  });
+  console.log(res.data);
+};
+
+export const searchBooksIsbn = (isbn) => async dispatch => {
+  const res = await axios.get("http://localhost:8081/api/books/searchByIsbn/"+isbn);
+  dispatch({
+    type: GET_BOOKS,
+    payload: res.data
+  });
+  console.log(res.data);
+};
+
 export const addBook = (book) => async dispatch => {
   try {
     const res = await axios.post("http://localhost:8081/api/books/addBook", book);
