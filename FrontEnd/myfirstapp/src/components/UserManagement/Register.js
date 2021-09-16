@@ -47,6 +47,7 @@ class Register extends Component {
   }
 
   render() {
+    const { errors } = this.props;
     return (
       <div className="register">
         <div className="container">
@@ -65,6 +66,9 @@ class Register extends Component {
                     onChange={this.onChange}
                   />
                 </div>
+                {errors.data && errors.data.fullname && (
+                    <div>{errors.data.fullname}</div>
+                  )}
                 <div className="form-group">
                   <input
                     type="text"
@@ -75,6 +79,9 @@ class Register extends Component {
                     onChange={this.onChange}
                   />
                 </div>
+                {errors.data && errors.data.username && (
+                    <div>{errors.data.username}</div>
+                  )}
                 <div className="form-group">
                   <input
                     type="password"
@@ -85,6 +92,9 @@ class Register extends Component {
                     onChange={this.onChange}
                   />
                 </div>
+                {errors.data && errors.data.password && (
+                    <div>{errors.data.password}</div>
+                  )}
                 <div className="form-group">
                   <input
                     type="password"
@@ -95,6 +105,9 @@ class Register extends Component {
                     onChange={this.onChange}
                   />
                 </div>
+                {errors.data && errors.data.confirmPassword && (
+                    <div>{errors.data.confirmPassword}</div>
+                  )}
                 <div className="form-group">
                   <input
                     type="text"
@@ -115,39 +128,55 @@ class Register extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-                <p>
-                  TODO: make the account type a radio button
-                </p>
+               
+                <h5>Account Type</h5>
                 <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control form-control-lg"
-                    placeholder="Account Type"
-                    name="accountType"
-                    value={this.state.accountType}
-                    onChange={this.onChange}
+                  <div className="form-check form-check-inline">
+                  <input 
+                      className="form-check-input" 
+                      type="radio" 
+                      name="accountType" 
+                      value="pubic"
+                      onChange = {this.onChange}
                   />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control form-control-lg"
-                    placeholder="ABN"
-                    name="abn"
-                    value={this.state.abn}
-                    onChange={this.onChange}
+                  <label className="form-check-label" htmlFor="inlineRadio2">Public</label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                  <input 
+                      className="form-check-input" 
+                      type="radio" 
+                      name="accountType" 
+                      value="shop"
+                      onChange = {this.onChange}
                   />
+                  <label className="form-check-label" htmlFor="inlineRadio2">Shop Owner</label>
+                  </div>
                 </div>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control form-control-lg"
-                    placeholder="Business Name"
-                    name="businessName"
-                    value={this.state.businessName}
-                    onChange={this.onChange}
-                  />
-                </div>
+                
+                {this.state.accountType  == "shop" ?
+                <>
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      className="form-control form-control-lg"
+                      placeholder="ABN"
+                      name="abn"
+                      value={this.state.abn}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      className="form-control form-control-lg"
+                      placeholder="Business Name"
+                      name="businessName"
+                      value={this.state.businessName}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                </>
+                :null}
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
