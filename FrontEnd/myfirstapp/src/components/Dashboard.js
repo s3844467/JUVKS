@@ -77,17 +77,6 @@ class Dashboard extends Component {
             
         <div className="container">
 
-        
-
-            {/* <p>TODO: Retrieve and render user information (username, address and phone number) from securityReducer
-            </p>
-            <p>clickable UI components: 
-                <li>Search bar</li>
-                <li>Shopping Cart</li>
-                <li>View Transaction</li>
-                
-                </p>
-             */}
             {/* Displaying all backend data base here */}
             <h3>Current User</h3>
             <div className="row">
@@ -100,9 +89,7 @@ class Dashboard extends Component {
         <div className="row">
             <div className="col-sm-4 b">
             <h3>Add book</h3>
-            {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
-                  )}
+            
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Title</label>
                 <input 
@@ -114,6 +101,9 @@ class Dashboard extends Component {
                     onChange = {this.onChange}
                 />
             </div>
+            {errors.data && errors.data.title &&(
+                <div>{errors.data.title}</div>
+            )}
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Author</label>
                 <input 
@@ -125,6 +115,9 @@ class Dashboard extends Component {
                     onChange = {this.onChange}
                 />
             </div>
+            {errors.data && errors.data.author &&(
+                <div>{errors.data.author}</div>
+            )}
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">ISBN</label>
                 <input 
@@ -136,6 +129,10 @@ class Dashboard extends Component {
                     onChange = {this.onChange}
                 />
             </div>
+            {errors.data && errors.data.isbn &&(
+                <div>{errors.data.isbn}</div>
+            )}
+            
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Category</label>
                 <select className="form-control" 
@@ -152,7 +149,11 @@ class Dashboard extends Component {
             </div>
             
             <button className="btn btn-primary mb-2" onClick={this.addBook}>Submit</button>
+            {errors.data && errors.data.message && (
+                <div className="alert alert-danger">{errors.data.message}</div>
+            )}
             </div>
+            
             <div className="col">
             
             <div className="form-group">
