@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Person from './Persons/Person'
 import CreatePersonButton from './Persons/CreatePersonButton';
 import initial from '../reducers/securityReducer';
-import { getAllBooks, searchBooks } from "../actions/bookActions";
+import { getAllBooks, searchBooksTitle, getAllCategories, addBook} from "../actions/bookActions";
 import { login } from "../actions/securityActions";
 import { connect } from "react-redux";
 
@@ -13,11 +13,16 @@ class Dashboard extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onClick = this.onClick.bind(this);
+        this.addBook = this.addBook.bind(this);
         // this.filter = this.filter.bind(this);
         this.state={
             search:"",
             search_by:"",
-            filterBook: []
+            filterBook: [],
+            addBook_title: "",
+            addBook_author: "",
+            addBook_category:"",
+            addBook_isbn: "",
         }
 
     }
@@ -25,6 +30,21 @@ class Dashboard extends Component {
 
     componentDidMount() {
         this.props.getAllBooks();
+        this.props.getAllCategories();
+    }
+
+    addBook(e){
+        e.preventDefault();
+        const addBookRequest = {
+            title: this.state.addBook_title,
+            author: this.state.addBook_author,
+            category: this.state.addBook_category,
+            isbn: this.state.addBook_isbn,
+        };
+        // this.searchBooksTitle("s");
+        this.props.addBook(addBookRequest);
+        this.props.getAllBooks();
+        // this.props.searchBook(SearcRequest);
     }
 
     onClick(e){
@@ -33,19 +53,8 @@ class Dashboard extends Component {
         //     search: this.state.search,
         //     search_by: this.state.search_by
         // };
-        // this.searchBooks("s");
-        console.log(this.state.search);
-        console.log(this.state.search_by);
-        this.props.searchBooks(this.state.search)
-        .then((response) => {
-          this.setState({
-            filterBook: response.data,
-          });
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+        // this.searchBooksTitle("s");
+        this.props.searchBooksTitle(this.state.search)
         // this.props.searchBook(SearcRequest);
     }
     onChange(e){
@@ -53,13 +62,15 @@ class Dashboard extends Component {
     }
 
     render() {
-        const {books, security} = this.props;
+        const {books, security, category, errors} = this.props;
         const {filterBook} = this.state;
         return (
+            
         <div className="container">
-        <div className="userInfo">
 
-            <p>TODO: Retrieve and render user information (username, address and phone number) from securityReducer
+        
+
+            {/* <p>TODO: Retrieve and render user information (username, address and phone number) from securityReducer
             </p>
             <p>clickable UI components: 
                 <li>Search bar</li>
@@ -67,43 +78,74 @@ class Dashboard extends Component {
                 <li>View Transaction</li>
                 
                 </p>
-            
+             */}
             {/* Displaying all backend data base here */}
-            <h3>User logged in as</h3>
-            <p>ID: {security.user.id}</p>
-            <p>Username: {security.user.username}</p>
-            <p>Full name: {security.user.fullName}</p>
-            <p>Account type: {security.user.accountType}</p>
-
-            <h3>List of All books</h3>
-            <table className="table">
-                <thead>
-                <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Title</th>
-                <th scope="col">Author</th>
-                <th scope="col">ISBN</th>
-                <th scope="col">Category</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                {books &&
-                books.map((book) => (
-                    <tr>
-                        <td>{book.id}</td>
-                        <td>{book.title}</td>
-                        <td>{book.author}</td>
-                        <td>{book.isbn}</td>
-                        <td>{book.category}</td>
-                    </tr>
+            <h3>Current User</h3>
+            <div className="row">
+                <li className="col list-group-item bg-transparent"><b>ID:</b> {security.user.id}</li>
+                <li className="col list-group-item bg-transparent"><b>Username:</b> {security.user.username}</li>
+                <li className="col list-group-item bg-transparent"><b>Full name:</b> {security.user.fullName}</li>
+                <li className="col list-group-item bg-transparent"><b>Account type:</b> {security.user.accountType}</li>
+            </div>
+            <br />
+        <div className="row">
+            <div className="col-sm-4 b">
+            <h3>Add book</h3>
+            {errors.password && (
+                    <div className="invalid-feedback">{errors.password}</div>
+                  )}
+            <div className="form-group">
+                <label htmlFor="formGroupExampleInput">Title</label>
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="Title"
+                    name="addBook_title"
+                    value={this.state.addBook_title}
+                    onChange = {this.onChange}
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="formGroupExampleInput">Author</label>
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="Author"
+                    name="addBook_author"
+                    value={this.state.addBook_author}
+                    onChange = {this.onChange}
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="formGroupExampleInput">ISBN</label>
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="ISBN"
+                    name="addBook_isbn"
+                    value={this.state.addBook_isbn}
+                    onChange = {this.onChange}
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="formGroupExampleInput">Category</label>
+                <select className="form-control" 
+                    name="addBook_category" 
+                    onChange = {this.onChange}
+                >
+                <option selected>Open this select menu</option>
+                {category && category.map((c) => (
+                    <option value={c.categoryName}>{c.categoryName}</option>
+                // <option value="2">Two</option>
+                // <option value="3">Three</option>
                 ))}
-                </tbody>
-            </table>
-
-
-            <h3>Search book</h3>
-            {/* <form > */}
+                </select>
+            </div>
+            
+            <button className="btn btn-primary mb-2" onClick={this.addBook}>Submit</button>
+            </div>
+            <div className="col">
+            
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Search</label>
                 <input 
@@ -149,9 +191,7 @@ class Dashboard extends Component {
 
             <button className="btn btn-primary mb-2" onClick={this.onClick}>Submit</button>
 
-            {/* </form> */}
-
-            {/* <h5>Result</h5>
+           <h3>List of books</h3>
             <table className="table">
                 <thead>
                 <tr>
@@ -164,7 +204,8 @@ class Dashboard extends Component {
                 </thead>
 
                 <tbody>
-                {filterBook && filterBook.map((book)=>
+                {books &&
+                books.map((book) => (
                     <tr>
                         <td>{book.id}</td>
                         <td>{book.title}</td>
@@ -172,17 +213,17 @@ class Dashboard extends Component {
                         <td>{book.isbn}</td>
                         <td>{book.category}</td>
                     </tr>
-                )}
+                ))}
                 </tbody>
-            </table> */}
+            </table>
 
-
-            <h3>My Cart</h3>
+            
 
         </div>
             
         </div>
-
+        </div>
+        
         
         )
     }
@@ -231,13 +272,17 @@ const mapStateToProps = (state) => {
     return {
         books: state.books, 
         security: state.security,
+        category:state.category,
+        errors: state.errors
     };
   };
 
 export default connect(mapStateToProps, {
     getAllBooks,
-    searchBooks,
-    login
+    getAllCategories,
+    searchBooksTitle,
+    login,
+    addBook
 })(Dashboard);
   
 // export default Dashboard;

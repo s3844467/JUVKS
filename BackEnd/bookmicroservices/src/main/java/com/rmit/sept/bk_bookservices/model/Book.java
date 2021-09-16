@@ -20,9 +20,9 @@ public class Book {
     private String title;
     @NotBlank(message = "Author is required")
     private String author;
-    @Column(unique = true)
-    //@Pattern(regexp = "^(?:ISBN(?:-10)?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$)[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$", message = "invalid ISBN format")
-    @NotBlank(message = "ISBN is required")
+    // @Column(unique = true)
+    // @Pattern(regexp = "^(?:ISBN(?:-10)?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$)[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$", message = "invalid ISBN format")
+	@NotBlank(message = "ISBN is required")
     private String isbn;
     @NotBlank(message = "Category is required")
     private String category;

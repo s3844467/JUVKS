@@ -1,9 +1,11 @@
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\validator\CategoryValidator.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\web\UserController.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\ms_book.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\validator\BookValidator.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\security\JwtAuthenticationEntryPoint.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\validator\UserValidator.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\exceptions\InvalidLoginResponse.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\model\Category.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\payload\JWTLoginSucessReponse.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\services\MapValidationErrorService.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\exceptions\UsernameAlreadyExistsException.java
@@ -13,6 +15,9 @@ C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_book
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\web\BookController.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\exceptions\UsernameAlreadyExistsResponse.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\services\BookService.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\Repositories\CategoryRepository.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\web\CategoryController.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\services\CategoryService.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\security\JwtTokenProvider.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\services\UserService.java
 C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\model\Book.java

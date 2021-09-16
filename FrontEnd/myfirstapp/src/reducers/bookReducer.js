@@ -1,4 +1,4 @@
-import { GET_BOOKS, GET_ALLBOOKS } from "../actions/types";
+import { GET_BOOKS, GET_ALLBOOKS} from "../actions/types";
 
 const initialState = [];
 
@@ -13,7 +13,6 @@ function bookReducer(books = initialState, action) {
 
         case GET_BOOKS:
             return payload;
-
         default:
             return books;
     }

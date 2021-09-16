@@ -72,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.antMatchers(SecurityConstant.SIGN_UP_URLS).permitAll()
                 .antMatchers("/api/users/**").permitAll()
                 .antMatchers("/api/books/**").permitAll()
+                .antMatchers("/api/categories/**").permitAll()
                 .antMatchers(SecurityConstant.H2_URL).permitAll()
                 .anyRequest().authenticated();
 
