@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `bookaroo` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `bookaroo`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: bookaroo
@@ -38,6 +36,7 @@ CREATE TABLE `authors` (
 
 LOCK TABLES `authors` WRITE;
 /*!40000 ALTER TABLE `authors` DISABLE KEYS */;
+INSERT INTO `authors` VALUES (1,'author1');
 /*!40000 ALTER TABLE `authors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,20 +110,18 @@ DROP TABLE IF EXISTS `books`;
 CREATE TABLE `books` (
   `isbn` varchar(45) NOT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) DEFAULT NULL,
+  `title` varchar(200) DEFAULT NULL,
   `author_id` int DEFAULT NULL,
   `publisher_id` int DEFAULT NULL,
   `abn` varchar(45) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  `category` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`isbn`,`id`),
   UNIQUE KEY `isbn_UNIQUE` (`isbn`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `user_id_idx` (`publisher_id`),
-  KEY `abn_idx` (`abn`),
   KEY `id_idx` (`author_id`),
-  CONSTRAINT `abn` FOREIGN KEY (`abn`) REFERENCES `publishers` (`abn`),
-  CONSTRAINT `author_id` FOREIGN KEY (`author_id`) REFERENCES `authors` (`author_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `author_id` FOREIGN KEY (`author_id`) REFERENCES `authors` (`author_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,6 +130,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
+INSERT INTO `books` VALUES ('0123456789',2,'Book 2',1,1,'1',NULL,NULL),('0261103253',35,' Lord of the Rings',NULL,NULL,NULL,' J.R.R. Tolkien','Fiction'),('1408855895',37,'Harry Potter and the Sorcerer\'s Stone',NULL,NULL,NULL,'J.K. Rowling','Fiction'),('9780241562994',3,'THE FORTUNE MEN',NULL,NULL,NULL,'Nadifa Mohamed','Fiction'),('9780241562995',12,'THE  MEN',NULL,NULL,NULL,'Nadifa Mohamed','Fiction'),('9780395453896',39,'Silent Spring',NULL,NULL,NULL,'Rachel Carson','Non-Fiction'),('9781491954591',41,'Learning React: Functional Web Development with React and Redux',NULL,NULL,NULL,'Alex Banks','Education'),('9781786468208',42,'Learning Spring Boot 2.0: Simplify the Development of Lightning Fast Applications Based on Microservices and Reactive Programming',NULL,NULL,NULL,'Greg L. Turnquist','Education'),('9783644008618',40,'A Brief History of Time',NULL,NULL,NULL,'Stephen Hawking','Non-Fiction');
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,9 +144,10 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `category_id` int NOT NULL AUTO_INCREMENT,
   `category_name` varchar(45) NOT NULL,
+  `id` bigint NOT NULL,
   PRIMARY KEY (`category_id`),
   UNIQUE KEY `category_id_UNIQUE` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,6 +156,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (4,'Fiction',1),(5,'Non-Fiction',2),(6,'Education',3);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +270,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`,`username`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +279,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin',NULL,NULL,'admin',1,'2021-09-05 16:16:29','2021-09-05 16:16:29',NULL,NULL),(2,'public','public user',NULL,NULL,'public',1,'2021-09-05 16:17:27','2021-09-05 16:17:27',NULL,NULL),(3,'publisher','shop owner',NULL,NULL,'shop',1,'2021-09-05 16:18:17','2021-09-05 16:18:17',NULL,NULL);
+INSERT INTO `users` VALUES (4,'example2@email.com','Example name anem',NULL,NULL,'public',1,'2021-09-14 00:23:15','2021-09-14 00:23:15','$2a$10$DkMhJKQMHKypYAG0WPJZ3u3fJlEUSuCb2molZpVU5w4n0thsuxu3.',NULL),(5,'example@gmail.com','name name',NULL,NULL,'public',1,'2021-09-14 00:32:45','2021-09-14 00:32:45','$2a$10$8VW8ixyq6hkiXb1nnxFaU.GsBS7Is1dSI2PFH8RWWeavlwjfE9dn2',NULL),(7,'example3@gmail.com','Example user 3',NULL,NULL,'public',1,'2021-09-16 23:09:52','2021-09-16 23:09:52','$2a$10$NZcH./Li5HJxhLR.bujQLO3T0uY9kPIEzZQ23QSqt47w2L1HjubMK',NULL),(8,'publisher@email.com','Publisher',NULL,NULL,'shop',1,'2021-09-17 01:38:10','2021-09-17 01:38:10','$2a$10$khrUyBlmAOUmL6xIaWLTbO0jlu5QTB4x/AamMde8wBQlZ0w4rMhiO',NULL),(9,'admin@mail.com','Admin',NULL,NULL,'admin',1,'2021-09-17 02:00:30','2021-09-17 02:00:30','$2a$10$yO1oo3d/BzNIBHh0FTBVNOTNraiN3nbVUkDTX4Q.V2kCYyN28B6DS',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -292,4 +292,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-08  1:11:50
+-- Dump completed on 2021-09-17  2:04:28

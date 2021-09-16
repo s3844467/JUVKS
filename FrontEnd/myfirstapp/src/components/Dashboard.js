@@ -44,6 +44,8 @@ class Dashboard extends Component {
         // this.searchBooksTitle("s");
         this.props.addBook(addBookRequest);
         this.props.getAllBooks();
+        window.location.href = "/dashboard";
+
         // this.props.searchBook(SearcRequest);
     }
 
