@@ -53,5 +53,10 @@ public class UserService {
 
     }
 
+	public User findbyID(Long id) {
+		// TODO Auto-generated method stub
+		return userRepository.getById(id);
+	}
+
 
 }

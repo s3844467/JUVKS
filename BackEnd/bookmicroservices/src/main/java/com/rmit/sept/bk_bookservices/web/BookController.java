@@ -21,6 +21,8 @@ import com.rmit.sept.bk_bookservices.services.BookService;
 import com.rmit.sept.bk_bookservices.services.MapValidationErrorService;
 import com.rmit.sept.bk_bookservices.validator.BookValidator;
 
+import jdk.internal.org.jline.utils.Log;
+
 
 @RestController
 @RequestMapping("/api/books")
@@ -39,6 +41,7 @@ public class BookController {
     @PostMapping("/addBook")
     public ResponseEntity<?> registerBook(@Valid @RequestBody Book book, BindingResult result){
         // Validate passwords match
+    	
     	bookValidator.validate(book,result);
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
@@ -60,4 +63,21 @@ public class BookController {
 		return new ResponseEntity<List<Book>>(bookService.searchByTitle(title.replace('+', ' ')), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/searchByAuthor/{author}")
+    public ResponseEntity<List<Book>> searchByAuthor(@PathVariable String author){
+    	//return title;
+		return new ResponseEntity<List<Book>>(bookService.searchByAuthor(author.replace('+', ' ')), HttpStatus.ACCEPTED);
+    }
+    
+    @GetMapping("/searchByIsbn/{isbn}")
+    public ResponseEntity<List<Book>> searchByIsbn(@PathVariable String isbn){
+    	//return title;
+		return new ResponseEntity<List<Book>>(bookService.searchByIsbn(isbn), HttpStatus.ACCEPTED);
+    }
+    
+    @GetMapping("/searchByCategory/{category}")
+    public ResponseEntity<List <Book>> searchByCategory(@PathVariable String category){
+    	//return title;
+		return new ResponseEntity<List<Book>>(bookService.searchByCategory(category), HttpStatus.ACCEPTED);
+    }
 }

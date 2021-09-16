@@ -26,7 +26,8 @@ public class Book {
     private String isbn;
     @NotBlank(message = "Category is required")
     private String category;
-
+    
+    private Long publisherID;
 
     //OneToMany with Project
 
@@ -72,6 +73,14 @@ public class Book {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public Long getPublisherID() {
+		return publisherID;
+	}
+
+	public void setPublisherID(Long publisherID) {
+		this.publisherID = publisherID;
 	}
 
    

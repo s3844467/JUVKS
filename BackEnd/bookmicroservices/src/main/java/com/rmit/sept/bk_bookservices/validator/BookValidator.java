@@ -19,9 +19,5 @@ public class BookValidator implements Validator {
 
     	Book book = (Book) object;
 
-        //confirmPassword
-
-
-
     }
 }

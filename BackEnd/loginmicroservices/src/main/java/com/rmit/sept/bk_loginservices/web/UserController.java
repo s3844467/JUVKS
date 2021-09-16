@@ -19,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +29,12 @@ import javax.validation.Valid;
 
 import static com.rmit.sept.bk_loginservices.security.SecurityConstant.TOKEN_PREFIX;
 
+import java.util.List;
+
 // import java.util.List;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("https://localhost:8081")
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -92,6 +96,12 @@ public class UserController {
         String jwt = TOKEN_PREFIX +  tokenProvider.generateToken(authentication);
 
         return ResponseEntity.ok(new JWTLoginSucessReponse(true, jwt));
+    }
+    
+    @GetMapping("/findByID/{id}")
+    public ResponseEntity<User> findbyID(@PathVariable Long id){
+    	//return title;
+		return new ResponseEntity<User>(userService.findbyID(id), HttpStatus.ACCEPTED);
     }
 
 }
