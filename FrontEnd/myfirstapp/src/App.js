@@ -12,6 +12,7 @@ import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import Footer from './components/Layout/Footer';
 import Dashboard from "./components/Dashboard";
+import Search from "./components/BookManagement/Search";
 
 import jwt_decode from "jwt-decode";
 import setJWTToken from "./securityUtils/setJWTToken";
@@ -51,6 +52,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/search" component={Search} />
 
             {
               //Private Routes
