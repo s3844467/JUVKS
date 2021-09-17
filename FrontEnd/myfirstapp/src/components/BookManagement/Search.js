@@ -3,6 +3,8 @@ import { getAllBooks, searchBooksTitle, searchBooksAuthor,searchBooksIsbn, getAl
 import { login } from "../../actions/securityActions";
 import { connect } from "react-redux";
 
+import "../Styles/Search.css";
+
 
 class Dashboard extends Component {
     constructor(props){
@@ -90,32 +92,23 @@ class Dashboard extends Component {
                         </div>
 
                         <button className="btn btn-primary mb-2" onClick={this.onClick}>Submit</button>
-
-                        <h3>List of books</h3>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Author</th>
-                                    <th scope="col">ISBN</th>
-                                    <th scope="col">Category</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
+                        <div className="books-container">
                             {books &&
                             books.map((book) => (
-                                <tr>
-                                    <td>{book.id}</td>
-                                    <td>{book.title}</td>
-                                    <td>{book.author}</td>
-                                    <td>{book.isbn}</td>
-                                    <td>{book.category}</td>
-                                </tr>
+                                <div className="book-item">
+                                    <div className="book-setup">
+                                        <div className="book-img">
+                                            <span>{book.category}</span>
+                                        </div>
+                                        <div className="book-info">
+                                            <span>$$</span>
+                                            <span>{book.title}</span>
+                                            <span>{book.author}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             ))}
-                            </tbody>
-                        </table>
+                        </div>
                     </div>
                 </div>
             </div>
