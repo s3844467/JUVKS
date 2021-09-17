@@ -31,6 +31,11 @@ a {
   text-transform: uppercase;
 }
 
+.bookeroo-title:hover {
+  text-decoration: none;
+  color: white;
+}
+
 /*
 General Navbar
 */
@@ -54,13 +59,13 @@ Styling of everything inside navbar
 Spacing of navbar links
 */
 .navbar-item a {
-  margin: 0 10px;
+  margin: 0 0px;
 }
 
 /*
-Styling of the header links
+Styling for login button
 */
-.navbar-item {
+.navbar-button-login {
   font-size: 1rem;
   font-weight: bold;
   color: white;
@@ -71,10 +76,42 @@ Styling of the header links
   margin-left: 10px;
 }
 
-.navbar-item:hover {
+.navbar-button-login:hover {
   border-color: #ffffff;
   background: linear-gradient(to right, #9d4edd, #56cfe1);
   box-shadow: 0 0.5em 0.5em -0.4em #ffffff;
   transform: translateY(-0.25em);
   cursor: pointer;
+}
+
+/*
+Styling for register button
+*/
+.navbar-button-register {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #212529;
+  border: 1px solid white;
+  padding: 0.5rem;
+  border-radius: 12px;
+  margin-left: 10px;
+}
+
+.navbar-button-register:hover {
+  border-color: #ffffff;
+  background: linear-gradient(to right, #9d4edd, #56cfe1);
+  box-shadow: 0 0.5em 0.5em -0.4em #ffffff;
+  transform: translateY(-0.25em);
+  cursor: pointer;
+}
+
+.navbar-page-registerlink:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-page-loginlink:hover {
+  text-decoration: none;
+  color: white;
 }
