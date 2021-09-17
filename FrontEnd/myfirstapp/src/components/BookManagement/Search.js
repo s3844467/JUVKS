@@ -95,16 +95,16 @@ class Dashboard extends Component {
                         <div className="books-container">
                             {books &&
                             books.map((book) => (
-                                <div className="book-item">
-                                    <div className="book-setup">
-                                        <div className="book-img">
-                                            <span>{book.category}</span>
-                                        </div>
-                                        <div className="book-info">
-                                            <span>$$</span>
+                                <div className="book-card">
+                                    <div className="book-img">
+                                        <span>{book.category}</span>
+                                    </div>
+                                    <div className="book-info">
+                                        <div className="book-info-top">
                                             <span>{book.title}</span>
-                                            <span>{book.author}</span>
+                                            <span>$$</span>
                                         </div>
+                                        <span className="book-info-bot">{book.author}</span>
                                     </div>
                                 </div>
                             ))}
