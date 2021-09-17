@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  app:
+    build:
+      # context: .:/JUVKS/BackEnd
+      context: .:/JUVKS/BackEnd/loginmicroservices
+    volumes:
+      # - .:/JUVKS/FrontEnd
+      - .:/JUVKS/BackEnd/loginmicroservices
+    ports:
+      # - 3000:3000
+      - 8080:8080
+    image: s3844467/loginmicroservices-0.0.1
+    container_name: JUVKS
+    # command: npm start

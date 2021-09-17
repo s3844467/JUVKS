@@ -67,3 +67,8 @@ hr {
   transform: translateY(-0.25em);
   cursor: pointer;
 }
+
+.create-account-button:hover {
+  text-decoration: none;
+  color: white;
+}
