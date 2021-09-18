@@ -36,6 +36,15 @@ export const searchBooksIsbn = (isbn) => async dispatch => {
   console.log(res.data);
 };
 
+export const searchAllBooks = (query) => async dispatch => {
+  const res = await axios.get("http://localhost:8081/api/books/search/"+query);
+  dispatch({
+    type: GET_BOOKS,
+    payload: res.data
+  });
+  console.log(res.data);
+};
+
 export const addBook = (book) => async dispatch => {
   try {
     const res = await axios.post("http://localhost:8081/api/books/addBook", book);

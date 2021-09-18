@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { getAllBooks, searchBooksTitle, searchBooksAuthor,searchBooksIsbn, getAllCategories, addBook} from "../../actions/bookActions";
-import { login } from "../../actions/securityActions";
+import { getAllBooks, searchBooksTitle, searchBooksAuthor,searchBooksIsbn,searchAllBooks, getAllCategories} from "../../actions/bookActions";
 import { connect } from "react-redux";
 
 import "../Styles/Search.css";
 
 
-class Dashboard extends Component {
+class Search extends Component {
     constructor(props){
         super(props);
 
@@ -28,6 +27,8 @@ class Dashboard extends Component {
 
     onClick(e){
         e.preventDefault();
+        // this.props.searchAllBooks(this.state.search);
+
         if(this.state.search_by === "title"){
             this.props.searchBooksTitle(this.state.search);
         }
@@ -131,9 +132,8 @@ export default connect(mapStateToProps, {
     searchBooksTitle,
     searchBooksAuthor,
     searchBooksIsbn,
-    login,
-    addBook
-})(Dashboard);
+    searchAllBooks
+})(Search);
   
-// export default Dashboard;
+// export default Search;
         
