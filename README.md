@@ -1,6 +1,6 @@
 # RMIT SEPT 2021 Major Project
 
-# Group 1: WED-8:30AM
+# Group 1: WED-9:30AM
 
 ## Members
 * Ujwal Mamidi (s3844467)
