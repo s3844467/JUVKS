@@ -52,7 +52,7 @@ Styling of everything inside navbar
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 12px;
 }
 
 /*
@@ -84,25 +84,31 @@ Styling for login button
   cursor: pointer;
 }
 
+.navbar-partials {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 /*
 Styling for register button
 */
-.navbar-button-register {
+.navbar-btn {
   font-size: 1rem;
   font-weight: bold;
   color: white;
   background-color: #212529;
   border: 1px solid white;
-  padding: 0.5rem;
-  border-radius: 12px;
-  margin-left: 10px;
+  padding: 4px;
+  border-radius: 4px;
+  margin: 0 8px 0 8px;
+  transition: 0.2s;
 }
 
-.navbar-button-register:hover {
-  border-color: #ffffff;
+.navbar-btn:hover {
+  /* border-color: #ffffff; */
   background: linear-gradient(to right, #9d4edd, #56cfe1);
-  box-shadow: 0 0.5em 0.5em -0.4em #ffffff;
-  transform: translateY(-0.25em);
+  transform: scale(1.04);
   cursor: pointer;
 }
 

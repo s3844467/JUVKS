@@ -22,35 +22,35 @@ class Header extends Component {
                         <a className="bookeroo-title" href="/">
                             Bookeroo
                         </a> 
-                        <ul className="navbar-partials">
+                        <div className="navbar-partials">
 
                         {security.validToken ?
                         <>
-                            <li className="navbar-item">
-                                <a className="navbar-page-loginlink" onClick={this.onClick}>
+                            <div className="navbar-item">
+                                <button className="navbar-btn" onClick={this.onClick}>
                                     Logout
-                                </a>
-                            </li>
+                                </button>
+                            </div>
                         </>
                         :
                         <>
-                            <li className="navbar-item">
+                            <div className="navbar-item">
                                 <a className="navbar-page-registerlink" href="register">
-                                    <button className="navbar-button-register">
+                                    <button className="navbar-btn">
                                         Register
                                     </button>
                                 </a>
-                            </li>
-                            <li className="navbar-item">
+                            </div>
+                            <div className="navbar-item">
                                 <a className="navbar-page-loginlink" href="login">
-                                    <button className="navbar-button-login">
+                                    <button className="navbar-btn">
                                         Login
                                     </button>
                                 </a>
-                            </li>
+                            </div>
                         </>
                         }
-                        </ul>
+                        </div>
 
                     </div>
                 </div>
