@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import '..//Styles/Landing.css';
 
 class Landing extends Component {
+  constructor(props){
+      super(props)
+  }
   render() {
+    const {security} = this.props;
     return (
       <div>
         <div className="content">
@@ -10,12 +15,24 @@ class Landing extends Component {
           <p className="slogan">Fill your mind with happy thoughts. <span className="advert">Join the Book Club now!</span></p>
           <hr></hr>
           <div>
-            <a href="/register"><button className="create-account-button">Create Account</button></a>
+            {security.validToken ?
+            <>
+              <a href="/dashboard"><button className="create-account-button">Dashboard</button></a>
+            </>
+            :
+            <>
+              <a href="/register"><button className="create-account-button">Create Account</button></a>
+            </>
+            }
           </div>
         </div>
       </div>
     );
   }
 }
-
-export default Landing;
+const mapStateToProps = (state) => {
+  return {
+      security: state.security,
+  };
+};
+export default  connect(mapStateToProps)(Landing);
