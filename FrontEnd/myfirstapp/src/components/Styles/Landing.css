@@ -16,9 +16,7 @@ body {
 
 .content {
   width: 100%;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  min-height: 75vh;
   text-align: center;
   color: white;
 }
@@ -27,6 +25,10 @@ body {
   font-size: 70px;
   margin-top: 80px;
   text-transform: uppercase;
+}
+
+.content p {
+  margin: 48px 0 0 0;
 }
 
 .advert {

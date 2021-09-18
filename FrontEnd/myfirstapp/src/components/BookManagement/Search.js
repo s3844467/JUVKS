@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {searchAllBooks} from "../../actions/bookActions";
+import { getAllBooks,searchAllBooks} from "../../actions/bookActions";
 import { connect } from "react-redux";
 
 import "../Styles/Search.css";
@@ -21,6 +21,7 @@ class Search extends Component {
 
 
     componentDidMount() {
+        this.props.getAllBooks();
     }
 
     onClick(e){
@@ -37,7 +38,7 @@ class Search extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <div className="form-group">
+                        <div className="search-group">
                             <input 
                                 type="text" 
                                 className="form-control" 
@@ -81,6 +82,7 @@ const mapStateToProps = (state) => {
   };
 
 export default connect(mapStateToProps, {
+    getAllBooks,
     searchAllBooks
 })(Search);
   
