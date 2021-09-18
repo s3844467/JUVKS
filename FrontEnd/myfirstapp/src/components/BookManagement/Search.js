@@ -26,7 +26,11 @@ class Search extends Component {
 
     onClick(e){
         e.preventDefault();
-        this.props.searchAllBooks(this.state.search);
+        if (this.state.search === "") {
+            this.props.getAllBooks();
+        } else {
+            this.props.searchAllBooks(this.state.search);
+        }
     }
     onChange(e){
         this.setState({[e.target.name]: e.target.value });
