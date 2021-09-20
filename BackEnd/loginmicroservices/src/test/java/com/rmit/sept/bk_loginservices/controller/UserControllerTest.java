@@ -2,7 +2,6 @@ package com.rmit.sept.bk_loginservices.controller;
 
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.rmit.sept.bk_loginservices.model.User;
@@ -29,9 +28,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 
 import static org.mockito.Mockito.when;
-import static org.hamcrest.core.Is.is;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)

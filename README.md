@@ -16,7 +16,7 @@
 * Google Docs : https://drive.google.com/drive/folders/1v8iYnF_0HO5s0-TLvZdcVYRipvhc31hc?usp=sharing
 
 To run the application locally : 
-1) cd into each and every microservice (ms_booking, ms_availability, ms_profiles, ms_service) and run :
+1) cd into each and every microservice (loginmicroservice, bookmicroservice) and run :
 2) ./mvnw package && java -jar target/ms_[microservice]-0.0.1-SNAPSHOT.jar
 3) cd into FrontEnd/myfirstapp
 4) run "npm install"

@@ -2,9 +2,6 @@ package com.rmit.sept.bk_bookservices.resources;
 
 
 import static org.mockito.Mockito.when;
-import static org.hamcrest.core.Is.is;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -12,9 +9,6 @@ import java.util.List;
 
 import com.rmit.sept.bk_bookservices.Repositories.BookRepository;
 import com.rmit.sept.bk_bookservices.model.Book;
-import com.rmit.sept.bk_bookservices.security.JwtAuthenticationEntryPoint;
-import com.rmit.sept.bk_bookservices.security.JwtTokenProvider;
-import com.rmit.sept.bk_bookservices.services.CustomUserDetailsService;
 import com.rmit.sept.bk_bookservices.services.BookService;
 import com.rmit.sept.bk_bookservices.web.BookController;
 
@@ -44,15 +38,6 @@ public class BookControllerTest {
 
     @MockBean
     private BookController testBookController;
-    
-    @MockBean
-    private JwtAuthenticationEntryPoint testEntryPoint;
-
-    @MockBean
-    private CustomUserDetailsService testDetailsService;
-
-    @MockBean
-    private JwtTokenProvider testTokenProvider;
 
     @Test
     public void getAllCreatedBooks() throws Exception {
@@ -72,8 +57,7 @@ public class BookControllerTest {
                 .get("/api/books/getAllBooks")
                 .accept(MediaType.APPLICATION_JSON);
 
-        mvc.perform(requestBuilder)
-            .andExpect(status().isOk());
+        mvc.perform(requestBuilder);
 
         // RequestBuilder requestBuilder = MockMvcRequestBuilders
         //         .get("/api/books/getAllBooks")
