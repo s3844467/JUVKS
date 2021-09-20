@@ -65,9 +65,8 @@ public class BookControllerTest {
 
         List<Book> allBooks = new ArrayList<>();
         allBooks.add(testBook);
-        // List<Book> allBooks = testBookService.getAllBooks();
 
-        given(testBookService.getAllBooks()).willReturn(allBooks);
+        when(testBookRepository.findAll()).thenReturn(allBooks);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/api/books/getAllBooks")
