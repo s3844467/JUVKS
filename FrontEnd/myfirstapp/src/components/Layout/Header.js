@@ -19,39 +19,45 @@ class Header extends Component {
             <div>
                 <div className="navbar-header">
                     <div className="navbar-container">
-                        <a className="bookeroo-title" href="/">
-                            Bookeroo
-                        </a> 
-                        <div className="navbar-partials">
 
                         {security.validToken ?
                         <>
-                            <div className="navbar-item">
-                                <a href="/my_account">
-                                    <button className="navbar-btn">
-                                        My Account
+                            <a className="bookeroo-title" href="/dashboard">
+                                Bookeroo
+                            </a> 
+                            <div className="navbar-partials">
+                                <div className="navbar-item">
+                                    <a href="/my_account">
+                                        <button className="navbar-btn">
+                                            My Account
+                                        </button>
+                                    </a>
+                                    <button className="navbar-btn" onClick={this.onClick}>
+                                        Logout
                                     </button>
-                                </a>
-                                <button className="navbar-btn" onClick={this.onClick}>
-                                    Logout
-                                </button>
+                                </div>
                             </div>
                         </>
                         :
                         <>
-                            <div className="navbar-item">
-                                <a className="navbar-page-registerlink" href="register">
-                                    <button className="navbar-btn">
-                                        Register
-                                    </button>
-                                </a>
-                            </div>
-                            <div className="navbar-item">
-                                <a className="navbar-page-loginlink" href="login">
-                                    <button className="navbar-btn">
-                                        Login
-                                    </button>
-                                </a>
+                            <a className="bookeroo-title" href="/">
+                                Bookeroo
+                            </a> 
+                            <div className="navbar-partials">
+                                <div className="navbar-item">
+                                    <a className="navbar-page-registerlink" href="register">
+                                        <button className="navbar-btn">
+                                            Register
+                                        </button>
+                                    </a>
+                                </div>
+                                <div className="navbar-item">
+                                    <a className="navbar-page-loginlink" href="login">
+                                        <button className="navbar-btn">
+                                            Login
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </>
                         }
@@ -59,7 +65,6 @@ class Header extends Component {
 
                     </div>
                 </div>
-            </div>
         )
     }
 }
