@@ -12,9 +12,7 @@ class Search extends Component {
         this.onChange = this.onChange.bind(this);
         this.onClick = this.onClick.bind(this);
         this.state={
-            search:"",
-            search_by:"",
-            filterBook: [],
+            search:""
         }
 
     }
@@ -79,9 +77,7 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        books: state.books, 
-        security: state.security,
-        errors: state.errors
+        books: state.books
     };
   };
 

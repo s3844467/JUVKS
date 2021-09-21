@@ -27,6 +27,11 @@ class Header extends Component {
                         {security.validToken ?
                         <>
                             <div className="navbar-item">
+                                <a href="/my_account">
+                                    <button className="navbar-btn">
+                                        My Account
+                                    </button>
+                                </a>
                                 <button className="navbar-btn" onClick={this.onClick}>
                                     Logout
                                 </button>

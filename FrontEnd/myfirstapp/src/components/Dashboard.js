@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import Person from './Persons/Person'
-import CreatePersonButton from './Persons/CreatePersonButton';
-import initial from '../reducers/securityReducer';
 import { getAllBooks, searchBooksTitle, searchBooksAuthor,searchBooksIsbn, getAllCategories, addBook} from "../actions/bookActions";
 import { login } from "../actions/securityActions";
 import { connect } from "react-redux";
@@ -14,7 +11,6 @@ class Dashboard extends Component {
         this.onChange = this.onChange.bind(this);
         this.onClick = this.onClick.bind(this);
         this.addBook = this.addBook.bind(this);
-        // this.filter = this.filter.bind(this);
         this.state={
             search:"",
             search_by:"",

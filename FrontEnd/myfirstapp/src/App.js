@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import AddPerson from "./components/Persons/AddPerson";
 import { Provider } from "react-redux";
 import store from "./store";
+
+import SecuredRoute from './securityUtils/SecureRoute'
 
 import Header from "./components/Layout/Header";
 import Landing from "./components/Layout/Landing";
@@ -13,12 +14,12 @@ import Login from "./components/UserManagement/Login";
 import Footer from './components/Layout/Footer';
 import Dashboard from "./components/Dashboard";
 import Search from "./components/BookManagement/Search";
+import MyAccount from "./components/UserManagement/MyAccount";
 
 import jwt_decode from "jwt-decode";
 import setJWTToken from "./securityUtils/setJWTToken";
 import { SET_CURRENT_USER } from "./actions/types";
 import { logout } from "./actions/securityActions";
-import SecuredRoute from "./securityUtils/SecureRoute";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -53,6 +54,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/search" component={Search} />
+            <SecuredRoute exact path="/my_account" component={MyAccount} authed={this.props.security}/>            
 
             {
               //Private Routes
