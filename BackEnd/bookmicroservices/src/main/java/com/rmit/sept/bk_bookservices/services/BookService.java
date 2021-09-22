@@ -56,5 +56,7 @@ public class BookService {
         return bookRepository.findBook(query);
     }
 
-
+    public Book getBookById(String query){
+        return bookRepository.findBookById(query);
+    }
 }

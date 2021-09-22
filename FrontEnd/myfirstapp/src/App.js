@@ -14,6 +14,7 @@ import Login from "./components/UserManagement/Login";
 import Footer from './components/Layout/Footer';
 import Dashboard from "./components/Dashboard";
 import Search from "./components/BookManagement/Search";
+import Book from "./components/BookManagement/Book";
 import MyAccount from "./components/UserManagement/MyAccount";
 
 import jwt_decode from "jwt-decode";
@@ -54,6 +55,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/search" component={Search} />
+            <Route exact path="/books/:id" component={Book} />
             <SecuredRoute exact path="/my_account" component={MyAccount} authed={this.props.security}/>            
 
             {
