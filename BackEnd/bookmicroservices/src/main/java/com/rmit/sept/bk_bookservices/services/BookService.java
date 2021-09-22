@@ -52,5 +52,11 @@ public class BookService {
     	return bookRepository.findByIsbn(isbn);
     }
 
+    public List<Book> searchBook(String query){
+        return bookRepository.findBook(query);
+    }
 
+    public Book getBookById(String query){
+        return bookRepository.findBookById(query);
+    }
 }

@@ -3,7 +3,7 @@ services:
   app:
     build:
       # context: .:/JUVKS/BackEnd
-      context: .
+      context: .:/JUVKS/BackEnd/loginmicroservices
     volumes:
       # - .:/JUVKS/FrontEnd
       - .:/JUVKS/BackEnd/loginmicroservices

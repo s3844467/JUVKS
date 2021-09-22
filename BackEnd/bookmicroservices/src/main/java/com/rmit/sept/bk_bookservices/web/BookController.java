@@ -22,7 +22,7 @@ import com.rmit.sept.bk_bookservices.services.BookService;
 import com.rmit.sept.bk_bookservices.services.MapValidationErrorService;
 import com.rmit.sept.bk_bookservices.validator.BookValidator;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -73,6 +73,16 @@ public class BookController {
 		return new ResponseEntity<List<Book>>(bookService.searchByIsbn(isbn.replace('+', ' ')), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/search/{query}")
+    public ResponseEntity<List<Book>> searchBook(@PathVariable String query){
+      //return book;
+		return new ResponseEntity<List<Book>>(bookService.searchBook(query.replace('+', ' ')), HttpStatus.ACCEPTED);
+    }
 
+    @GetMapping("/id=?{id}")
+    public ResponseEntity<Book> getBookById(@PathVariable String id){
+      //return book;
+		return new ResponseEntity<Book>(bookService.getBookById(id), HttpStatus.ACCEPTED);
+    }
 
 }
