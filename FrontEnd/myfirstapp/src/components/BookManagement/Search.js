@@ -3,6 +3,7 @@ import { getAllBooks,searchAllBooks} from "../../actions/bookActions";
 import { connect } from "react-redux";
 
 import "../Styles/Search.css";
+import { Link } from 'react-router-dom';
 
 
 class Search extends Component {
@@ -12,9 +13,7 @@ class Search extends Component {
         this.onChange = this.onChange.bind(this);
         this.onClick = this.onClick.bind(this);
         this.state={
-            search:"",
-            search_by:"",
-            filterBook: [],
+            search:""
         }
 
     }
@@ -56,18 +55,20 @@ class Search extends Component {
                         <div className="books-container">
                             {books &&
                             books.map((book) => (
-                                <div className="book-card">
-                                    <div className="book-img">
-                                        <span>{book.category}</span>
-                                    </div>
-                                    <div className="book-info">
-                                        <div className="book-info-top">
-                                            <span>{book.title}</span>
-                                            <span>$$</span>
+                                <Link to={{pathname: `/books/${book.id}`}}>
+                                    <div className="book-card">
+                                        <div className="book-img">
+                                            <span>{book.category}</span>
                                         </div>
-                                        <span className="book-info-bot">{book.author}</span>
+                                        <div className="book-info">
+                                            <div className="book-info-top">
+                                                <span>{book.title}</span>
+                                                <span>$$</span>
+                                            </div>
+                                            <span className="book-info-bot">{book.author}</span>
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                             ))}
                         </div>
                     </div>
@@ -79,9 +80,7 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        books: state.books, 
-        security: state.security,
-        errors: state.errors
+        books: state.books
     };
   };
 

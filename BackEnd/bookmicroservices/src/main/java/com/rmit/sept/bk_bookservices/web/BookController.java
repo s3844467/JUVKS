@@ -77,6 +77,12 @@ public class BookController {
     public ResponseEntity<List<Book>> searchBook(@PathVariable String query){
       //return book;
 		return new ResponseEntity<List<Book>>(bookService.searchBook(query.replace('+', ' ')), HttpStatus.ACCEPTED);
-  }
+    }
+
+    @GetMapping("/id=?{id}")
+    public ResponseEntity<Book> getBookById(@PathVariable String id){
+      //return book;
+		return new ResponseEntity<Book>(bookService.getBookById(id), HttpStatus.ACCEPTED);
+    }
 
 }
