@@ -6,8 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Range;
 
 
 @Entity
@@ -26,6 +31,29 @@ public class Book {
     private String isbn;
     @NotBlank(message = "Category is required")
     private String category;
+
+	@Range(min = 1, max = 100, message = "Invalid price range")
+	@Digits(integer=3, fraction=2, message = "Invalid price range")
+	private float price;
+
+	@NotBlank(message = "Book status is required")
+	@Pattern(regexp = "used|new", message = "invalid book status")
+	private String book_status;
+
+	@Column(length= 500)
+	@NotBlank(message = "Description is required")
+	private String description;
+
+	// @NotBlank(message = "Image is required")
+	// private String image;
+
+	@NotBlank(message = "User must be logged in")
+	private String owner_user_id;
+
+	@Range(min = 1, max = 100, message = "Invalid quantity range")
+	private int quantity;
+
+
 
 
     //OneToMany with Project
@@ -73,6 +101,41 @@ public class Book {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	
+	public float getPrice() {
+		return this.price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
-   
+	public String getBook_status() {
+		return this.book_status;
+	}
+	public void setBook_status(String book_status) {
+		this.book_status = book_status;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getOwner_user_id() {
+		return this.owner_user_id;
+	}
+	public void setOwner_user_id(String owner_user_id) {
+		this.owner_user_id = owner_user_id;
+	}
+	
+	public int getQuantity() {
+		return this.quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	
 }
