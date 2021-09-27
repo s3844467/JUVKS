@@ -25,9 +25,11 @@ class Book extends Component {
                     <div className="details-info">
                         <div className="info-top">
                             <h1>{book.title}</h1>
-                            <span>$$</span>
+                            <span>by {book.author}</span>
+                            <span>AU$</span>
                         </div>
                         <div>
+                            <strong>Description</strong>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at nisl id turpis sagittis ullamcorper et non mauris. Aliquam erat volutpat. Vestibulum ac scelerisque sapien, vel lacinia lectus. Cras in sapien consectetur, blandit metus rutrum, aliquam magna. Nunc ipsum mauris, accumsan ac sodales et, dignissim ut purus. Fusce iaculis porttitor diam, eget cursus eros condimentum a. Quisque massa enim, semper id viverra eu, sagittis eget sapien. Aenean efficitur lorem at fringilla congue.</p>
                             <br></br>
                             <p>Donec rutrum turpis sit amet fringilla rhoncus. Donec quis tempor mauris, vitae cursus metus. Etiam ex elit, malesuada et euismod ut, dictum malesuada eros. Morbi fermentum sem nec.</p>
