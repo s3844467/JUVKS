@@ -4,6 +4,7 @@ package com.rmit.sept.bk_bookservices.services;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,7 +57,7 @@ public class BookService {
         return bookRepository.findBook(query);
     }
 
-    public Book getBookById(String query){
-        return bookRepository.findBookById(query);
+    public Book searchById(long id){
+        return bookRepository.findBookById(id);
     }
 }

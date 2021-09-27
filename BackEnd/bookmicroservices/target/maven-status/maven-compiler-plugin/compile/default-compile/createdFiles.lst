@@ -1,6 +1,0 @@
-com\rmit\sept\bk_bookservices\services\CategoryService.class
-com\rmit\sept\bk_bookservices\Repositories\CategoryRepository.class
-com\rmit\sept\bk_bookservices\web\CategoryController.class
-com\rmit\sept\bk_bookservices\model\Category.class
-com\rmit\sept\bk_bookservices\exceptions\IsbnAlreadyExistsResponse.class
-com\rmit\sept\bk_bookservices\validator\CategoryValidator.class
