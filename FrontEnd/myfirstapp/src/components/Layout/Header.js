@@ -27,6 +27,7 @@ class Header extends Component {
                             </a> 
                             <div className="navbar-partials">
                                 <div className="navbar-item">
+                                    <a href="/addbook">Add Book</a>
                                     <a href="/my_account">
                                         <button className="navbar-btn">
                                             My Account
@@ -45,14 +46,14 @@ class Header extends Component {
                             </a> 
                             <div className="navbar-partials">
                                 <div className="navbar-item">
-                                    <a className="navbar-page-registerlink" href="register">
+                                    <a className="navbar-page-registerlink" href="/register">
                                         <button className="navbar-btn">
                                             Register
                                         </button>
                                     </a>
                                 </div>
                                 <div className="navbar-item">
-                                    <a className="navbar-page-loginlink" href="login">
+                                    <a className="navbar-page-loginlink" href="/login">
                                         <button className="navbar-btn">
                                             Login
                                         </button>

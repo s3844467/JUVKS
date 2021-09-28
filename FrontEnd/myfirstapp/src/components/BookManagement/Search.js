@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { getAllBooks,searchAllBooks} from "../../actions/bookActions";
 import { connect } from "react-redux";
+import Header from '../Layout/Header';
 
 import "../Styles/Search.css";
 import { Link } from 'react-router-dom';
@@ -39,6 +40,7 @@ class Search extends Component {
         const {books} = this.props;
         return (
             <div className="container">
+                <Header />
                 <div className="row">
                     <div className="col">
                         <div className="search-group">
@@ -59,11 +61,12 @@ class Search extends Component {
                                     <div className="book-card">
                                         <div className="book-img">
                                             <span>{book.category}</span>
+                                            <span style={{float:"right"}}>({book.book_status})</span>
                                         </div>
                                         <div className="book-info">
                                             <div className="book-info-top">
                                                 <span>{book.title}</span>
-                                                <span>$$</span>
+                                                <span>${book.price.toFixed(2)}</span>
                                             </div>
                                             <span className="book-info-bot">{book.author}</span>
                                         </div>

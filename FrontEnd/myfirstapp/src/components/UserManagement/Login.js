@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { login } from "../../actions/securityActions";
+import Header from "../Layout/Header";
 
 class Login extends Component {
   constructor() {
@@ -50,6 +51,7 @@ class Login extends Component {
     const { errors } = this.state;
     return (
       <div className="login">
+        <Header />
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">

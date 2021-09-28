@@ -1,0 +1,94 @@
+.main-content .h3 {
+  margin-left: 345px;
+  color: white;
+}
+
+.side-menu {
+  position: fixed;
+  background-color: #242423;
+  width: 275px;
+  height: 100%;
+  color: white;
+}
+
+.header-menu {
+  height: 80px;
+  width: 100%;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.header-menu h1 {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.side-menu-list {
+  height: auto;
+  width: 100%;
+  padding: 0;
+}
+
+.side-menu-list .side-menu-row {
+  width: 100%;
+  height: 60px;
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.side-menu-list .side-menu-row:hover {
+  cursor: pointer;
+  background-color: #202020;
+}
+
+.side-menu-row #icon {
+  flex: 30%;
+  display: grid;
+  place-items: center;
+}
+
+.side-menu-row #title {
+  flex: 70%;
+}
+
+.header-dashboard {
+  background-color: #2424238c;
+  position: relative;
+  min-height: 100%;
+  width: calc(100% - 275px);
+  left: 275px;
+}
+
+.header-dashboard nav {
+  height: 80px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-dashboard nav .banner-dashboard {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: white;
+}
+
+.header-dashboard nav .admin-details {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 200;
+  color: white;
+}
