@@ -2,7 +2,6 @@ package com.rmit.sept.bk_bookservices.resources;
 
 
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,17 +57,5 @@ public class BookControllerTest {
                 .accept(MediaType.APPLICATION_JSON);
 
         mvc.perform(requestBuilder);
-
-        // RequestBuilder requestBuilder = MockMvcRequestBuilders
-        //         .get("/api/books/getAllBooks")
-        //         .accept(MediaType.APPLICATION_JSON);
-
-        // String expected = "[{id:1,title:test book,author:test author,isbn:123456789,category:test category}]";
-        // MvcResult result = mvc.perform(requestBuilder)
-        //                         .andExpect(status().isOk())
-        //                         .andReturn();
-
-        // JSONObject jsonObj = new JSONObject(result.getResponse().getContentAsString());
-        // JSONAssert.assertEquals(expected, jsonObj, false);
     }
 }
