@@ -1,8 +1,7 @@
 package com.rmit.sept.bk_loginservices.services;
 
 import java.util.Date;
-
-
+import java.util.List;
 
 import com.rmit.sept.bk_loginservices.Repositories.UserRepository;
 import com.rmit.sept.bk_loginservices.exceptions.UsernameAlreadyExistsException;
@@ -45,6 +44,12 @@ public class UserService {
             newUser.setUpdate_At(new Date());
             newUser.setCreate_At(new Date());
             newUser.setAccountType(newUser.getAccountType());
+            newUser.setPhoneNum(newUser.getPhoneNum());
+            if (newUser.getAccountType().equals("shop")) {
+            	newUser.setStatus("pending");
+            }else {
+            	newUser.setStatus("validated");
+            }
             return userRepository.save(newUser);
 
         }catch (Exception e){
@@ -52,6 +57,40 @@ public class UserService {
         }
 
     }
+
+	public User blockUser(Long userId) {
+		User user = userRepository.getById(userId);
+		if (user.getStatus().equals("validated")){
+			user.setStatus("blocked");
+			return userRepository.save(user);
+		}
+		return user;
+	}
+	
+	public User unblockUser(Long userId) {
+		User user = userRepository.getById(userId);
+		if (user.getStatus().equals("blocked")){
+			user.setStatus("validated");
+			return userRepository.save(user);
+		}
+		return user;
+	}
+
+
+	public User validateUser(Long userId) {
+		User user = userRepository.getById(userId);
+		if (user.getStatus().equals("pending")){
+			user.setStatus("validated");
+			return userRepository.save(user);
+		}
+		return user;
+	}
+
+	public List<User> getUsersByStatus(String status) {
+		
+		return userRepository.findByStatus(status);
+	}
+
 
 
 }
