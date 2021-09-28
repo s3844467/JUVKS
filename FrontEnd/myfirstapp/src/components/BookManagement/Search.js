@@ -59,11 +59,12 @@ class Search extends Component {
                                     <div className="book-card">
                                         <div className="book-img">
                                             <span>{book.category}</span>
+                                            <span style={{float:"right"}}>({book.book_status})</span>
                                         </div>
                                         <div className="book-info">
                                             <div className="book-info-top">
                                                 <span>{book.title}</span>
-                                                <span>$$</span>
+                                                <span>${book.price.toFixed(2)}</span>
                                             </div>
                                             <span className="book-info-bot">{book.author}</span>
                                         </div>
