@@ -8,11 +8,11 @@
         <version>2.3.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.rmit.sept.bk_bookservices</groupId>
-    <artifactId>bookmicroservices</artifactId>
+    <groupId>com.rmit.sept.bk_reviewservices</groupId>
+    <artifactId>reviewmicroservices</artifactId>
     <version>0.0.1</version>
-    <name>bk_bookservices</name>
-    <description>Demo project for Spring Boot</description>
+    <name>bk_reviewservices</name>
+    <description>Bookeroo review microservice</description>
 
     <properties>
         <java.version>1.8</java.version>
