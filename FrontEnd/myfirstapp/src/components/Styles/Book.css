@@ -1,0 +1,64 @@
+.details-section {
+    margin: 32px 0;
+    display: flex;
+    max-height: 480px;
+    gap: 32px;
+}
+
+.details-img {
+    position: -webkit-sticky;
+    position: sticky;
+    width: 40%;
+    max-width: 438px;
+    max-height: 438px;
+    background: #eee;
+}
+
+.details-info {
+    width: 60%;
+}
+
+.info-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    margin-bottom: 16px;
+}
+
+.info-top h1 {
+    margin: 0;
+}
+
+.info-top > div > span {
+    font-size: 0.9em;
+}
+
+.purchase-btn, .review-submit-btn {
+    padding: 4px 12px;
+    opacity: 0.8;
+    transition: 0.2s;
+    border: 0;
+    border-radius: 2px;
+}
+
+.purchase-btn:hover {
+    opacity: 1;
+    box-shadow: 0 0 8px 4px #333;
+}
+
+.review-section > div {
+    background: #555;
+}
+
+.review-submit-btn:hover {
+    opacity: 1;
+    box-shadow: 0 0 8px 4px #333;
+
+}
+
+.review-text {
+    width: 100%;
+    outline: none;
+    resize: none;
+}
