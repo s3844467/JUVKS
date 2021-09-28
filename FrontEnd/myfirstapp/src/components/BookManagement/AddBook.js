@@ -13,7 +13,7 @@ class AddBook extends Component {
             addBook_title: "",
             addBook_author: "",
             addBook_price: "",
-            addBook_quanity: "1",
+            addBook_quantity: "1",
             addBook_category:"",
             addBook_isbn: "",
             addBook_image: "",
@@ -39,12 +39,12 @@ class AddBook extends Component {
             description: this.state.addBook_description,
             owner_user_id: this.props.security.user.id,
             price: this.state.addBook_price,
-            quantity: this.state.addBook_quanity
+            quantity: this.state.addBook_quantity
 
         };
         this.props.addBook(addBookRequest);
 
-        window.location.href = "/dashboard";
+        
 
     }
 
@@ -73,10 +73,11 @@ class AddBook extends Component {
                     onChange = {this.onChange}
                     required
                 />
+                {errors.data && errors.data.title &&(
+                <div className="text-danger">{errors.data.title}</div>
+                 )}
             </div>
-            {errors.data && errors.data.title &&(
-                <div>{errors.data.title}</div>
-            )}
+            
             
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Author</label>
@@ -89,10 +90,11 @@ class AddBook extends Component {
                     onChange = {this.onChange}
                     required
                 />
-            </div>
             {errors.data && errors.data.author &&(
-                <div className="alert alert-danger">{errors.data.author}</div>
+                <div className="text-danger">{errors.data.author}</div>
             )}
+            </div>
+            
             <div className="row">
             <div className="col">
                 <div className="form-group">
@@ -106,10 +108,11 @@ class AddBook extends Component {
                         onChange = {this.onChange}
                         required
                     />
-                </div>
                 {errors.data && errors.data.price &&(
-                    <div className="alert alert-danger">{errors.data.price}</div>
+                    <div className="text-danger">{errors.data.price}</div>
                 )}
+                </div>
+                
             </div>
             <div className="col">
                 <div className="form-group">
@@ -123,10 +126,10 @@ class AddBook extends Component {
                         onChange = {this.onChange}
                         required
                     />
-                </div>
                 {errors.data && errors.data.quantity &&(
-                    <div className="alert alert-danger">{errors.data.quantity}</div>
+                    <div className="text-danger">{errors.data.quantity}</div>
                 )}
+                </div>
             </div>
             </div>
 
@@ -141,10 +144,11 @@ class AddBook extends Component {
                     value={this.state.addBook_isbn}
                     onChange = {this.onChange}
                 />
+                {errors.data && errors.data.isbn &&(
+                <div className="text-danger">{errors.data.isbn}</div>
+                )}
             </div>
-            {errors.data && errors.data.isbn &&(
-                <div>{errors.data.isbn}</div>
-            )}
+            
 
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Description</label>
@@ -157,10 +161,11 @@ class AddBook extends Component {
                     onChange = {this.onChange}
                     required
                 ></textarea>
-            </div>
-            {errors.data && errors.data.isbn &&(
-                <div className="alert alert-danger">{errors.data.description}</div>
+            {errors.data && errors.data.description &&(
+                <div className="text-danger">{errors.data.description}</div>
             )}
+            </div>
+            
 
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Upload Image</label>
@@ -172,8 +177,8 @@ class AddBook extends Component {
                     onChange = {this.onChange}
                 />
             </div>
-            {errors.data && errors.data.isbn &&(
-                <div className="alert alert-danger">{errors.data.isbn}</div>
+            {errors.data && errors.data.image &&(
+                <div className="text-danger">{errors.data.image}</div>
             )}
 
             <div className="row">
@@ -191,7 +196,11 @@ class AddBook extends Component {
                     <option key={c.categoryName} value={c.categoryName}>{c.categoryName}</option>
                 ))}
                 </select>
+                {errors.data && errors.data.category &&(
+                    <div className="text-danger">{errors.data.category}</div>
+                )}
             </div>
+            
             </div>
             <div className="col">
             <div className="form-group">
@@ -230,7 +239,7 @@ class AddBook extends Component {
             }
             
             {errors.data && errors.data.message && (
-                <div className="alert alert-danger">{errors.data.message}</div>
+                <div className="text-danger">{errors.data.message}</div>
             )}
             </div> 
             

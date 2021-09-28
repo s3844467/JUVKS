@@ -1,16 +1,22 @@
 package com.rmit.sept.bk_bookservices.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
 
@@ -32,15 +38,18 @@ public class Book {
     @NotBlank(message = "Category is required")
     private String category;
 
-	@Range(min = 1, max = 100, message = "Invalid price range")
-	@Digits(integer=3, fraction=2, message = "Invalid price range")
-	private float price;
+	@NotNull(message= "Price cannot be empty")
+	@DecimalMin(value = "0.0", inclusive = false, message = "Price must be more than $0")
+	@DecimalMax(value = "1000.0", inclusive = false, message = "Price must be less than $1000")
+	@Digits(integer=3, fraction=2, message = "Invalid price format")
+	private BigDecimal price;
 
 	@NotBlank(message = "Book status is required")
 	@Pattern(regexp = "used|new", message = "invalid book status")
 	private String book_status;
 
 	@Column(length= 500)
+	@Size(min=0, max=500, message = "Your description is too long")
 	@NotBlank(message = "Description is required")
 	private String description;
 
@@ -50,6 +59,7 @@ public class Book {
 	@NotBlank(message = "User must be logged in")
 	private String owner_user_id;
 
+	@NotNull(message= "Quanntity cannot be empty")
 	@Range(min = 1, max = 100, message = "Invalid quantity range")
 	private int quantity;
 
@@ -102,10 +112,10 @@ public class Book {
 		this.category = category;
 	}
 	
-	public float getPrice() {
+	public BigDecimal getPrice() {
 		return this.price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
