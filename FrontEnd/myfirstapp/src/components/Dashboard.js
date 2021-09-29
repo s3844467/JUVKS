@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getAllBooks, searchBooksTitle, searchBooksAuthor,searchBooksIsbn, getAllCategories, addBook} from "../actions/bookActions";
+import { getAllBooks, searchBooksTitle, searchBooksAuthor,searchBookIsbn, getAllCategories, addBook} from "../actions/bookActions";
 import { login } from "../actions/securityActions";
 import { connect } from "react-redux";
 
@@ -59,7 +59,7 @@ class Dashboard extends Component {
             this.props.searchBooksAuthor(this.state.search);
         }
         else if(this.state.search_by == "isbn"){
-            this.props.searchBooksIsbn(this.state.search);
+            this.props.searchBookIsbn(this.state.search);
         }
 
         // this.props.searchBook(SearcRequest);
@@ -290,7 +290,7 @@ export default connect(mapStateToProps, {
     getAllCategories,
     searchBooksTitle,
     searchBooksAuthor,
-    searchBooksIsbn,
+    searchBookIsbn,
     login,
     addBook
 })(Dashboard);

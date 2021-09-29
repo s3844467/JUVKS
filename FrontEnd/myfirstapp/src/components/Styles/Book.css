@@ -47,18 +47,59 @@
     box-shadow: 0 0 8px 4px #333;
 }
 
-.review-section > div {
-    background: #555;
-}
-
-.review-submit-btn:hover {
-    opacity: 1;
-    box-shadow: 0 0 8px 4px #333;
-
+.review-section {
+    padding: 24px;
+    background: #ccc;
+    border-radius: 4px;
+    color: #333;
 }
 
 .review-text {
     width: 100%;
     outline: none;
     resize: none;
+}
+
+.create-review {
+    border-radius: 4px;
+    margin-bottom: 32px;
+}
+
+.review-rating {
+    margin-right: 8px;
+    margin-bottom: 12px;
+}
+
+.review-login-btn {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+.user-reviews {
+    border-radius: 4px;
+
+}
+
+.review-title {
+    margin-bottom: 16px;
+}
+
+.review-card {
+    background: #eee;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 16px;
+}
+
+.review-card p {
+    margin: 0;
+}
+
+.review-top {
+    margin-bottom: 4px;
+}
+
+.review-top > strong {
+    margin-right: 8px;
 }

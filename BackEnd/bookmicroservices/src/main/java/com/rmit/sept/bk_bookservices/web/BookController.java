@@ -68,9 +68,9 @@ public class BookController {
     }
 
     @GetMapping("/searchByIsbn/{isbn}")
-    public ResponseEntity<List<Book>> searchByIsbn(@PathVariable String isbn){
+    public ResponseEntity<Book> searchByIsbn(@PathVariable String isbn){
     	//return title;
-		return new ResponseEntity<List<Book>>(bookService.searchByIsbn(isbn.replace('+', ' ')), HttpStatus.ACCEPTED);
+		return new ResponseEntity<Book>(bookService.searchByIsbn(isbn), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/searchById/{id}")

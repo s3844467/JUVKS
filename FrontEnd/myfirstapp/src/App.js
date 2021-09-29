@@ -56,7 +56,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/search" component={Search} />
-            <Route exact path="/books/:id" component={Book} />
+            <Route exact path="/books/:isbn" component={Book} />
             <Route exact path="/addbook" component={AddBook} />
             <SecuredRoute exact path="/my_account" component={MyAccount} authed={this.props.security}/>            
 

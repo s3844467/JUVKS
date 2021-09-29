@@ -11,6 +11,10 @@
     border-radius: 4px;
 }
 
+.books-container > a:hover {
+    text-decoration: none;
+}
+
 .book-card {
     display: flex;
     flex-direction: column;

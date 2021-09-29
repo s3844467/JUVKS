@@ -36,10 +36,10 @@ export const searchBooksAuthor = (author) => async dispatch => {
   console.log(res.data);
 };
 
-export const searchBooksIsbn = (isbn) => async dispatch => {
+export const searchBookIsbn = (isbn) => async dispatch => {
   const res = await axios.get("http://localhost:8081/api/books/searchByIsbn/"+isbn);
   dispatch({
-    type: GET_BOOKS,
+    type: GET_BOOK,
     payload: res.data
   });
   console.log(res.data);

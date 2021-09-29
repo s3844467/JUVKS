@@ -27,7 +27,11 @@ class Header extends Component {
                             </a> 
                             <div className="navbar-partials">
                                 <div className="navbar-item">
-                                    <a href="/addbook">Add Book</a>
+                                    <a href="/addbook">
+                                        <button className="navbar-btn">
+                                            Add Book
+                                        </button>
+                                    </a>
                                     <a href="/my_account">
                                         <button className="navbar-btn">
                                             My Account

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { getAllBooks,searchAllBooks} from "../../actions/bookActions";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import "../Styles/Search.css";
-import { Link } from 'react-router-dom';
 
 
 class Search extends Component {
@@ -55,11 +55,10 @@ class Search extends Component {
                         <div className="books-container">
                             {books &&
                             books.map((book) => (
-                                <Link to={{pathname: `/books/${book.id}`}}>
+                                <Link to={{pathname: `/books/${book.isbn}`}}>
                                     <div className="book-card">
                                         <div className="book-img">
                                             <span>{book.category}</span>
-                                            <span style={{float:"right"}}>({book.book_status})</span>
                                         </div>
                                         <div className="book-info">
                                             <div className="book-info-top">
