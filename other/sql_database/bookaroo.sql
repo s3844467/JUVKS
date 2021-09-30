@@ -226,15 +226,9 @@ CREATE TABLE `reviews` (
   `rating` int NOT NULL,
   `book_id` int NOT NULL,
   `username` varchar(45) NOT NULL,
-<<<<<<< HEAD
   `date_added` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-=======
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`review_id`),
-  UNIQUE KEY `review_id_UNIQUE` (`review_id`),
->>>>>>> 680db9260eddf5fc83519df8d8939f336ff14989
   KEY `user_username_idx` (`username`),
   KEY `book_id_idx` (`book_id`),
   CONSTRAINT `review_book` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`),
