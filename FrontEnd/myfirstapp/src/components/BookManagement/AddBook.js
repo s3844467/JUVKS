@@ -18,9 +18,9 @@ class AddBook extends Component {
             addBook_isbn: "",
             addBook_image: "",
             addBook_status: "used",
-            addBook_description: ""
+            addBook_description: "",
+            message:""
         }
-
     }
 
 
@@ -44,6 +44,14 @@ class AddBook extends Component {
         };
         this.props.addBook(addBookRequest);
 
+        if (! this.props.errors){
+            this.setState({message: "Book is added sucessfully"})
+        }else{
+            this.setState({message: "There was error adding the book"})
+        }
+
+        // window.location.href = "/addbook";
+
         
 
     }
@@ -53,7 +61,7 @@ class AddBook extends Component {
     }
 
     render() {
-        const {category, errors, security} = this.props;
+        const {category, errors, security, books} = this.props;
         return (
             
         <div className="container">
@@ -61,7 +69,13 @@ class AddBook extends Component {
         <div className="row">
             <div className="col-md-8 m-auto">
             <h3>Add book</h3>
-            
+
+            {this.state.message && errors.data &&(
+                <div className="alert alert-danger">{this.state.message}</div>
+            )}
+            {this.state.message && ! errors.data &&(
+                <div className="alert alert-success">{this.state.message}</div>
+            )}
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Title</label>
                 <input 
@@ -171,6 +185,8 @@ class AddBook extends Component {
                 <label htmlFor="formGroupExampleInput">Upload Image</label>
                 <input 
                     type="file" 
+                    accept="image/png, image/jpeg"
+                    formEncType="multipart/form-data"
                     className="form-control-file" 
                     name="addBook_image"
                     value={this.state.addBook_image}
@@ -255,7 +271,8 @@ const mapStateToProps = (state) => {
     return {
         category:state.category,
         errors: state.errors,
-        security: state.security
+        security: state.security,
+        books: state.books
     };
   };
 

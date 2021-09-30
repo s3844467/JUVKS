@@ -57,6 +57,10 @@ export const searchAllBooks = (query) => async dispatch => {
 export const addBook = (book) => async dispatch => {
   try {
     const res = await axios.post("http://localhost:8081/api/books/addBook", book);
+    dispatch({
+      type: GET_BOOK,
+      payload: res.data
+    });
   } catch (err) {
     dispatch({
       type: GET_ERRORS,

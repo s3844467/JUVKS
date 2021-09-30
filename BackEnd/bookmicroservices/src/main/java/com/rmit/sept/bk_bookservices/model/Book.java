@@ -51,7 +51,7 @@ public class Book {
 	@NotBlank(message = "Description is required")
 	private String description;
 
-	// @NotBlank(message = "Image is required")
+	// @NotNull(message = "Image is required")
 	// private String image;
 
 	@NotBlank(message = "User must be logged in")
