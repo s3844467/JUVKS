@@ -31,7 +31,8 @@ public class ReviewService {
     	return reviewRepository.findByUsername(username);
     }
 
-    public List<Review> searchByIsbn(String isbn){
-    	return reviewRepository.findByIsbn(isbn);
+    public List<Review> searchByBookId(String bookId){
+
+    	return reviewRepository.findReviewsByBookId(bookId);
     }
 }

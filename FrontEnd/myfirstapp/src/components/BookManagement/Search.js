@@ -55,7 +55,7 @@ class Search extends Component {
                         <div className="books-container">
                             {books &&
                             books.map((book) => (
-                                <Link to={{pathname: `/books/${book.isbn}`}}>
+                                <Link to={{pathname: `/books/${book.id}`}}>
                                     <div className="book-card">
                                         <div className="book-img">
                                             <span>{book.category}</span>

@@ -221,14 +221,14 @@ DROP TABLE IF EXISTS `reviews`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviews` (
-  `review_id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `comment` varchar(45) DEFAULT NULL,
   `rating` int NOT NULL,
   `book_id` int NOT NULL,
   `username` varchar(45) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`review_id`),
-  UNIQUE KEY `review_id_UNIQUE` (`review_id`),
+  `date_added` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `user_username_idx` (`username`),
   KEY `book_id_idx` (`book_id`),
   CONSTRAINT `review_book` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`),

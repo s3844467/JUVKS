@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { searchBookIsbn } from "../../actions/bookActions";
-import { searchReviewsIsbn, addReview } from "../../actions/reviewActions";
+import { searchBookId } from "../../actions/bookActions";
+import { searchReviewsBookId, addReview } from "../../actions/reviewActions";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
@@ -16,21 +16,21 @@ class Book extends Component {
             addReview_username: "",
             addReview_rating: "",
             addReview_comment:"",
-            addReview_isbn: "",
+            addReview_book_id: "",
             addReview_date: ""
         }
     }
 
     componentDidMount() {
-        this.props.searchBookIsbn(this.props.match.params.isbn);
-        this.props.searchReviewsIsbn(this.props.match.params.isbn);
+        this.props.searchBookId(this.props.match.params.id);
+        this.props.searchReviewsBookId(this.props.match.params.id);
     }
 
     addReview(e){
         e.preventDefault();
 
         this.state.addReview_username=this.props.security.user.username;
-        this.state.addReview_isbn=this.props.book.isbn;
+        this.state.addReview_book_id=this.props.book.id;
 
         let today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
@@ -43,17 +43,17 @@ class Book extends Component {
 
         const addReviewRequest = {
             username: this.state.addReview_username,
-            rating: this.state.addReview_rating,
+            rating: parseInt(this.state.addReview_rating),
             comment: this.state.addReview_comment,
-            isbn: this.state.addReview_isbn,
-            date: this.state.addReview_date
+            book_id: this.state.addReview_book_id,
+            date_added: this.state.addReview_date
         };
 
         console.log(addReviewRequest);
 
         this.props.addReview(addReviewRequest);
-        this.props.searchReviewsIsbn(this.props.match.params.isbn);
-        // window.location.href = "/books/"+this.props.match.params.isbn;
+        this.props.searchReviewsBookId(this.props.match.params.id);
+        // window.location.href = "/books/"+this.props.match.params.id;
     }
     
     onChange(e){
@@ -157,8 +157,8 @@ const mapStateToProps = (state) => {
   };
 
 export default connect(mapStateToProps, {
-    searchBookIsbn,
-    searchReviewsIsbn,
+    searchBookId,
+    searchReviewsBookId,
     addReview
 })(Book);
 // export default Dashboard;

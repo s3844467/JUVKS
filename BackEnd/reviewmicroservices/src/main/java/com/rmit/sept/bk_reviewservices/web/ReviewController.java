@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rmit.sept.bk_reviewservices.model.Review;
 import com.rmit.sept.bk_reviewservices.services.ReviewService;
 import com.rmit.sept.bk_reviewservices.services.MapValidationErrorService;
-import com.rmit.sept.bk_reviewservices.validator.ReviewValidator;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
@@ -32,14 +31,11 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @Autowired
-    private ReviewValidator reviewValidator;
-
 
     @PostMapping("/addReview")
     public ResponseEntity<?> registerReview(@Valid @RequestBody Review review, BindingResult result){
         // Validate passwords match
-    	reviewValidator.validate(review,result);
+    	// reviewValidator.validate(review,result);
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
@@ -54,9 +50,12 @@ public class ReviewController {
     	return new ResponseEntity<List<Review>>(reviewService.getAllReviews(), HttpStatus.OK);
     }
 
-    @GetMapping("/getReviewsByIsbn/{isbn}")
-    public ResponseEntity<List<Review>> getReviewsByIsbn(@PathVariable String isbn){
-    	return new ResponseEntity<List<Review>>(reviewService.searchByIsbn(isbn), HttpStatus.OK);
+    @GetMapping("/getReviewsByBookId/{bookId}")
+    public ResponseEntity<List<Review>> getReviewsByBookId(@PathVariable String bookId){
+        // long longId = Long.parseLong(bookId);
+        // System.out.println(longId);
+
+    	return new ResponseEntity<List<Review>>(reviewService.searchByBookId(bookId), HttpStatus.OK);
     }
     
     @GetMapping("/getReviewsByUser/{userId}")

@@ -12,9 +12,9 @@ import com.rmit.sept.bk_reviewservices.model.Review;
 @Repository
 public interface ReviewRepository extends CrudRepository<Review, Long> {
 
-    @Query(value = "SELECT r from Review r WHERE r.isbn = :isbn")
-    List<Review> findByIsbn(@Param("isbn") String isbn);
+    @Query(value = "SELECT r FROM Review r WHERE r.book_id = :bookId")
+    List<Review> findReviewsByBookId(@Param("bookId") String bookId);
 
-    @Query(value = "SELECT r from Review r WHERE r.username = :username")
+    @Query(value = "SELECT r FROM Review r WHERE r.username = :username")
     List<Review> findByUsername(@Param("username") String username);
 }

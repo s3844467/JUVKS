@@ -46,9 +46,9 @@ public class ReviewControllerTest {
         testReview.setId((long) 1);
         testReview.setComment("This book was amazing. From the first page I was hooked in, and over the course of three days I managed to complete the book and find myself desiring more. I 100% recommend reading this book if you have the chance.");
         testReview.setUsername("user@user.com");
-        testReview.setIsbn("123456789");
+        testReview.setBookId("1");
         Date newDate = new Date();
-        testReview.setDate(newDate.toString());
+        testReview.setDateAdded(newDate.toString());
 
         List<Review> allReviews = new ArrayList<>();
         allReviews.add(testReview);

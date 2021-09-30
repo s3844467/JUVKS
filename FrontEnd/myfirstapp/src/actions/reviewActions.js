@@ -9,8 +9,8 @@ export const getAllReviews = () => async dispatch => {
     });
 };
 
-export const searchReviewsIsbn = (isbn) => async dispatch => {
-    const res = await axios.get("http://localhost:8082/api/reviews/getReviewsByIsbn/"+isbn);
+export const searchReviewsBookId = (bookId) => async dispatch => {
+    const res = await axios.get("http://localhost:8082/api/reviews/getReviewsByBookId/"+bookId);
     dispatch({
       type: GET_REVIEWS,
       payload: res.data

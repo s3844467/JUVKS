@@ -18,12 +18,12 @@ public class Review {
     private String comment;
     @NotBlank(message = "Rating is required")
     private String rating;
-    @NotBlank(message = "Rating is required")
-    private String isbn;
-	@NotBlank(message = "ISBN is required")
+    @NotBlank(message = "Book Id is required")
+    private String book_id;
+	@NotBlank(message = "Username is required")
     private String username;
     @NotBlank(message = "Date is required")
-    private String date;
+    private String date_added;
 
     public Review() {
     }
@@ -52,12 +52,12 @@ public class Review {
 		this.rating = rating;
 	}
 
-	public String getIsbn() {
-		return isbn;
+	public String getBookId() {
+		return book_id;
 	}
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+	public void setBookId(String book_id) {
+		this.book_id = book_id;
 	}
 
 	public String getUsername() {
@@ -68,11 +68,11 @@ public class Review {
 		this.username = username;
 	}
 
-	public String getDate() {
-		return date;
+	public String getDateAdded() {
+		return date_added;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setDateAdded(String date) {
+		this.date_added = date;
 	}
 }
