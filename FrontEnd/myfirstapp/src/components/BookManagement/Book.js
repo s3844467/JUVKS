@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { searchBookId } from "../../actions/bookActions";
-import { searchReviewsBookId, addReview } from "../../actions/reviewActions";
+import { searchReviewUsernameBookId, searchReviewsBookId, addReview } from "../../actions/reviewActions";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ class Book extends Component {
         this.onChange = this.onChange.bind(this);
         this.addReview = this.addReview.bind(this);
         this.state={
+            userHasReviewed: false,
             addReview_username: "",
             addReview_rating: "",
             addReview_comment:"",
@@ -51,6 +52,7 @@ class Book extends Component {
 
         this.props.addReview(addReviewRequest);
         this.props.searchReviewsBookId(this.props.match.params.id);
+        window.location.href="/books/"+this.props.match.params.id;
     }
     
     onChange(e){
@@ -59,7 +61,13 @@ class Book extends Component {
 
     render() {
         const {book, reviews, security} = this.props;
-        
+        reviews.map((review) => {
+            if (!this.state.userHasReviewed && review.username === security.user.username) {
+                this.setState({userHasReviewed: true});
+                return;
+            }
+        });
+
         return (
             <div className="container">
                 <div className="details-section">
@@ -89,23 +97,30 @@ class Book extends Component {
                             <h4 className="review-title">Review Test Book</h4>
                             {security.validToken ?
                             <>
-                                <div onChange={this.onChange}>
-                                    <input className="review-rating" type="radio" name="addReview_rating" value="1"/> 
-                                    <input className="review-rating" type="radio" name="addReview_rating" value="2"/> 
-                                    <input className="review-rating" type="radio" name="addReview_rating" value="3"/> 
-                                    <input className="review-rating" type="radio" name="addReview_rating" value="4"/> 
-                                    <input className="review-rating" type="radio" name="addReview_rating" value="5"/> 
-                                </div>
-                                <textarea 
-                                    className="review-text" 
-                                    type="textarea" 
-                                    placeholder="Write your review here..." 
-                                    rows="5"
-                                    name="addReview_comment"
-                                    value={this.state.addReview_comment}
-                                    onChange={this.onChange}
-                                />
-                                <button className="review-submit-btn" onClick={this.addReview}>Submit</button>
+                                {this.state.userHasReviewed === true ?
+                                    <>
+                                        <span>You have already written a review for {book.title}</span>
+                                    </>
+                                    :
+                                    <>
+                                        <div onChange={this.onChange}>
+                                            <input className="review-rating" type="radio" name="addReview_rating" value="1"/> 
+                                            <input className="review-rating" type="radio" name="addReview_rating" value="2"/> 
+                                            <input className="review-rating" type="radio" name="addReview_rating" value="3"/> 
+                                            <input className="review-rating" type="radio" name="addReview_rating" value="4"/> 
+                                            <input className="review-rating" type="radio" name="addReview_rating" value="5"/> 
+                                        </div>
+                                        <textarea 
+                                            className="review-text" 
+                                            type="textarea" 
+                                            placeholder="Write your review here..." 
+                                            rows="5"
+                                            name="addReview_comment"
+                                            value={this.state.addReview_comment}
+                                            onChange={this.onChange}
+                                        />
+                                        <button className="review-submit-btn" onClick={this.addReview}>Submit</button>
+                                    </>}
                             </>
                             :
                             <>
@@ -156,6 +171,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     searchBookId,
     searchReviewsBookId,
+    searchReviewUsernameBookId,
     addReview
 })(Book);
 // export default Dashboard;

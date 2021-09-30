@@ -1,7 +1,6 @@
 .details-section {
     margin: 32px 0;
     display: flex;
-    max-height: 480px;
     gap: 32px;
 }
 
@@ -94,6 +93,11 @@
 
 .review-card p {
     margin: 0;
+}
+
+.review-card span {
+    size: 4px;
+    margin-bottom: 4px;
 }
 
 .review-top {

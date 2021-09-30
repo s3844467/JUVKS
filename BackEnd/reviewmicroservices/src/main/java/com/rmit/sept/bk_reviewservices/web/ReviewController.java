@@ -63,4 +63,10 @@ public class ReviewController {
     	//return username;
 		return new ResponseEntity<List<Review>>(reviewService.searchByUsername(username), HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("/getReviewByUsernameBookId/{bookId}-{userId}")
+    public ResponseEntity<Review> getReviewsByUsername(@PathVariable String bookId, @PathVariable String username){
+    	//return username;
+		return new ResponseEntity<Review>(reviewService.searchByUsernameBookId(username, bookId), HttpStatus.ACCEPTED);
+    }
 }

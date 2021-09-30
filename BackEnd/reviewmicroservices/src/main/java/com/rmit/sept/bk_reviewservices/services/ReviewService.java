@@ -32,7 +32,10 @@ public class ReviewService {
     }
 
     public List<Review> searchByBookId(String bookId){
-
     	return reviewRepository.findReviewsByBookId(bookId);
+    }
+
+    public Review searchByUsernameBookId(String username, String bookId) {
+        return reviewRepository.findByUsernameBookId(username, bookId);
     }
 }
