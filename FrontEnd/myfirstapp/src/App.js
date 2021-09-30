@@ -13,6 +13,7 @@ import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import Footer from './components/Layout/Footer';
 import Dashboard from "./components/Dashboard";
+import AdminDashboard from "./components/AdminManagement/AdminDashboard";
 import Search from "./components/BookManagement/Search";
 import Book from "./components/BookManagement/Book";
 import AddBook from "./components/BookManagement/AddBook";
@@ -61,6 +62,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/admin" component={AdminDashboard} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/books/:id" component={Book} />
             <Route exact path="/addbook" component={AddBook} />
