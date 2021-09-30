@@ -52,11 +52,11 @@ public class Review {
 		this.rating = rating;
 	}
 
-	public String getBookId() {
+	public String getBook_id() {
 		return book_id;
 	}
 
-	public void setBookId(String book_id) {
+	public void setBook_id(String book_id) {
 		this.book_id = book_id;
 	}
 
@@ -68,11 +68,11 @@ public class Review {
 		this.username = username;
 	}
 
-	public String getDateAdded() {
+	public String getDate_added() {
 		return date_added;
 	}
 
-	public void setDateAdded(String date) {
+	public void setDate_added(String date) {
 		this.date_added = date;
 	}
 }

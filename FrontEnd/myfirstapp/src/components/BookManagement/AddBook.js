@@ -44,7 +44,7 @@ class AddBook extends Component {
         };
         this.props.addBook(addBookRequest);
 
-        
+        window.location.href = "/dashboard";
 
     }
 
@@ -120,7 +120,7 @@ class AddBook extends Component {
                     <input 
                         type="number" 
                         className="form-control" 
-                        defaultValue="1"
+                        min="1"
                         name="addBook_quantity"
                         value={this.state.addBook_quantity}
                         onChange = {this.onChange}

@@ -34,7 +34,7 @@ class Book extends Component {
 
         let today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
-        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
         const yyyy = today.getFullYear();
         
         today = mm + '/' + dd + '/' + yyyy;
@@ -49,11 +49,8 @@ class Book extends Component {
             date_added: this.state.addReview_date
         };
 
-        console.log(addReviewRequest);
-
         this.props.addReview(addReviewRequest);
         this.props.searchReviewsBookId(this.props.match.params.id);
-        // window.location.href = "/books/"+this.props.match.params.id;
     }
     
     onChange(e){
