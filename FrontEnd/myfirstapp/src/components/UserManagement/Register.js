@@ -3,7 +3,6 @@ import { createNewUser } from "../../actions/securityActions";
 import * as PropTypes from 'prop-types'
 import { connect } from "react-redux";
 import classnames from "classnames";
-import Header from "../Layout/Header";
 
 class Register extends Component {
   constructor() {
@@ -51,7 +50,6 @@ class Register extends Component {
     const { errors } = this.props;
     return (
       <div className="register">
-        <Header />
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">

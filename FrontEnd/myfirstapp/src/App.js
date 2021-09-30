@@ -47,7 +47,13 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-          
+          {window.location.pathname != "/admin" ?
+            <>
+              <Header></Header>
+            </>
+            :
+            <>
+            </>}
             {
               //Public Routes
             }

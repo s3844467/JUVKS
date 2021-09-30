@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import '..//Styles/Landing.css';
-import Header from "./Header";
 
 class Landing extends Component {
   constructor(props){
@@ -11,7 +10,6 @@ class Landing extends Component {
     const {security} = this.props;
     return (
       <div>
-        <Header />
         <div className="content">
           <h1>Welcome to Bookeroo</h1>
           <p className="slogan">Fill your mind with happy thoughts. <span className="advert">Join the Book Club now!</span></p>

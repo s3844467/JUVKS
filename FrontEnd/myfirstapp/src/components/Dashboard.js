@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { getAllBooks, searchBooksTitle, searchBooksAuthor,searchBooksIsbn, getAllCategories, addBook} from "../actions/bookActions";
 import { login } from "../actions/securityActions";
 import { connect } from "react-redux";
-import Header from './Layout/Header';
 
 
 class Dashboard extends Component {
@@ -75,7 +74,6 @@ class Dashboard extends Component {
         return (
             
         <div className="container">
-            <Header />
             {/* Displaying all backend data base here */}
             <h3>Current User</h3>
             <div className="row">

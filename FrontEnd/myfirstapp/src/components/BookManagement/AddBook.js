@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { getAllCategories, addBook} from "../../actions/bookActions";
 import { connect } from "react-redux";
-import Header from '../Layout/Header';
 
 
 class AddBook extends Component {
@@ -56,7 +55,6 @@ class AddBook extends Component {
         const {category, errors, security} = this.props;
         return (
         <div className="container">
-            <Header />
         <div className="row">
             <div className="col-md-8 m-auto">
             <h3>Add book</h3>

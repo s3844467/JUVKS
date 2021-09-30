@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import Header from '../Layout/Header';
 
 import "../Styles/MyAccount.css";
 
@@ -14,7 +13,6 @@ class MyAccount extends Component {
         const {security} = this.props;
         return (
             <div className="container">
-                <Header />
                 <h1>My Account</h1>
                 <div className="myaccount-container">
                     <div>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { getAllBooks,searchAllBooks} from "../../actions/bookActions";
 import { connect } from "react-redux";
-import Header from '../Layout/Header';
 
 import "../Styles/Search.css";
 import { Link } from 'react-router-dom';
@@ -40,7 +39,6 @@ class Search extends Component {
         const {books} = this.props;
         return (
             <div className="container">
-                <Header />
                 <div className="row">
                     <div className="col">
                         <div className="search-group">
