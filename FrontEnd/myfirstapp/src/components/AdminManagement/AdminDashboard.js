@@ -11,43 +11,22 @@ class AdminDashboard extends Component {
                         <h1> Bookeroo </h1>
                     </div>
                     <ul className="side-menu-list">
-                        <a href="/user-management">
-                            <li className="side-menu-row">
-                                <span id="title">Manage Users</span>
-                            </li>
-                        </a>
-                        <a href="/upgrade-requests">
-                            <li className="side-menu-row">
-                                <span id="title">Upgrade Requests</span>
-                            </li>
-                        </a>
-                        <a href="/book-management">
-                            <li className="side-menu-row">
-                                <span id="title">Manage Books</span>
-                            </li>
-                        </a>
-                        <a href="/transactions">
-                            <li className="side-menu-row">
-                                <span id="title">Transactions History</span>
-                            </li>
-                        </a>
-
-                        {/* {SidebarContent.map((menuItem, index)=> {
-                            return (
-                                <li className="side-menu-row" index={index} onClick={()=> {window.location.pathname = menuItem.link}}> 
-                                    <div id="icon"> {menuItem.icon} </div>
-                                    <div id="title"> {menuItem.title} </div>
-                                </li>
-                        )})} */}
+                        {SidebarContent.map((menuItem, index) => {
+                            return(
+                            <li className="side-menu-row" index={index} onClick={()=> {window.location.pathname = menuItem.link}}> 
+                                <div id="icon"> {menuItem.icon} </div>
+                                <div id="title"> {menuItem.title} </div>
+                            </li>)
+                        })}
                     </ul>
                 </div>
                 <section className="header-dashboard">
                     <nav>
-                        <div class="banner-dashboard">
-                            <span class="dashboard">Dashboard</span>
+                        <div className="banner-dashboard">
+                            <span className="dashboard">Dashboard</span>
                         </div>
-                        <div class="admin-details">
-                            <span class="admin-name">Admin</span>
+                        <div className="admin-details">
+                            <span className="admin-name">Admin</span>
                         </div>
                     </nav>
                 </section>
