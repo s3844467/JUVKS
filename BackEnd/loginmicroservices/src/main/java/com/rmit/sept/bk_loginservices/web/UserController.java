@@ -94,14 +94,17 @@ public class UserController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = TOKEN_PREFIX +  tokenProvider.generateToken(authentication);
-
+        
+        String userName = loginRequest.getUsername();
+        User user = userService.getUserByUsername(userName);
+        if (user.getStatus().equals("blocked")){
+        	return new ResponseEntity<String>("User is blocked", HttpStatus.FORBIDDEN);
+        }
         return ResponseEntity.ok(new JWTLoginSucessReponse(true, jwt));
     }
     
     @PostMapping("/blockUser/{userId}")
-    public ResponseEntity<?> blockUser(@PathVariable Long userId, BindingResult result){
-        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null) return errorMap;
+    public ResponseEntity<?> blockUser(@PathVariable Long userId){
 
         return new ResponseEntity<User>(userService.blockUser(userId), HttpStatus.OK);
     }

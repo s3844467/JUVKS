@@ -91,6 +91,11 @@ public class UserService {
 		return userRepository.findByStatus(status);
 	}
 
+	public User getUserByUsername(String userName) {
+		// TODO Auto-generated method stub
+		return userRepository.findByUsername(userName);
+	}
+
 
 
 }
