@@ -2,6 +2,7 @@
     margin: 32px 0;
     display: flex;
     gap: 32px;
+    min-height:480px;
 }
 
 .details-img {

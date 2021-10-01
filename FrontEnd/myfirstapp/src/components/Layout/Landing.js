@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import '..//Styles/Landing.css';
 
 class Landing extends Component {
-  constructor(props){
-      super(props)
-  }
   render() {
     const {security} = this.props;
     return (

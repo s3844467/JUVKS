@@ -211,7 +211,7 @@ class AddBook extends Component {
                 >
                 <option defaultValue key="used" value="used">Used</option>
 
-                {security.validToken && security.user.accountType == "public" ?
+                {security.validToken && security.user.accountType === "public" ?
                 <>
                     <option key="new" value="new" disabled>New</option>
                 </>

@@ -57,7 +57,7 @@ public class BookService {
         return bookRepository.findBook(query);
     }
 
-    public Book searchById(long id){
+    public List<Book> searchById(long id){
         return bookRepository.findBookById(id);
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { searchBookId } from "../../actions/bookActions";
 import { searchReviewUsernameBookId, searchReviewsBookId, addReview } from "../../actions/reviewActions";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import "../Styles/Book.css";
 
@@ -13,6 +13,7 @@ class Book extends Component {
         this.onChange = this.onChange.bind(this);
         this.addReview = this.addReview.bind(this);
         this.state={
+            redirect: false,
             userHasReviewed: false,
             addReview_username: "",
             addReview_rating: "",
@@ -25,34 +26,72 @@ class Book extends Component {
     componentDidMount() {
         this.props.searchBookId(this.props.match.params.id);
         this.props.searchReviewsBookId(this.props.match.params.id);
+        this.hasUserReviewed();
     }
 
-    addReview(e){
-        e.preventDefault();
+    hasUserReviewed() {
+        this.props.reviews.map((review) => {
+            if (!this.state.userHasReviewed && review.username === this.props.security.user.username) {
+                this.setState({userHasReviewed: true});
+                return;
+            }
+        });
+    }
 
-        this.state.addReview_username=this.props.security.user.username;
-        this.state.addReview_book_id=this.props.book.id;
-
+    addReview(){
         let today = new Date();
+
         const dd = String(today.getDate()).padStart(2, '0');
         const mm = String(today.getMonth() + 1).padStart(2, '0');
         const yyyy = today.getFullYear();
         
         today = mm + '/' + dd + '/' + yyyy;
 
-        this.state.addReview_date=today;
-
         const addReviewRequest = {
-            username: this.state.addReview_username,
+            username: this.props.security.user.username,
             rating: parseInt(this.state.addReview_rating),
             comment: this.state.addReview_comment,
-            book_id: this.state.addReview_book_id,
-            date_added: this.state.addReview_date
+            book_id: this.props.book[0].id,
+            date_added: today
         };
 
         this.props.addReview(addReviewRequest);
         this.props.searchReviewsBookId(this.props.match.params.id);
-        window.location.href="/books/"+this.props.match.params.id;
+        window.location.href="/book/"+this.props.match.params.id;
+    }
+
+    renderRedirect = () => {
+      if (this.state.redirect === true) {
+        return <Redirect to={`/books/${this.props.book[0].id}`} />
+      }
+    }
+
+    renderAlreadyReviewed = () => {
+        if (this.state.userHasReviewed === true) {
+            return <span>You have already written a review for {this.props.book[0].title}</span>
+        } else {
+            return(
+                <>
+                    <div onChange={this.onChange}>
+                        <input className="review-rating" type="radio" name="addReview_rating" value="1"/> 
+                        <input className="review-rating" type="radio" name="addReview_rating" value="2"/> 
+                        <input className="review-rating" type="radio" name="addReview_rating" value="3"/> 
+                        <input className="review-rating" type="radio" name="addReview_rating" value="4"/> 
+                        <input className="review-rating" type="radio" name="addReview_rating" value="5"/> 
+                    </div>
+                    <textarea 
+                        className="review-text" 
+                        type="textarea" 
+                        placeholder="Write your review here..." 
+                        rows="5"
+                        name="addReview_comment"
+                        value={this.state.addReview_comment}
+                        onChange={this.onChange}
+                    />
+                    <button className="review-submit-btn" onClick={this.addReview}>Submit</button>
+                </>
+            )
+        }
     }
     
     onChange(e){
@@ -61,30 +100,24 @@ class Book extends Component {
 
     render() {
         const {book, reviews, security} = this.props;
-        reviews.map((review) => {
-            if (!this.state.userHasReviewed && review.username === security.user.username) {
-                this.setState({userHasReviewed: true});
-                return;
-            }
-        });
-
         return (
             <div className="container">
+                {this.renderRedirect()}
                 <div className="details-section">
                     <div className="details-img">
 
                     </div>
                     <div className="details-info">
                         <div className="info-top">
-                            <h1>{book.title}</h1>
-                            <span>by {book.author} {book.isbn && (<i>(ISBN: {book.isbn})</i>)}</span>
-                            <span>AU ${book.price && book.price.toFixed(2)}</span>
+                            <h1>{book[0].title}</h1>
+                            <span>by {book[0].author} {book[0].isbn && (<i>(ISBN: {book[0].isbn})</i>)}</span>
+                            <span>AU ${book[0].price && book[0].price.toFixed(2)}</span>
                         </div>
                         <div>
-                            <p><b>Book Status: </b><i>{book.book_status}</i></p>
+                            <p><b>Book Status: </b><i>{book[0].book_status}</i></p>
 
                             <strong>Description</strong>
-                            <p>{book.description}</p>
+                            <p>{book[0].description}</p>
                         </div>
                         <div>
                             <button className="purchase-btn">Purchase</button>
@@ -97,30 +130,7 @@ class Book extends Component {
                             <h4 className="review-title">Review Test Book</h4>
                             {security.validToken ?
                             <>
-                                {this.state.userHasReviewed === true ?
-                                    <>
-                                        <span>You have already written a review for {book.title}</span>
-                                    </>
-                                    :
-                                    <>
-                                        <div onChange={this.onChange}>
-                                            <input className="review-rating" type="radio" name="addReview_rating" value="1"/> 
-                                            <input className="review-rating" type="radio" name="addReview_rating" value="2"/> 
-                                            <input className="review-rating" type="radio" name="addReview_rating" value="3"/> 
-                                            <input className="review-rating" type="radio" name="addReview_rating" value="4"/> 
-                                            <input className="review-rating" type="radio" name="addReview_rating" value="5"/> 
-                                        </div>
-                                        <textarea 
-                                            className="review-text" 
-                                            type="textarea" 
-                                            placeholder="Write your review here..." 
-                                            rows="5"
-                                            name="addReview_comment"
-                                            value={this.state.addReview_comment}
-                                            onChange={this.onChange}
-                                        />
-                                        <button className="review-submit-btn" onClick={this.addReview}>Submit</button>
-                                    </>}
+                                {this.renderAlreadyReviewed()}
                             </>
                             :
                             <>
@@ -136,7 +146,7 @@ class Book extends Component {
                         {reviews.length === 0 ?
                         <>
                             <div>
-                                <h5>Oops.. There doesn't appear to be any reviews for {book.title}</h5>
+                                <h5>Oops.. There doesn't appear to be any reviews for {book[0].title}</h5>
                                 <h5>Be the first to write a review!</h5>
                             </div>
                         </>

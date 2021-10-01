@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -47,7 +47,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            {window.location.pathname != "/admin" ?
+            {window.location.pathname !== "/admin" ?
             <>
               <Header></Header>
             </>
@@ -63,10 +63,10 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/admin" component={AdminDashboard} />
-            <Route exact path="/search" component={Search} />
+            <Route exact path="/search=:query?" component={Search} />
             <Route exact path="/books/:id" component={Book} />
-            <Route exact path="/addbook" component={AddBook} />
-            <SecuredRoute exact path="/my_account" component={MyAccount} authed={this.props.security}/>            
+            <SecuredRoute exact path="/addbook" component={AddBook}/>
+            <SecuredRoute exact path="/my_account" component={MyAccount}/>            
 
             {
               //Private Routes

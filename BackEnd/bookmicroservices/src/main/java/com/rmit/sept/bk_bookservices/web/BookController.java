@@ -74,10 +74,10 @@ public class BookController {
     }
 
     @GetMapping("/searchById/{id}")
-    public ResponseEntity<Book> searchById(@PathVariable String id){
+    public ResponseEntity<List<Book>> searchById(@PathVariable String id){
       //return book;
     long longId = Long.parseLong(id);
-		return new ResponseEntity<Book>(bookService.searchById(longId), HttpStatus.ACCEPTED);
+		return new ResponseEntity<List<Book>>(bookService.searchById(longId), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/search/{query}")
