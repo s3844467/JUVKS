@@ -18,7 +18,7 @@ export const searchReviewsBookId = (bookId) => async dispatch => {
     console.log(res.data);
 };
 
-export const searchReviewUsernameBookId = (username, bookId) => async dispatch => {
+export const searchReviewUsernameBookId = (bookId, username) => async dispatch => {
     const res = await axios.get("http://localhost:8082/api/reviews/getReviewsByBookId/"+bookId+"-"+username);
     dispatch({
       type: GET_REVIEW,
