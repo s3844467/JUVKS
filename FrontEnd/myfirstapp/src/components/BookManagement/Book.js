@@ -140,6 +140,9 @@ class Book extends Component {
                                         <div className="review-top">
                                             <strong>{review.username}</strong>
                                             <span>{review.rating}</span>
+                                            <ul className="review-rating">{Array.from(Array(parseInt(review.rating)), (e, i) => {
+                                                return <li className="rating-item" key={i}>*</li>
+                                            })}</ul>
                                         </div>
                                         <p className="review-btm">{review.comment}</p>
                                     </div>

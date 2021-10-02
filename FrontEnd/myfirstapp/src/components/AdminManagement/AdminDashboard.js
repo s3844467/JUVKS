@@ -14,7 +14,7 @@ class AdminDashboard extends Component {
                         {SidebarContent.map((menuItem, index) => {
                             return(
                             <li className="side-menu-row" index={index} onClick={()=> {window.location.pathname = menuItem.link}}> 
-                                {/* <div id="icon"> {menuItem.icon} </div> */}
+                                <div id="icon"> {menuItem.icon} </div>
                                 <div id="title"> {menuItem.title} </div>
                             </li>)
                         })}
