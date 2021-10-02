@@ -102,9 +102,17 @@
 }
 
 .review-top {
+    display: flex;
     margin-bottom: 4px;
+    align-items: center;
 }
 
 .review-top > strong {
-    margin-right: 8px;
+    margin-right: 16px;
+}
+
+.review-rating {
+    /* display: inline-block; */
+    list-style-type: none;
+    margin-bottom: 4px;
 }

@@ -4,8 +4,9 @@ import { searchReviewUsernameBookId, searchReviewsBookId, addReview } from "../.
 import { connect } from "react-redux";
 import { Link, Redirect } from 'react-router-dom';
 
+import StarIcon from '@material-ui/icons/Star';
+
 import "../Styles/Book.css";
-import { getThemeProps } from '@material-ui/styles';
 
 class Book extends Component {
     constructor(props) {
@@ -139,9 +140,8 @@ class Book extends Component {
                                     <div className="review-card">
                                         <div className="review-top">
                                             <strong>{review.username}</strong>
-                                            <span>{review.rating}</span>
                                             <ul className="review-rating">{Array.from(Array(parseInt(review.rating)), (e, i) => {
-                                                return <li className="rating-item" key={i}>*</li>
+                                                return <li className="rating-item" key={i}><StarIcon/></li>
                                             })}</ul>
                                         </div>
                                         <p className="review-btm">{review.comment}</p>
