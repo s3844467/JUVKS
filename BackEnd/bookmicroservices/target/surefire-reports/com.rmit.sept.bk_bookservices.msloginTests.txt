@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: com.rmit.sept.bk_bookservices.msloginTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.975 s - in com.rmit.sept.bk_bookservices.msloginTests
+=======
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.178 s - in com.rmit.sept.bk_bookservices.msloginTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.975 s - in com.rmit.sept.bk_bookservices.msloginTests
+>>>>>>> 74e9a8d833a432329bc2c1ceed30f4a31b2d2258
+>>>>>>> 680db9260eddf5fc83519df8d8939f336ff14989

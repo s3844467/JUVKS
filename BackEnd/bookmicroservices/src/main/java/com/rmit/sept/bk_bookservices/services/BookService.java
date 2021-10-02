@@ -4,6 +4,7 @@ package com.rmit.sept.bk_bookservices.services;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,15 +49,15 @@ public class BookService {
     	return bookRepository.findByAuthor(author);
     }
 
-    public List<Book> searchByIsbn(String isbn){
-    	return bookRepository.findByIsbn(isbn);
+    public Book searchByIsbn(String isbn){
+    	return bookRepository.findBookByIsbn(isbn);
     }
 
     public List<Book> searchBook(String query){
         return bookRepository.findBook(query);
     }
 
-    public Book getBookById(String query){
-        return bookRepository.findBookById(query);
+    public List<Book> searchById(long id){
+        return bookRepository.findBookById(id);
     }
 }

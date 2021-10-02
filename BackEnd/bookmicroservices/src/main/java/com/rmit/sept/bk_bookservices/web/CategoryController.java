@@ -26,17 +26,8 @@ import com.rmit.sept.bk_bookservices.validator.CategoryValidator;
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
-
-    @Autowired
-    private MapValidationErrorService mapValidationErrorService;
-
     @Autowired
     private CategoryService categoryService;
-
-    @Autowired
-    private CategoryValidator categoryValidator;
-
-
 
     @GetMapping("/getAllCategories")
     public ResponseEntity<List<Category>> getAllCategories(){

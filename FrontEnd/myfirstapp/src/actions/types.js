@@ -11,3 +11,7 @@ export const GET_BOOKS = "GET_BOOKS";
 export const GET_BOOK = "GET_BOOK";
 
 export const GET_CATEGORIES = "GET_CATEGORIES";
+
+export const GET_ALLREVIEWS = "GET_ALLREVIEWS";
+export const GET_REVIEWS = "GET_REVIEWS";
+export const GET_REVIEW = "GET_REVIEW";

@@ -1,0 +1,12 @@
+# Created at 2021-09-25T12:15:04.424
+Sep 25, 2021 12:15:04 PM org.junit.platform.launcher.core.ServiceLoaderTestEngineRegistry loadTestEngines
+
+# Created at 2021-09-25T12:15:04.425
+CONFIG: Discovered TestEngines with IDs: [junit-jupiter (group ID: org.junit.jupiter, artifact ID: junit-jupiter-engine, version: 5.6.2, location: jar:file:/C:/Users/mames/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.2/junit-jupiter-engine-5.6.2.jar!/org/junit/jupiter/engine/JupiterTestEngine.class)]
+
+# Created at 2021-09-25T12:15:04.440
+Sep 25, 2021 12:15:04 PM org.junit.platform.launcher.core.ServiceLoaderTestExecutionListenerRegistry loadListeners
+
+# Created at 2021-09-25T12:15:04.441
+CONFIG: Loaded TestExecutionListener instances: []
+

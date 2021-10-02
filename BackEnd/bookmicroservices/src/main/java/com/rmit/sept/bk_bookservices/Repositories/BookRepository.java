@@ -19,12 +19,12 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	@Query(value = "SELECT b FROM Book b WHERE b.author LIKE %:author%")
     List<Book> findByAuthor(@Param("author") String author);
 
-    @Query(value = "SELECT b FROM Book b WHERE b.isbn LIKE %:isbn%")
-    List<Book> findByIsbn(@Param("isbn") String isbn);
+    @Query(value = "SELECT b FROM Book b WHERE b.isbn = :isbn")
+    Book findBookByIsbn(@Param("isbn") String isbn);
 
     @Query(value = "SELECT b FROM Book b WHERE b.isbn LIKE %:query% OR b.title LIKE %:query% OR b.author LIKE %:query% OR b.category LIKE %:query%")
     List<Book> findBook(@Param("query") String query);
     
     @Query(value = "SELECT b FROM Book b WHERE b.id = :id")
-    Book findBookById(@Param("id") String id);
+    List<Book> findBookById(@Param("id") long id);
 }

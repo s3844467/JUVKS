@@ -1,18 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { logout } from "../../actions/securityActions";
+import { Link } from 'react-router-dom';
 
-import '..//Styles/Header.css'
+import '../Styles/Header.css'
 
 class Header extends Component {
     constructor(props){
         super(props)
-        this.onClick = this.onClick.bind(this)
+        this.onChange = this.onChange.bind(this);
+        this.onLogoutClick = this.onLogoutClick.bind(this);
+
+        this.state={
+            search:""
+        }
     }
-    onClick(){
+    
+    onLogoutClick(){
         this.props.logout();
-        window.location.href = "/";
+        window.location.href="/";
     }
+
+    onChange(e) {
+        this.setState({[e.target.name]: e.target.value });
+    }
+    
     render() {
         const {security} = this.props;
         return (
@@ -22,47 +34,71 @@ class Header extends Component {
 
                         {security.validToken ?
                         <>
-                            <a className="bookeroo-title" href="/dashboard">
+                            <Link className="bookeroo-title" to="/dashboard">
                                 Bookeroo
-                            </a> 
+                            </Link>
+                            <div className="search-group">
+                                <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    placeholder="Search for a book"
+                                    name="search"
+                                    value={this.state.search}
+                                    onChange = {this.onChange}
+                                />
+                                <Link to={{
+                                    pathname: `/search=${this.state.search.toLowerCase().replaceAll(' ', '-')}`
+                                }}>
+                                    <button className="btn btn-primary">Search</button>
+                                </Link>
+                            </div>
                             <div className="navbar-partials">
                                 <div className="navbar-item">
-                                    <a href="/my_account">
-                                        <button className="navbar-btn">
-                                            My Account
-                                        </button>
-                                    </a>
-                                    <button className="navbar-btn" onClick={this.onClick}>
-                                        Logout
-                                    </button>
+                                    <Link to="/addbook">
+                                        <button className="navbar-btn">Add Book</button>
+                                    </Link>
+                                    <Link to="/my_account">
+                                        <button className="navbar-btn">My Account</button>
+                                    </Link>
+                                    <button className="navbar-btn" onClick={this.onLogoutClick}>Logout</button>
                                 </div>
                             </div>
                         </>
                         :
                         <>
-                            <a className="bookeroo-title" href="/">
+                            <Link className="bookeroo-title" to="/">
                                 Bookeroo
-                            </a> 
+                            </Link> 
+                            <div className="search-group">
+                                <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    placeholder="Search for a book"
+                                    name="search"
+                                    value={this.state.search}
+                                    onChange = {this.onChange}
+                                />
+                                <Link to={{
+                                    pathname: `/search=${this.state.search.toLowerCase().replaceAll(' ', '-')}`
+                                }}>
+                                    <button className="btn btn-primary">Search</button>
+                                </Link>
+                            </div>
                             <div className="navbar-partials">
                                 <div className="navbar-item">
-                                    <a className="navbar-page-registerlink" href="register">
-                                        <button className="navbar-btn">
-                                            Register
-                                        </button>
-                                    </a>
+                                    <Link className="navbar-page-registerlink" to="/register">
+                                        <button className="navbar-btn">Register</button>
+                                    </Link>
                                 </div>
                                 <div className="navbar-item">
-                                    <a className="navbar-page-loginlink" href="login">
-                                        <button className="navbar-btn">
-                                            Login
-                                        </button>
-                                    </a>
+                                    <Link className="navbar-page-loginlink" to="/login">
+                                        <button className="navbar-btn">Login</button>
+                                    </Link>
                                 </div>
                             </div>
                         </>
                         }
                         </div>
-
                     </div>
                 </div>
         )
@@ -73,4 +109,6 @@ const mapStateToProps = (state) => {
         security: state.security,
     };
   };
-export default  connect(mapStateToProps,{logout})(Header);
+export default  connect(mapStateToProps,{
+    logout
+})(Header);
