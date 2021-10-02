@@ -1,4 +1,4 @@
-import {GET_REVIEW, GET_REVIEWS, GET_ALLREVIEWS} from "../actions/types";
+import {GET_REVIEWS, GET_ALLREVIEWS} from "../actions/types";
 
 const initialState = [];
 
@@ -10,9 +10,6 @@ function reviewReducer(reviews = initialState, action) {
             return payload;
 
         case GET_REVIEWS:
-            return payload;
-
-        case GET_REVIEW:
             return payload;
 
         default:

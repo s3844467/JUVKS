@@ -49,8 +49,12 @@ class Book extends Component {
         this.props.searchBookId(this.props.match.params.id);
         this.props.searchReviewsBookId(this.props.match.params.id);
 
-        if (this.props.security.validToken)
+        if (this.props.security.validToken) {
+            console.log(this.props);
+            console.log(this.props.security.user.username);
+            console.log(this.props.match.params.id);
             this.props.searchReviewUsernameBookId(this.props.match.params.id, this.props.security.user.username);
+        }
     }
 
     render() {
@@ -67,17 +71,17 @@ class Book extends Component {
                         <div className="details-info">
                             <div className="info-top">
                                 <h1>{book[0].title}</h1>
-                                <span>by {book[0].author} {book[0].isbn && (<i>(ISBN: {book[0].isbn})</i>)}</span>
+                                <span>by {book[0].author} {book[0].isbn && (<span>(<b>ISBN:</b> {book[0].isbn})</span>)}</span>
                                 <span>AU ${book[0].price && book[0].price.toFixed(2)}</span>
                             </div>
                             <div>
-                                <p><b>Book Status: </b><i>{book[0].book_status}</i></p>
+                                <div className="mb-2"><b>Details</b></div>
+                                <div className="mb-2"><b>Condition: </b><span>{book[0].book_status.charAt(0).toUpperCase() + book[0].book_status.slice(1)}</span></div>
 
-                                <strong>Description</strong>
                                 <p>{book[0].description}</p>
                             </div>
                             <div>
-                                <button className="purchase-btn">Purchase</button>
+                                <button className="purchase-btn">Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -86,8 +90,8 @@ class Book extends Component {
                             <div>
                                 <h4 className="review-title">Review Test Book</h4>
                                 {security.validToken ?
-                                <>
-                                    {(userReview && userReview.length > 0) ? 
+                                <>  {console.log(this.props)}
+                                    {userReview ? 
                                     <>
                                         <span>You have already written a review for {book[0].title}</span>
                                     </>
@@ -109,7 +113,7 @@ class Book extends Component {
                                             value={this.state.addReview_comment}
                                             onChange={this.onChange}
                                         />
-                                        <button className="review-submit-btn" onClick={this.addReview}>Submit</button>
+                                        <button className="review-submit-btn"onClick={this.addReview}>Submit</button>
                                     </>}
                                 </>
                                 :

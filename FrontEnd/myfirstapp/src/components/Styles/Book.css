@@ -12,6 +12,7 @@
     max-width: 438px;
     max-height: 438px;
     background: #eee;
+    border-radius: 4px;
 }
 
 .details-info {
@@ -34,7 +35,7 @@
     font-size: 0.9em;
 }
 
-.purchase-btn, .review-submit-btn {
+.purchase-btn, .review-submit-btn, .review-login-btn {
     padding: 4px 12px;
     opacity: 0.8;
     transition: 0.2s;
@@ -44,7 +45,12 @@
 
 .purchase-btn:hover {
     opacity: 1;
-    box-shadow: 0 0 8px 4px #333;
+    box-shadow: 0 0 16px 2px #333;
+}
+
+.review-submit-btn:hover, .review-login-btn:hover {
+    opacity: 1;
+    box-shadow: 0 0 16px 2px #bbb;
 }
 
 .review-section {
@@ -58,6 +64,7 @@
     width: 100%;
     outline: none;
     resize: none;
+    margin-bottom: 8px;
 }
 
 .create-review {
@@ -70,15 +77,8 @@
     margin-bottom: 12px;
 }
 
-.review-login-btn {
-    padding: 4px 8px;
-    border: none;
-    border-radius: 4px;
-}
-
 .user-reviews {
     border-radius: 4px;
-
 }
 
 .review-title {
