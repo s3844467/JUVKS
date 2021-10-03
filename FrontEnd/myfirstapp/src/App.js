@@ -17,6 +17,7 @@ import AdminDashboard from "./components/AdminManagement/AdminDashboard";
 import Search from "./components/BookManagement/Search";
 import Book from "./components/BookManagement/Book";
 import AddBook from "./components/BookManagement/AddBook";
+import Cart from "./components/OrderManagement/Cart";
 import MyAccount from "./components/UserManagement/MyAccount";
 
 import jwt_decode from "jwt-decode";
@@ -61,6 +62,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/cart" component={Cart} />            
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/admin" component={AdminDashboard} />
             <Route exact path="/search=:query?" component={Search} />

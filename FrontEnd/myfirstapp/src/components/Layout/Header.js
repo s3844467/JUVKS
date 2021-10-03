@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { logout } from "../../actions/securityActions";
 import { Link } from 'react-router-dom';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import SearchIcon from '@material-ui/icons/Search';
 
 import '../Styles/Header.css'
 
@@ -49,7 +52,7 @@ class Header extends Component {
                                 <Link to={{
                                     pathname: `/search=${this.state.search.toLowerCase().replaceAll(' ', '-')}`
                                 }}>
-                                    <button className="btn btn-primary">Search</button>
+                                    <button className="btn btn-primary search-btn"><SearchIcon/></button>
                                 </Link>
                             </div>
                             <div className="navbar-partials">
@@ -57,8 +60,11 @@ class Header extends Component {
                                     <Link to="/addbook">
                                         <button className="navbar-btn">Add Book</button>
                                     </Link>
+                                    <Link to="/cart">
+                                        <button className="navbar-btn"><ShoppingCartIcon/>Cart</button>
+                                    </Link>
                                     <Link to="/my_account">
-                                        <button className="navbar-btn">My Account</button>
+                                        <button className="navbar-btn"><AccountBoxIcon/>My Account</button>
                                     </Link>
                                     <button className="navbar-btn" onClick={this.onLogoutClick}>Logout</button>
                                 </div>
@@ -81,7 +87,7 @@ class Header extends Component {
                                 <Link to={{
                                     pathname: `/search=${this.state.search.toLowerCase().replaceAll(' ', '-')}`
                                 }}>
-                                    <button className="btn btn-primary">Search</button>
+                                    <button className="btn btn-primary search-btn"><SearchIcon/></button>
                                 </Link>
                             </div>
                             <div className="navbar-partials">

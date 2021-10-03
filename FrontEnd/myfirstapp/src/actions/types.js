@@ -15,3 +15,6 @@ export const GET_CATEGORIES = "GET_CATEGORIES";
 export const GET_ALLREVIEWS = "GET_ALLREVIEWS";
 export const GET_REVIEWS = "GET_REVIEWS";
 export const GET_REVIEW = "GET_REVIEW";
+
+export const GET_ALL_CART_ITEMS = "GET_ALL_CART_ITEMS";
+export const GET_CART_ITEMS = "GET_CART_ITEMS";

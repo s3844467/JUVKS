@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { searchBookId } from "../../actions/bookActions";
 import { searchReviewUsernameBookId, searchReviewsBookId, addReview } from "../../actions/reviewActions";
+import { addCartItem } from "../../actions/cartActions";
 import { connect } from "react-redux";
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import StarIcon from '@material-ui/icons/Star';
 
@@ -14,6 +15,7 @@ class Book extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.addReview = this.addReview.bind(this);
+        this.addCartItem = this.addCartItem.bind(this);
 
         this.state = {
             addReview_comment: "",
@@ -36,6 +38,7 @@ class Book extends Component {
 
         const addReviewRequest = {
             username: this.props.security.user.username,
+            fullname: this.props.security.user.fullName,
             rating: parseInt(this.state.addReview_rating),
             comment: this.state.addReview_comment,
             book_id: this.props.book[0].id,
@@ -46,14 +49,26 @@ class Book extends Component {
         window.location.href = "/books/"+this.props.match.params.id;
     }
 
+    addCartItem() {
+        const addCartItemRequest = {
+            book_id: this.props.match.params.id,
+            user_id: this.props.security.user.id,
+            quantity: 1,
+            title: this.props.book[0].title,
+            username: this.props.security.user.username,
+            price_per: this.props.book[0].price,
+            total_price: this.props.book[0].price
+        }
+
+        this.props.addCartItem(addCartItemRequest);
+        window.location.href = "/cart";
+    }
+
     componentDidMount() {
         this.props.searchBookId(this.props.match.params.id);
         this.props.searchReviewsBookId(this.props.match.params.id);
 
         if (this.props.security.validToken) {
-            console.log(this.props);
-            console.log(this.props.security.user.username);
-            console.log(this.props.match.params.id);
             this.props.searchReviewUsernameBookId(this.props.match.params.id, this.props.security.user.username);
         }
     }
@@ -82,7 +97,7 @@ class Book extends Component {
                                 <p>{book[0].description}</p>
                             </div>
                             <div>
-                                <button className="purchase-btn">Add to cart</button>
+                                <button className="purchase-btn" onClick={this.addCartItem}>Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -91,7 +106,7 @@ class Book extends Component {
                             <div>
                                 <h4 className="review-title">Review Test Book</h4>
                                 {security.validToken ?
-                                <>  {console.log(this.props)}
+                                <>
                                     {userReview ? 
                                     <>
                                         <span>You have already written a review for {book[0].title}</span>
@@ -170,7 +185,8 @@ export default connect(mapStateToProps, {
     searchBookId,
     searchReviewsBookId,
     searchReviewUsernameBookId,
-    addReview
+    addReview,
+    addCartItem
 })(Book);
 // export default Dashboard;
         

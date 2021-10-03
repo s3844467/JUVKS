@@ -41,61 +41,67 @@ INSERT INTO `authors` VALUES (1,'author1');
 UNLOCK TABLES;
 
 --
--- Table structure for table `bag_items`
+-- Table structure for table `cart_items`
 --
 
-DROP TABLE IF EXISTS `bag_items`;
+DROP TABLE IF EXISTS `cart_items`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `bag_items` (
-  `bag_id` int NOT NULL,
+CREATE TABLE `cart_items` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `book_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `quantity` int NOT NULL,
-  `isbn` varchar(45) NOT NULL,
-  `publisher_id` varchar(45) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `order_id` int,
+  `username` varchar(45) NOT NULL,
+  `price_per` int NOT NULL,
+  `total_price` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `user_id_idx` (`user_id`),
   KEY `book_id_idx` (`book_id`),
-  KEY `publisher_id_idx` (`publisher_id`),
-  KEY `bag_idx` (`bag_id`),
-  CONSTRAINT `bag` FOREIGN KEY (`bag_id`) REFERENCES `bags` (`bag_id`),
-  CONSTRAINT `book_id` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`),
-  CONSTRAINT `publisher_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`abn`)
+  CONSTRAINT `cart_items_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `cart_items_books` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `bag_items`
+-- Dumping data for table `cart_items`
 --
 
-LOCK TABLES `bag_items` WRITE;
-/*!40000 ALTER TABLE `bag_items` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bag_items` ENABLE KEYS */;
+LOCK TABLES `cart_items` WRITE;
+/*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `bags`
+-- Table structure for table `orders`
 --
 
-DROP TABLE IF EXISTS `bags`;
+DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `bags` (
-  `bag_id` int NOT NULL,
+CREATE TABLE `orders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `order_number` int NOT NULL,
   `user_id` int NOT NULL,
-  `username` varchar(45) NOT NULL,
-  PRIMARY KEY (`bag_id`),
-  UNIQUE KEY `bag_id_UNIQUE` (`bag_id`),
-  KEY `user_id_idx` (`user_id`,`username`),
-  CONSTRAINT `users` FOREIGN KEY (`user_id`, `username`) REFERENCES `users` (`id`, `username`)
+  `total_price` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `user_id_idx` (`user_id`),
+  KEY `order_number_idx` (`order_number`),
+  CONSTRAINT `order_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `bags`
+-- Dumping data for table `orders`
 --
 
-LOCK TABLES `bags` WRITE;
-/*!40000 ALTER TABLE `bags` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bags` ENABLE KEYS */;
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -108,7 +114,7 @@ DROP TABLE IF EXISTS `books`;
 CREATE TABLE `books` (
   `isbn` varchar(45) DEFAULT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
   `category` varchar(255) DEFAULT NULL,
   `book_status` varchar(45) NOT NULL,
@@ -226,6 +232,7 @@ CREATE TABLE `reviews` (
   `rating` int NOT NULL,
   `book_id` int NOT NULL,
   `username` varchar(45) NOT NULL,
+  `fullname` varchar(45) NOT NULL,
   `date_added` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
@@ -256,7 +263,7 @@ CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
   `fullname` varchar(45) DEFAULT NULL,
-  `address` varchar(45) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `phone` int DEFAULT NULL,
   `account_type` varchar(45) NOT NULL,
   `status` tinyint NOT NULL DEFAULT '1',
