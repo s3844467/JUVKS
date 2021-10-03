@@ -135,7 +135,7 @@ class Register extends Component {
                       className="form-check-input" 
                       type="radio" 
                       name="accountType" 
-                      value="pubic"
+                      value="Public"
                       onChange = {this.onChange}
                   />
                   <label className="form-check-label" htmlFor="inlineRadio2">Public</label>
@@ -145,14 +145,14 @@ class Register extends Component {
                       className="form-check-input" 
                       type="radio" 
                       name="accountType" 
-                      value="shop"
+                      value="Publisher"
                       onChange = {this.onChange}
                   />
-                  <label className="form-check-label" htmlFor="inlineRadio2">Shop Owner</label>
+                  <label className="form-check-label" htmlFor="inlineRadio2">Publisher</label>
                   </div>
                 </div>
                 
-                {this.state.accountType  === "shop" ?
+                {this.state.accountType  === "Publisher" ?
                 <>
                   <div className="form-group">
                     <input

@@ -35,7 +35,7 @@ class Cart extends Component {
         updatedCartItem.total_price = parseInt(e.target.value * updatedCartItem.price_per);
         updatedCartItems.set(updatedCartItem.id, updatedCartItem);
 
-        this.setState({cartItems: updatedCartItems})
+        this.setState({cartItems: updatedCartItems});
         this.props.updateCartItemQuantity(updatedCartItem.quantity, updatedCartItem.id);
     }
 

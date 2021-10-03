@@ -16,6 +16,6 @@ export default combineReducers({
   userReview: userReviewReducer,
   cart: cartReducer,
   reviews: reviewReducer,
-  category: categoryReducer
+  category: categoryReducer,
 });
 

@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
 import StarIcon from '@material-ui/icons/Star';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
 
 import "../Styles/Book.css";
 
@@ -97,7 +96,16 @@ class Book extends Component {
                                 <p>{book[0].description}</p>
                             </div>
                             <div>
-                                <button className="purchase-btn" onClick={this.addCartItem}>Add to cart</button>
+                                {security.validToken ?
+                                <>
+                                    <button className="purchase-btn" onClick={this.addCartItem}>Add to cart</button>
+                                </>
+                                :
+                                <>
+                                    <Link to={{pathname: "/login"}}>
+                                        <button className="cart-login-btn">You need to login to add to cart.</button>
+                                    </Link>
+                                </>}
                             </div>
                         </div>
                     </div>
@@ -178,7 +186,7 @@ const mapStateToProps = (state) => {
         book: state.books,
         userReview: state.userReview,
         reviews: state.reviews,
-        security: state.security
+        security: state.security,
     };
   };
 

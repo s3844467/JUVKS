@@ -9,6 +9,7 @@
   width: 275px;
   height: 100%;
   color: white;
+  border-right: 1px solid #181818;
 }
 
 .header-menu {
@@ -24,6 +25,10 @@
 .header-menu h1 {
   font-size: 28px;
   font-weight: 500;
+}
+
+.header-logo:hover {
+  cursor: pointer;
 }
 
 .side-menu-list {
@@ -61,7 +66,7 @@
 }
 
 .header-dashboard {
-  background-color: #2424238c;
+  background-color: #242423;
   position: relative;
   min-height: 100%;
   width: calc(100% - 275px);
