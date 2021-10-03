@@ -66,23 +66,24 @@ class Cart extends Component {
                                         <div className="item-card">
                                             <div className="item-img"></div>
                                             <div className="item-details">
-                                                <Link className="item-link" to={{pathname: `/books/${cartItem.book_id}`}}>
-                                                    <span>{cartItem.title}</span>
-                                                </Link>
+                                                <div>
+                                                    <Link className="item-link" to={{pathname: `/books/${cartItem.book_id}`}}>
+                                                        <span className="item-title">{cartItem.title}</span>
+                                                    </Link>
+                                                </div>
                                                 <div className="item-btns">
                                                     <div className="item-detail">
                                                         <span>Quantity</span>
                                                         <input 
                                                             type="number"
                                                             id={cartItem.id}
-                                                            className="" 
+                                                            className="item-quantity" 
                                                             min="1"
                                                             name="cartItemQuantity"
                                                             value={cartItem.quantity}
                                                             onChange = {this.onChange}
                                                             required
                                                         />
-                                                        <span>{cartItem.quantity}</span>
                                                     </div>
                                                     <div className="item-detail">
                                                         <span>Price</span>
@@ -92,7 +93,7 @@ class Cart extends Component {
                                             </div>
                                             <div className="item-price">
                                                 <span className="item-remove" onClick={()=>{
-                                                    cartItem.deleteCartItem(cartItem.id);
+                                                    this.props.deleteCartItem(cartItem.id);
                                                     window.location.href="/cart"
                                                 }}>Remove</span>
                                                 <div className="item-total">

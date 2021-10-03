@@ -58,15 +58,15 @@ public class ReviewController {
     	return new ResponseEntity<List<Review>>(reviewService.searchByBookId(bookId), HttpStatus.OK);
     }
     
-    @GetMapping("/getReviewsByUser/{userId}")
-    public ResponseEntity<List<Review>> getReviewsByUsername(@PathVariable String username){
-    	//return username;
-		return new ResponseEntity<List<Review>>(reviewService.searchByUsername(username), HttpStatus.ACCEPTED);
+    @GetMapping("/getReviewsByUserId/{userId}")
+    public ResponseEntity<List<Review>> getReviewsByUserId(@PathVariable String userId){
+    	//return userId;
+		return new ResponseEntity<List<Review>>(reviewService.searchByUserId(userId), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/getReviewByUsernameBookId/{bookId}-{username}")
-    public ResponseEntity<Review> getReviewsByUsername(@PathVariable String bookId, @PathVariable String username){
-    	//return username;
-		return new ResponseEntity<Review>(reviewService.searchByUsernameBookId(username, bookId), HttpStatus.ACCEPTED);
+    @GetMapping("/getReviewByUserIdBookId/{bookId}-{userId}")
+    public ResponseEntity<Review> getReviewsByUserIdBookId(@PathVariable String bookId, @PathVariable String userId){
+    	//return userId;
+		return new ResponseEntity<Review>(reviewService.searchByUserIdBookId(userId, bookId), HttpStatus.ACCEPTED);
     }
 }

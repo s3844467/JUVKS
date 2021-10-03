@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { searchBookId } from "../../actions/bookActions";
-import { searchReviewUsernameBookId, searchReviewsBookId, addReview } from "../../actions/reviewActions";
+import { searchReviewUserIdBookId, searchReviewsBookId, addReview } from "../../actions/reviewActions";
 import { addCartItem } from "../../actions/cartActions";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
@@ -37,14 +37,14 @@ class Book extends Component {
         today = mm + '/' + dd + '/' + yyyy;
 
         const addReviewRequest = {
-            username: this.props.security.user.username,
+            user_id: this.props.security.user.id,
             fullname: this.props.security.user.fullName,
             rating: parseInt(this.state.addReview_rating),
             comment: this.state.addReview_comment,
             book_id: this.props.book[0].id,
             date_added: today
         };
-        
+
         this.props.addReview(addReviewRequest);
         window.location.href = "/books/"+this.props.match.params.id;
     }
@@ -69,7 +69,7 @@ class Book extends Component {
         this.props.searchReviewsBookId(this.props.match.params.id);
 
         if (this.props.security.validToken) {
-            this.props.searchReviewUsernameBookId(this.props.match.params.id, this.props.security.user.username);
+            this.props.searchReviewUserIdBookId(this.props.match.params.id, this.props.security.user.id);
         }
     }
 
@@ -154,7 +154,7 @@ class Book extends Component {
                                 {reviews.map((review) => (
                                     <div className="review-card">
                                         <div className="review-top">
-                                            <strong>{review.username}</strong>
+                                            <strong>{review.fullname}</strong>
                                             <ul className="review-rating">{Array.from(Array(parseInt(review.rating)), (e, i) => {
                                                 return <li className="rating-item" key={i}><StarIcon/></li>
                                             })}</ul>
@@ -184,7 +184,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     searchBookId,
     searchReviewsBookId,
-    searchReviewUsernameBookId,
+    searchReviewUserIdBookId,
     addReview,
     addCartItem
 })(Book);

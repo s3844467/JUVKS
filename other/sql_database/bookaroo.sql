@@ -231,15 +231,15 @@ CREATE TABLE `reviews` (
   `comment` varchar(45) DEFAULT NULL,
   `rating` int NOT NULL,
   `book_id` int NOT NULL,
-  `username` varchar(45) NOT NULL,
+  `user_id` int NOT NULL,
   `fullname` varchar(45) NOT NULL,
   `date_added` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `user_username_idx` (`username`),
+  KEY `user_id_idx` (`user_id`),
   KEY `book_id_idx` (`book_id`),
   CONSTRAINT `review_book` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`),
-  CONSTRAINT `review_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+  CONSTRAINT `review_username` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

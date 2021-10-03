@@ -40,12 +40,10 @@ class AddBook extends Component {
             owner_user_id: this.props.security.user.id,
             price: this.state.addBook_price,
             quantity: this.state.addBook_quantity
-
         };
         this.props.addBook(addBookRequest);
 
         window.location.href = "/dashboard";
-
     }
 
     onChange(e){
