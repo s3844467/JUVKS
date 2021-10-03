@@ -41,61 +41,67 @@ INSERT INTO `authors` VALUES (1,'author1');
 UNLOCK TABLES;
 
 --
--- Table structure for table `bag_items`
+-- Table structure for table `cart_items`
 --
 
-DROP TABLE IF EXISTS `bag_items`;
+DROP TABLE IF EXISTS `cart_items`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `bag_items` (
-  `bag_id` int NOT NULL,
+CREATE TABLE `cart_items` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `book_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `quantity` int NOT NULL,
-  `isbn` varchar(45) NOT NULL,
-  `publisher_id` varchar(45) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `order_id` int,
+  `username` varchar(45) NOT NULL,
+  `price_per` int NOT NULL,
+  `total_price` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `user_id_idx` (`user_id`),
   KEY `book_id_idx` (`book_id`),
-  KEY `publisher_id_idx` (`publisher_id`),
-  KEY `bag_idx` (`bag_id`),
-  CONSTRAINT `bag` FOREIGN KEY (`bag_id`) REFERENCES `bags` (`bag_id`),
-  CONSTRAINT `book_id` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`),
-  CONSTRAINT `publisher_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`abn`)
+  CONSTRAINT `cart_items_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `cart_items_books` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `bag_items`
+-- Dumping data for table `cart_items`
 --
 
-LOCK TABLES `bag_items` WRITE;
-/*!40000 ALTER TABLE `bag_items` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bag_items` ENABLE KEYS */;
+LOCK TABLES `cart_items` WRITE;
+/*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `bags`
+-- Table structure for table `orders`
 --
 
-DROP TABLE IF EXISTS `bags`;
+DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `bags` (
-  `bag_id` int NOT NULL,
+CREATE TABLE `orders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `order_number` int NOT NULL,
   `user_id` int NOT NULL,
-  `username` varchar(45) NOT NULL,
-  PRIMARY KEY (`bag_id`),
-  UNIQUE KEY `bag_id_UNIQUE` (`bag_id`),
-  KEY `user_id_idx` (`user_id`,`username`),
-  CONSTRAINT `users` FOREIGN KEY (`user_id`, `username`) REFERENCES `users` (`id`, `username`)
+  `total_price` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `user_id_idx` (`user_id`),
+  KEY `order_number_idx` (`order_number`),
+  CONSTRAINT `order_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `bags`
+-- Dumping data for table `orders`
 --
 
-LOCK TABLES `bags` WRITE;
-/*!40000 ALTER TABLE `bags` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bags` ENABLE KEYS */;
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -108,16 +114,18 @@ DROP TABLE IF EXISTS `books`;
 CREATE TABLE `books` (
   `isbn` varchar(45) DEFAULT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) DEFAULT NULL,
+  `user_id` int NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
   `category` varchar(255) DEFAULT NULL,
   `book_status` varchar(45) NOT NULL,
-  `owner_user_id` varchar(255) DEFAULT NULL,
   `price` float NOT NULL,
   `quantity` int NOT NULL,
   `description` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `user_id_idx` (`user_id`),
+  CONSTRAINT `book_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -127,7 +135,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES ('9780241562994',3,'THE FORTUNE MEN','Nadifa Mohamed','Fiction','used','5',12,1,'Mahmood Mattan is a fixture in Cardiff\'s Tiger Bay, 1952, which bustles with Somali and West Indian sailors, Maltese businessmen and Jewish families. He is a father, chancer, petty criminal. He is a smooth-talker with rakish charm and an eye for a good game. He is many things, but he is not a murderer.'),('0261103253',35,' Lord of the Rings',' J.R.R. Tolkien','Fiction','used','5',22,3,'The future of civilization rests in the fate of the One Ring, which has been lost for centuries. Powerful forces are unrelenting in their search for it. But fate has placed it in the hands of a young Hobbit named Frodo Baggins (Elijah Wood), who inherits the Ring and steps into legend. A daunting task lies ahead for Frodo when he becomes the Ringbearer - to destroy the One Ring in the fires of Mount Doom where it was forged.'),('1408855895',37,'Harry Potter and the Sorcerer\'s Stone','J.K. Rowling','Fiction','used','5',22,2,'Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.'),('9780395453896',39,'Silent Spring','Rachel Carson','Non-Fiction','used','5',6,3,'Silent Spring is considered the book that started the global grassroots environmental movement. Released in 1962, it focuses on the negative effects of chemical pesticides that were, at the time, a large part of US agriculture. Rachel Carson and her work began initiating a shift in global environmental consciousness.'),('9783644008618',40,'A Brief History of Time','Stephen Hawking','Non-Fiction','used','5',16,2,'A Brief History of Time: From the Big Bang to Black Holes is a book on theoretical cosmology by English physicist Stephen Hawking. It was first published in 1988. Hawking wrote the book for readers who had no prior knowledge of physics and people who are interested in learning something new about interesting subjects.'),('9781491954591',41,'Learning React: Functional Web Development with React and Redux','Alex Banks','Education','used','5',68,1,'If you want to learn how to build efficient user interfaces with React, this is your book. Authors Alex Banks and Eve Porcello show you how to create UIs with this small JavaScript library that can deftly display data changes on large-scale, data-driven websites without page reloads. Along the way, you\'ll learn how to work with functional programming and the latest ECMAScript features.'),('9781786468208',42,'Learning Spring Boot 2.0: Simplify the Development of Lightning Fast Applications Based on Microservices and Reactive Programming','Greg L. Turnquist','Education','used','5',82,3,'Use Spring Boot to build lightning-fast apps About This Book - Get up to date with the defining characteristics of Spring Boot 2.0 in Spring Framework 5 - Learn to perform Reactive programming with SpringBoot - Learn about developer tools, AMQP messaging, WebSockets, security, MongoDB data access, REST, and more Who This Book Is For This book is designed for both novices and experienced Spring developers'),('978024156295',43,'DUNE','Frank Herbert','Fiction','used','4',14,1,'Dune is a 1965 science-fiction novel by American author Frank Herbert, originally published as two separate serials in Analog magazine. It tied with Roger Zelazny\'s This Immortal for the Hugo Award in 1966, and it won the inaugural Nebula Award for Best Novel.'),('0375432302',44,'The Da Vinci Code','Dan Brown','Fiction','used','5',25,1,'While in Paris on business, Harvard symbologist Robert Langdon receives an urgent late-night phone call: the elderly curator of the Louvre has been murdered inside the museum. Near the body, police have found a baffling cipher. While working to solve the enigmatic riddle, Langdon is stunned to discover it leads to a trail of clues hidden in the works of Da Vinci -- clues visible for all to see -- yet ingeniously disguised.');
+INSERT INTO `books` VALUES ('9780241562994',3,5,'THE FORTUNE MEN','Nadifa Mohamed','Fiction','used',12,1,'Mahmood Mattan is a fixture in Cardiff\'s Tiger Bay, 1952, which bustles with Somali and West Indian sailors, Maltese businessmen and Jewish families. He is a father, chancer, petty criminal. He is a smooth-talker with rakish charm and an eye for a good game. He is many things, but he is not a murderer.'),('0261103253',35,5,' Lord of the Rings',' J.R.R. Tolkien','Fiction','used',22,3,'The future of civilization rests in the fate of the One Ring, which has been lost for centuries. Powerful forces are unrelenting in their search for it. But fate has placed it in the hands of a young Hobbit named Frodo Baggins (Elijah Wood), who inherits the Ring and steps into legend. A daunting task lies ahead for Frodo when he becomes the Ringbearer - to destroy the One Ring in the fires of Mount Doom where it was forged.'),('1408855895',37,5,'Harry Potter and the Sorcerer\'s Stone','J.K. Rowling','Fiction','used',22,2,'Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.'),('9780395453896',39,5,'Silent Spring','Rachel Carson','Non-Fiction','used',6,3,'Silent Spring is considered the book that started the global grassroots environmental movement. Released in 1962, it focuses on the negative effects of chemical pesticides that were, at the time, a large part of US agriculture. Rachel Carson and her work began initiating a shift in global environmental consciousness.'),('9783644008618',40,5,'A Brief History of Time','Stephen Hawking','Non-Fiction','used',16,2,'A Brief History of Time: From the Big Bang to Black Holes is a book on theoretical cosmology by English physicist Stephen Hawking. It was first published in 1988. Hawking wrote the book for readers who had no prior knowledge of physics and people who are interested in learning something new about interesting subjects.'),('9781491954591',41,5,'Learning React: Functional Web Development with React and Redux','Alex Banks','Education','used',68,1,'If you want to learn how to build efficient user interfaces with React, this is your book. Authors Alex Banks and Eve Porcello show you how to create UIs with this small JavaScript library that can deftly display data changes on large-scale, data-driven websites without page reloads. Along the way, you\'ll learn how to work with functional programming and the latest ECMAScript features.'),('9781786468208',42,5,'Learning Spring Boot 2.0: Simplify the Development of Lightning Fast Applications Based on Microservices and Reactive Programming','Greg L. Turnquist','Education','used',82,3,'Use Spring Boot to build lightning-fast apps About This Book - Get up to date with the defining characteristics of Spring Boot 2.0 in Spring Framework 5 - Learn to perform Reactive programming with SpringBoot - Learn about developer tools, AMQP messaging, WebSockets, security, MongoDB data access, REST, and more Who This Book Is For This book is designed for both novices and experienced Spring developers'),('978024156295',43,4,'DUNE','Frank Herbert','Fiction','used',14,1,'Dune is a 1965 science-fiction novel by American author Frank Herbert, originally published as two separate serials in Analog magazine. It tied with Roger Zelazny\'s This Immortal for the Hugo Award in 1966, and it won the inaugural Nebula Award for Best Novel.'),('0375432302',44,5,'The Da Vinci Code','Dan Brown','Fiction','used',25,1,'While in Paris on business, Harvard symbologist Robert Langdon receives an urgent late-night phone call: the elderly curator of the Louvre has been murdered inside the museum. Near the body, police have found a baffling cipher. While working to solve the enigmatic riddle, Langdon is stunned to discover it leads to a trail of clues hidden in the works of Da Vinci -- clues visible for all to see -- yet ingeniously disguised.');
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,14 +233,15 @@ CREATE TABLE `reviews` (
   `comment` varchar(45) DEFAULT NULL,
   `rating` int NOT NULL,
   `book_id` int NOT NULL,
-  `username` varchar(45) NOT NULL,
+  `user_id` int NOT NULL,
+  `fullname` varchar(45) NOT NULL,
   `date_added` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `user_username_idx` (`username`),
+  KEY `user_id_idx` (`user_id`),
   KEY `book_id_idx` (`book_id`),
   CONSTRAINT `review_book` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`),
-  CONSTRAINT `review_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+  CONSTRAINT `review_username` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -256,9 +265,9 @@ CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
   `fullname` varchar(45) DEFAULT NULL,
-  `address` varchar(45) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `phone` int DEFAULT NULL,
-  `account_type` varchar(45) NOT NULL,
+  `account_type` varchar(45) NOT NULL DEFAULT 'public',
   `status` tinyint NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -2,7 +2,6 @@ package com.rmit.sept.bk_reviewservices.resources;
 
 
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +44,9 @@ public class ReviewControllerTest {
         Review testReview = new Review();
         testReview.setId((long) 1);
         testReview.setComment("This book was amazing. From the first page I was hooked in, and over the course of three days I managed to complete the book and find myself desiring more. I 100% recommend reading this book if you have the chance.");
-        testReview.setUsername("user@user.com");
+        testReview.setUser_id("1");
         testReview.setBook_id("1");
+        testReview.setFullname("Vincent Tso");
         Date newDate = new Date();
         testReview.setDate_added(newDate.toString());
 

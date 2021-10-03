@@ -40,12 +40,10 @@ class AddBook extends Component {
             owner_user_id: this.props.security.user.id,
             price: this.state.addBook_price,
             quantity: this.state.addBook_quantity
-
         };
         this.props.addBook(addBookRequest);
 
         window.location.href = "/dashboard";
-
     }
 
     onChange(e){
@@ -213,7 +211,7 @@ class AddBook extends Component {
 
                 {security.validToken && security.user.accountType === "public" ?
                 <>
-                    <option key="new" value="new" disabled>New</option>
+                    <option key="new" value="new" disabled={true}>New</option>
                 </>
                 :
                 <>
@@ -228,16 +226,7 @@ class AddBook extends Component {
            
             </div>
             </div>
-            
-            {/* Submit if user is logged in */}
-            {security.validToken ?
-            <>
-                <button className="btn btn-primary mb-2" onClick={this.addBook}>Submit</button>
-            
-            </>:
-                <button className="btn btn-primary mb-2" onClick={this.addBook} disabled>Submit</button>
-            }
-            
+            <button className="btn btn-primary mb-2" onClick={this.addBook}>Submit</button>
             {errors.data && errors.data.message && (
                 <div className="text-danger">{errors.data.message}</div>
             )}

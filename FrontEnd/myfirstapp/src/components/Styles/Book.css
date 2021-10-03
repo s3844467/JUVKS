@@ -35,7 +35,7 @@
     font-size: 0.9em;
 }
 
-.purchase-btn, .review-submit-btn, .review-login-btn {
+.purchase-btn, .review-submit-btn, .review-login-btn, .cart-login-btn {
     padding: 4px 12px;
     opacity: 0.8;
     transition: 0.2s;
@@ -43,7 +43,7 @@
     border-radius: 2px;
 }
 
-.purchase-btn:hover {
+.purchase-btn:hover, .cart-login-btn:hover  {
     opacity: 1;
     box-shadow: 0 0 16px 2px #333;
 }
@@ -97,14 +97,28 @@
 }
 
 .review-card span {
-    size: 4px;
-    margin-bottom: 4px;
+    display: inline-block;
+    margin-bottom: 8px;
 }
 
 .review-top {
-    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
 }
 
 .review-top > strong {
-    margin-right: 8px;
+    margin-right: 16px; 
+    width: 96px;
+    max-width: 96px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.review-rating {
+    list-style-type: none;
+}
+
+.review-rating:hover {
+    cursor: pointer;
 }

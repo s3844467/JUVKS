@@ -1,38 +1,72 @@
 import React, { Component } from "react";
-import { SidebarContent } from "./SidebarContent";
+import { connect } from "react-redux";
+
+import PeopleIcon from '@material-ui/icons/People';
+import UpgradeIcon from '@material-ui/icons/Update';
+import BookIcon from '@material-ui/icons/LibraryBooks';
+import TransactionIcon from '@material-ui/icons/Receipt';
+import TimelineIcon from '@mui/icons-material/Timeline';
+import LogoutIcon from '@material-ui/icons/ExitToApp';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 import '../Styles/Admin.css'
+
 
 class AdminDashboard extends Component {
     render() {
+        const { security } = this.props;
+        console.log(security);
         return (
             <div className="main-content">
                 <div className="side-menu">
-                    <div className="header-menu">
-                        <h1> Bookeroo </h1>
-                    </div>
                     <ul className="side-menu-list">
-                        {SidebarContent.map((menuItem, index) => {
-                            return(
-                            <li className="side-menu-row" index={index} onClick={()=> {window.location.pathname = menuItem.link}}> 
-                                {/* <div id="icon"> {menuItem.icon} </div> */}
-                                <div id="title"> {menuItem.title} </div>
-                            </li>)
-                        })}
+                        {security.user.accountType.toLowerCase() === "admin" ? 
+                        <>
+                            <li className="side-menu-row"> 
+                                <div id="icon"><PeopleIcon/></div>
+                                <div id="title">Manage Users</div>
+                            </li>
+                            <li className="side-menu-row"> 
+                                <div id="icon"><UpgradeIcon/></div>
+                                <div id="title">Upgrade Requests</div>
+                            </li>
+                            <li className="side-menu-row"> 
+                                <div id="icon"><BookIcon/></div>
+                                <div id="title">Manage Products</div>
+                            </li>
+                        </>
+                        :
+                        <>
+                            <li className="side-menu-row"> 
+                                <div id="icon"><PeopleIcon/></div>
+                                <div id="title">My Account</div>
+                            </li>
+                            <li className="side-menu-row"> 
+                                <div id="icon"><BookIcon/></div>
+                                <div id="title">Manage Products</div>
+                            </li>
+                        </>}
+                            <li className="side-menu-row"> 
+                                <div id="icon"><TimelineIcon/></div>
+                                <div id="title">Manage Orders</div>
+                            </li>
+                            <li className="side-menu-row"> 
+                                <div id="icon"><TransactionIcon/></div>
+                                <div id="title">Transaction History</div>
+                            </li>
                     </ul>
                 </div>
-                <section className="header-dashboard">
-                    <nav>
-                        <div className="banner-dashboard">
-                            <span className="dashboard">Dashboard</span>
-                        </div>
-                        <div className="admin-details">
-                            <span className="admin-name">Admin</span>
-                        </div>
-                    </nav>
-                </section>
             </div>
         );
     }
 }
 
-export default AdminDashboard;
+const mapStateToProps = (state) => {
+    return {
+        security: state.security,
+    };
+  };
+
+export default connect(mapStateToProps, {
+
+})(AdminDashboard);

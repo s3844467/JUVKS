@@ -20,10 +20,13 @@ public class Review {
     private String rating;
     @NotBlank(message = "Book Id is required")
     private String book_id;
-	@NotBlank(message = "Username is required")
-    private String username;
+	@NotBlank(message = "UserId is required")
+    private String user_id;
+	@NotBlank(message = "Fullname is required")
+    private String fullname;
     @NotBlank(message = "Date is required")
     private String date_added;
+
 
     public Review() {
     }
@@ -60,12 +63,20 @@ public class Review {
 		this.book_id = book_id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 
 	public String getDate_added() {

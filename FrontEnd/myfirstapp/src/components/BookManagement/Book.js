@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { searchBookId } from "../../actions/bookActions";
-import { searchReviewUsernameBookId, searchReviewsBookId, addReview } from "../../actions/reviewActions";
+import { searchReviewUserIdBookId, searchReviewsBookId, addReview } from "../../actions/reviewActions";
+import { addCartItem } from "../../actions/cartActions";
 import { connect } from "react-redux";
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import StarIcon from '@material-ui/icons/Star';
 
 import "../Styles/Book.css";
-import { getThemeProps } from '@material-ui/styles';
 
 class Book extends Component {
     constructor(props) {
@@ -13,6 +15,7 @@ class Book extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.addReview = this.addReview.bind(this);
+        this.addCartItem = this.addCartItem.bind(this);
 
         this.state = {
             addReview_comment: "",
@@ -31,18 +34,34 @@ class Book extends Component {
         const mm = String(today.getMonth() + 1).padStart(2, '0');
         const yyyy = today.getFullYear();
         
-        today = mm + '/' + dd + '/' + yyyy;
+        today = dd + '/' + mm + '/' + yyyy;
 
         const addReviewRequest = {
-            username: this.props.security.user.username,
+            user_id: this.props.security.user.id,
+            fullname: this.props.security.user.fullName,
             rating: parseInt(this.state.addReview_rating),
             comment: this.state.addReview_comment,
             book_id: this.props.book[0].id,
             date_added: today
         };
-        
+
         this.props.addReview(addReviewRequest);
         window.location.href = "/books/"+this.props.match.params.id;
+    }
+
+    addCartItem() {
+        const addCartItemRequest = {
+            book_id: this.props.match.params.id,
+            user_id: this.props.security.user.id,
+            quantity: 1,
+            title: this.props.book[0].title,
+            username: this.props.security.user.username,
+            price_per: this.props.book[0].price,
+            total_price: this.props.book[0].price
+        }
+
+        this.props.addCartItem(addCartItemRequest);
+        window.location.href = "/cart";
     }
 
     componentDidMount() {
@@ -50,10 +69,7 @@ class Book extends Component {
         this.props.searchReviewsBookId(this.props.match.params.id);
 
         if (this.props.security.validToken) {
-            console.log(this.props);
-            console.log(this.props.security.user.username);
-            console.log(this.props.match.params.id);
-            this.props.searchReviewUsernameBookId(this.props.match.params.id, this.props.security.user.username);
+            this.props.searchReviewUserIdBookId(this.props.match.params.id, this.props.security.user.id);
         }
     }
 
@@ -66,7 +82,6 @@ class Book extends Component {
                 <>
                     <div className="details-section">
                         <div className="details-img">
-
                         </div>
                         <div className="details-info">
                             <div className="info-top">
@@ -81,7 +96,16 @@ class Book extends Component {
                                 <p>{book[0].description}</p>
                             </div>
                             <div>
-                                <button className="purchase-btn">Add to cart</button>
+                                {security.validToken ?
+                                <>
+                                    <button className="purchase-btn" onClick={this.addCartItem}>Add to cart</button>
+                                </>
+                                :
+                                <>
+                                    <Link to={{pathname: "/login"}}>
+                                        <button className="cart-login-btn">You need to login to add to cart.</button>
+                                    </Link>
+                                </>}
                             </div>
                         </div>
                     </div>
@@ -90,7 +114,7 @@ class Book extends Component {
                             <div>
                                 <h4 className="review-title">Review Test Book</h4>
                                 {security.validToken ?
-                                <>  {console.log(this.props)}
+                                <>
                                     {userReview ? 
                                     <>
                                         <span>You have already written a review for {book[0].title}</span>
@@ -138,9 +162,12 @@ class Book extends Component {
                                 {reviews.map((review) => (
                                     <div className="review-card">
                                         <div className="review-top">
-                                            <strong>{review.username}</strong>
-                                            <span>{review.rating}</span>
+                                            <strong>{review.fullname}</strong>
+                                            <ul className="review-rating">{Array.from(Array(parseInt(review.rating)), (e, i) => {
+                                                return <li className="rating-item" key={i}><StarIcon/></li>
+                                            })}</ul>
                                         </div>
+                                        <span>{review.date_added}</span>
                                         <p className="review-btm">{review.comment}</p>
                                     </div>
                                 ))}
@@ -159,15 +186,16 @@ const mapStateToProps = (state) => {
         book: state.books,
         userReview: state.userReview,
         reviews: state.reviews,
-        security: state.security
+        security: state.security,
     };
   };
 
 export default connect(mapStateToProps, {
     searchBookId,
     searchReviewsBookId,
-    searchReviewUsernameBookId,
-    addReview
+    searchReviewUserIdBookId,
+    addReview,
+    addCartItem
 })(Book);
 // export default Dashboard;
         

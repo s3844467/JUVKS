@@ -64,6 +64,18 @@ export const addBook = (book) => async dispatch => {
     });
   }
 };
+
+export const updateBook = (book) => async dispatch => {
+  try {
+    await axios.patch("http://localhost:8081/api/books/updateBook", book);
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response
+    });
+  }
+};
+
 export const getAllCategories = () => async dispatch => {
   const res = await axios.get("http://localhost:8081/api/categories/getAllCategories");
   dispatch({

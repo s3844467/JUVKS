@@ -12,11 +12,14 @@ import Landing from "./components/Layout/Landing";
 import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import Footer from './components/Layout/Footer';
-import Dashboard from "./components/Dashboard";
-import AdminDashboard from "./components/AdminManagement/AdminDashboard";
+import Dashboard from "./components/AdminManagement/AdminDashboard";
 import Search from "./components/BookManagement/Search";
 import Book from "./components/BookManagement/Book";
 import AddBook from "./components/BookManagement/AddBook";
+import UpdateBook from "./components/BookManagement/UpdateBook";
+import ManageBooks from "./components/BookManagement/ManageBooks";
+import ManageUsers from "./components/UserManagement/ManageUsers";
+import Cart from "./components/OrderManagement/Cart";
 import MyAccount from "./components/UserManagement/MyAccount";
 
 import jwt_decode from "jwt-decode";
@@ -47,13 +50,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            {window.location.pathname !== "/admin" ?
-            <>
-              <Header></Header>
-            </>
-            :
-            <>
-            </>}
+            <Header></Header>
             {
               //Public Routes
             }
@@ -61,8 +58,11 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/admin" component={AdminDashboard} />
+            <Route exact path="/cart" component={Cart} />            
+            <SecuredRoute exact path="/dashboard" component={Dashboard} />
+            <SecuredRoute exact path="/update/:id" component={UpdateBook} />
+            <SecuredRoute exact path="/manage/users" component={ManageUsers} />
+            <SecuredRoute exact path="/manage/books" component={ManageBooks} />
             <Route exact path="/search=:query?" component={Search} />
             <Route exact path="/books/:id" component={Book} />
             <SecuredRoute exact path="/addbook" component={AddBook}/>
