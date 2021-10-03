@@ -97,22 +97,25 @@
 }
 
 .review-card span {
-    size: 4px;
-    margin-bottom: 4px;
+    display: inline-block;
+    margin-bottom: 8px;
 }
 
 .review-top {
     display: flex;
-    margin-bottom: 4px;
     align-items: center;
 }
 
 .review-top > strong {
-    margin-right: 16px;
+    margin-right: 16px; 
+    width: 96px;
+    max-width: 96px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .review-rating {
-    /* display: inline-block; */
     list-style-type: none;
     margin-bottom: 4px;
 }

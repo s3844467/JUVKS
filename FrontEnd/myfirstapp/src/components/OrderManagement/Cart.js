@@ -36,6 +36,7 @@ class Cart extends Component {
         updatedCartItems.set(updatedCartItem.id, updatedCartItem);
 
         this.setState({cartItems: updatedCartItems})
+        this.props.updateCartItemQuantity(updatedCartItem.quantity, updatedCartItem.id);
     }
 
     onCheckOut() {

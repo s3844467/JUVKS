@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
 import StarIcon from '@material-ui/icons/Star';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 
 import "../Styles/Book.css";
 
@@ -34,7 +35,7 @@ class Book extends Component {
         const mm = String(today.getMonth() + 1).padStart(2, '0');
         const yyyy = today.getFullYear();
         
-        today = mm + '/' + dd + '/' + yyyy;
+        today = dd + '/' + mm + '/' + yyyy;
 
         const addReviewRequest = {
             user_id: this.props.security.user.id,
@@ -82,7 +83,6 @@ class Book extends Component {
                 <>
                     <div className="details-section">
                         <div className="details-img">
-
                         </div>
                         <div className="details-info">
                             <div className="info-top">
@@ -159,6 +159,7 @@ class Book extends Component {
                                                 return <li className="rating-item" key={i}><StarIcon/></li>
                                             })}</ul>
                                         </div>
+                                        <span>{review.date_added}</span>
                                         <p className="review-btm">{review.comment}</p>
                                     </div>
                                 ))}
