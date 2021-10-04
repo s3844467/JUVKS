@@ -54,8 +54,8 @@ public class Book {
 	// @NotBlank(message = "Image is required")
 	// private String image;
 
-	@NotBlank(message = "User must be logged in")
-	private String owner_user_id;
+	@NotNull(message = "User must be logged in")
+	private Long user_id;
 
 	@NotNull(message= "Quanntity cannot be empty")
 	@Range(min = 1, max = 100, message = "Invalid quantity range")
@@ -92,7 +92,6 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-
 
 	public String getIsbn() {
 		return isbn;
@@ -131,11 +130,11 @@ public class Book {
 		this.description = description;
 	}
 
-	public String getOwner_user_id() {
-		return this.owner_user_id;
+	public long getUser_id() {
+		return this.user_id;
 	}
-	public void setOwner_user_id(String owner_user_id) {
-		this.owner_user_id = owner_user_id;
+	public void setUser_id(long user_id) {
+		this.user_id = user_id;
 	}
 	
 	public int getQuantity() {
@@ -144,6 +143,4 @@ public class Book {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
-	
 }

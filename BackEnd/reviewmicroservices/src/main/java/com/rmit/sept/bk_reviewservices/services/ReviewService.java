@@ -27,11 +27,15 @@ public class ReviewService {
     	return (List<Review>) reviewRepository.findAll();
     }
 
-    public List<Review> searchByUsername(String username){
-    	return reviewRepository.findByUsername(username);
+    public List<Review> searchByUserId(String userId){
+    	return reviewRepository.findReviewsByUserId(userId);
     }
 
-    public List<Review> searchByIsbn(String isbn){
-    	return reviewRepository.findByIsbn(isbn);
+    public List<Review> searchByBookId(String bookId){
+    	return reviewRepository.findReviewsByBookId(bookId);
+    }
+
+    public Review searchByUserIdBookId(String userId, String bookId) {
+        return reviewRepository.findByUserIdBookId(userId, bookId);
     }
 }

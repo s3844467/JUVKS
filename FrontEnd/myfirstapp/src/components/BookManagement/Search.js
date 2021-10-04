@@ -1,70 +1,48 @@
 import React, { Component } from 'react'
 import { getAllBooks,searchAllBooks} from "../../actions/bookActions";
 import { connect } from "react-redux";
-
-import "../Styles/Search.css";
 import { Link } from 'react-router-dom';
 
+import "../Styles/Search.css";
 
 class Search extends Component {
-    constructor(props){
-        super(props);
-
-        this.onChange = this.onChange.bind(this);
-        this.onClick = this.onClick.bind(this);
-        this.state={
-            search:""
-        }
-
-    }
-
-
     componentDidMount() {
-        this.props.getAllBooks();
-    }
-
-    onClick(e){
-        e.preventDefault();
-        if (this.state.search === "") {
+        if (this.props.match.params.query === undefined || this.props.match.params.query === "") {
             this.props.getAllBooks();
         } else {
-            this.props.searchAllBooks(this.state.search);
+            this.props.searchAllBooks(this.props.match.params.query.replaceAll('-', ' '));
         }
     }
-    onChange(e){
-        this.setState({[e.target.name]: e.target.value });
+
+    componentDidUpdate(prevProps) {
+        if  (this.props.match.params.query === undefined || this.props.match.params.query === "") {
+            this.props.getAllBooks();
+        } else if (this.props.match.params.query && this.props.match.params.query !== prevProps.match.params.query)
+            this.props.searchAllBooks(this.props.match.params.query.replaceAll('-', ' '));
     }
 
     render() {
         const {books} = this.props;
+
         return (
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <div className="search-group">
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                placeholder="Search for a book"
-                                name="search"
-                                value={this.state.search}
-                                onChange = {this.onChange}
-                            />
-                            <button className="btn btn-primary mb-2" onClick={this.onClick}>Submit</button>
-                        </div>
                         <div className="books-container">
                             {books &&
                             books.map((book) => (
-                                <Link to={{pathname: `/books/${book.id}`}}>
+                                <Link to={{
+                                    pathname: `/books/${book.id}`,
+                                    state: {book: book}
+                                }}>
                                     <div className="book-card">
                                         <div className="book-img">
                                             <span>{book.category}</span>
-                                            <span style={{float:"right"}}>({book.book_status})</span>
                                         </div>
                                         <div className="book-info">
                                             <div className="book-info-top">
                                                 <span>{book.title}</span>
-                                                <span>${book.price.toFixed(2)}</span>
+                                                <span id="book-price">${book.price.toFixed(2)}</span>
                                             </div>
                                             <span className="book-info-bot">{book.author}</span>
                                         </div>
@@ -83,12 +61,9 @@ const mapStateToProps = (state) => {
     return {
         books: state.books
     };
-  };
+};
 
 export default connect(mapStateToProps, {
     getAllBooks,
     searchAllBooks
-})(Search);
-  
-// export default Search;
-        
+})(Search);      

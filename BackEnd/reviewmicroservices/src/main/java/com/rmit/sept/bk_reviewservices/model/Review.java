@@ -18,12 +18,15 @@ public class Review {
     private String comment;
     @NotBlank(message = "Rating is required")
     private String rating;
-    @NotBlank(message = "Rating is required")
-    private String isbn;
-	@NotBlank(message = "ISBN is required")
-    private String username;
+    @NotBlank(message = "Book Id is required")
+    private String book_id;
+	@NotBlank(message = "UserId is required")
+    private String user_id;
+	@NotBlank(message = "Fullname is required")
+    private String fullname;
     @NotBlank(message = "Date is required")
-    private String date;
+    private String date_added;
+
 
     public Review() {
     }
@@ -52,27 +55,35 @@ public class Review {
 		this.rating = rating;
 	}
 
-	public String getIsbn() {
-		return isbn;
+	public String getBook_id() {
+		return book_id;
 	}
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+	public void setBook_id(String book_id) {
+		this.book_id = book_id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
-	public String getDate() {
-		return date;
+	public String getFullname() {
+		return fullname;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+	public String getDate_added() {
+		return date_added;
+	}
+
+	public void setDate_added(String date) {
+		this.date_added = date;
 	}
 }

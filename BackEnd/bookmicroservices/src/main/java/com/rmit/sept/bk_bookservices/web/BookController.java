@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -68,16 +70,15 @@ public class BookController {
     }
 
     @GetMapping("/searchByIsbn/{isbn}")
-    public ResponseEntity<List<Book>> searchByIsbn(@PathVariable String isbn){
+    public ResponseEntity<Book> searchByIsbn(@PathVariable String isbn){
     	//return title;
-		return new ResponseEntity<List<Book>>(bookService.searchByIsbn(isbn.replace('+', ' ')), HttpStatus.ACCEPTED);
+		return new ResponseEntity<Book>(bookService.searchByIsbn(isbn), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/searchById/{id}")
-    public ResponseEntity<Book> searchById(@PathVariable String id){
+    public ResponseEntity<List<Book>> searchById(@PathVariable long id){
       //return book;
-    long longId = Long.parseLong(id);
-		return new ResponseEntity<Book>(bookService.searchById(longId), HttpStatus.ACCEPTED);
+		return new ResponseEntity<List<Book>>(bookService.searchById(id), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/search/{query}")
@@ -86,4 +87,13 @@ public class BookController {
 		return new ResponseEntity<List<Book>>(bookService.searchBook(query.replace('+', ' ')), HttpStatus.ACCEPTED);
     }
 
+    @DeleteMapping("/deleteBookById/{bookId}")
+    public void deleteById(@PathVariable long bookId) {
+      bookService.deleteBookById(bookId);
+    }
+
+    @PatchMapping("/updateBook")
+    public void updateBook(@Valid @RequestBody Book book) {
+      bookService.updateBook(book);
+    }
 }

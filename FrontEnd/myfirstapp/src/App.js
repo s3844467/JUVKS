@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -12,10 +12,14 @@ import Landing from "./components/Layout/Landing";
 import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import Footer from './components/Layout/Footer';
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/AdminManagement/AdminDashboard";
 import Search from "./components/BookManagement/Search";
 import Book from "./components/BookManagement/Book";
 import AddBook from "./components/BookManagement/AddBook";
+import UpdateBook from "./components/BookManagement/UpdateBook";
+import ManageBooks from "./components/BookManagement/ManageBooks";
+import ManageUsers from "./components/UserManagement/ManageUsers";
+import Cart from "./components/OrderManagement/Cart";
 import MyAccount from "./components/UserManagement/MyAccount";
 
 import jwt_decode from "jwt-decode";
@@ -54,11 +58,15 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/search" component={Search} />
+            <Route exact path="/cart" component={Cart} />            
+            <SecuredRoute exact path="/dashboard" component={Dashboard} />
+            <SecuredRoute exact path="/update/:id" component={UpdateBook} />
+            <SecuredRoute exact path="/manage/users" component={ManageUsers} />
+            <SecuredRoute exact path="/manage/books" component={ManageBooks} />
+            <Route exact path="/search=:query?" component={Search} />
             <Route exact path="/books/:id" component={Book} />
-            <Route exact path="/addbook" component={AddBook} />
-            <SecuredRoute exact path="/my_account" component={MyAccount} authed={this.props.security}/>            
+            <SecuredRoute exact path="/addbook" component={AddBook}/>
+            <SecuredRoute exact path="/my_account" component={MyAccount}/>            
 
             {
               //Private Routes
