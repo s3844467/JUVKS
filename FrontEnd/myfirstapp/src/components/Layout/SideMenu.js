@@ -7,7 +7,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import UpgradeIcon from '@material-ui/icons/Update';
 import BookIcon from '@material-ui/icons/LibraryBooks';
 import TransactionIcon from '@material-ui/icons/Receipt';
-import TimelineIcon from '@mui/icons-material/Timeline';
+import TimelineIcon from '@material-ui/icons/Timeline';
 
 import '../Styles/Admin.css'
 
