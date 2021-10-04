@@ -58,9 +58,10 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/cart" component={Cart} />            
+            <SecuredRoute exact path="/cart" component={Cart} />            
             <SecuredRoute exact path="/dashboard" component={Dashboard} />
-            <SecuredRoute exact path="/update/:id" component={UpdateBook} />
+            <SecuredRoute exact path="/update/book=:id" component={UpdateBook} />
+            <SecuredRoute exact path="/update/account=:id" component={UpdateBook} />
             <SecuredRoute exact path="/manage/users" component={ManageUsers} />
             <SecuredRoute exact path="/manage/books" component={ManageBooks} />
             <Route exact path="/search=:query?" component={Search} />

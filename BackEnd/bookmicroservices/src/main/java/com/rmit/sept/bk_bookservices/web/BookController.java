@@ -81,6 +81,12 @@ public class BookController {
 		return new ResponseEntity<List<Book>>(bookService.searchById(id), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/searchByUserId/{userId}")
+    public ResponseEntity<List<Book>> searchByUserId(@PathVariable long userId){
+      //return book;
+		return new ResponseEntity<List<Book>>(bookService.searchByUserId(userId), HttpStatus.ACCEPTED);
+    }
+
     @GetMapping("/search/{query}")
     public ResponseEntity<List<Book>> searchBook(@PathVariable String query){
       //return book;

@@ -27,4 +27,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     
     @Query(value = "SELECT b FROM Book b WHERE b.id = :id")
     List<Book> findBookById(@Param("id") long id);
+
+    @Query(value = "SELECT b FROM Book b WHERE b.user_id = :userId")
+    List<Book> findBooksByUserId(@Param("userId") long userId);
 }
