@@ -1,17 +1,20 @@
 .details-section {
     margin: 32px 0;
     display: flex;
+    max-height: 100%;
     gap: 32px;
     min-height:480px;
 }
 
 .details-img {
     position: -webkit-sticky;
-    position: sticky;
-    width: 40%;
-    max-width: 438px;
-    max-height: 438px;
+    position: block;
+    width: 100%;
+    height: 100%;
+    max-width: 350px;
+    /* max-height: 438px; */
     background: #eee;
+    background-size: cover;
     border-radius: 4px;
 }
 

@@ -65,7 +65,9 @@ class Cart extends Component {
                                 {this.props.cart.map((cartItem) => (
                                     <>
                                         <div className="item-card">
-                                            <div className="item-img"></div>
+                                            <div className="item-img">
+                                                <img className="book-img" src={"http://localhost:8081/api/images/files/"+cartItem.book_id} alt={cartItem.title}/>
+                                            </div>
                                             <div className="item-details">
                                                 <div>
                                                     <Link className="item-link" to={{pathname: `/books/${cartItem.book_id}`}}>

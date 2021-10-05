@@ -83,6 +83,7 @@ class ManageBooks extends Component {
         return (
             <div className="main">
                 <SideMenu/>
+                <div className="row">
                 <div className="main-content">
                     <div className="product-container">
                         {(books && books.length > 0) &&
@@ -102,7 +103,9 @@ class ManageBooks extends Component {
                                         updateBook_quantity: book.quantity
                                     })
                                 }}>
-                                    <div className="product-img"></div>
+                                    <div className="product-img">
+                                        <img className="product-img" src={"http://localhost:8081/api/images/files/"+book.id} alt={book.title}/>
+                                    </div>
                                     <div className="product-details">
                                         <div className="product-header">
                                             <span className="product-title">{book.title}</span>
@@ -284,6 +287,7 @@ class ManageBooks extends Component {
                                     )}
                                 </div> 
                             </>}
+                        </div>
                         </div>
                     </div>
                 </div>

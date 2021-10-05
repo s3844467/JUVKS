@@ -37,6 +37,7 @@ class Search extends Component {
                                 }}>
                                     <div className="book-card">
                                         <div className="book-img">
+                                        <img className="book-img" src={"http://localhost:8081/api/images/files/"+book.id} alt={book.title}/>
                                             <span>{book.category}</span>
                                         </div>
                                         <div className="book-info">

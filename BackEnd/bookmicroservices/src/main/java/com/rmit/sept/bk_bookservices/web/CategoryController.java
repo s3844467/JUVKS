@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rmit.sept.bk_bookservices.model.Category;
 import com.rmit.sept.bk_bookservices.services.CategoryService;
-import com.rmit.sept.bk_bookservices.services.MapValidationErrorService;
-import com.rmit.sept.bk_bookservices.validator.CategoryValidator;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
