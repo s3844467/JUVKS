@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getAllCategories, addBook, addImage} from "../../actions/bookActions";
+import { getAllCategories, addBook} from "../../actions/bookActions";
 import { connect } from "react-redux";
 
 
@@ -9,7 +9,7 @@ class AddBook extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onChangeImage = this.onChangeImage.bind(this);
-        this.addImage = this.addImage.bind(this);
+        // this.addImage = this.addImage.bind(this);
         this.addBook = this.addBook.bind(this);
         this.state={
             addBook_title: "",
@@ -45,9 +45,6 @@ class AddBook extends Component {
             images: this.state.addBook_image
         };
         const json = JSON.stringify(addBookRequest);
-        const blob = new Blob([json], {type: 'application/json'});
-
-
         const formData = new FormData();
 
         formData.append('file', this.state.addBook_image);
@@ -62,16 +59,16 @@ class AddBook extends Component {
 
 
     }
-    addImage(e){
-        const formData = new FormData();
+    // addImage(e){
+    //     const formData = new FormData();
 
-        formData.append('file', this.state.addBook_image);
-        formData.append('name', 'Example submit');
+    //     formData.append('file', this.state.addBook_image);
+    //     formData.append('name', 'Example submit');
 
-        this.props.addImage(formData);
+    //     this.props.addImage(formData);
 
-        // window.location.href = "/dashboard";
-    }
+    //     // window.location.href = "/dashboard";
+    // }
 
     onChange(e){
         this.setState({[e.target.name]: e.target.value });
@@ -217,7 +214,6 @@ class AddBook extends Component {
             {errors.data && errors.data.file &&(
                 <div className="text-danger">{errors.data.file}</div>
             )}
-            <button className="btn btn-primary mb-2" onClick={this.addImage}>Submit</button>
 
             <div className="row">
             <div className="col">
@@ -291,7 +287,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     getAllCategories,
-    addBook,
-    addImage
+    addBook
+    // addImage
 })(AddBook);
   
