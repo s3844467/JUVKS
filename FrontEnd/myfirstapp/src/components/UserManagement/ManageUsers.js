@@ -13,57 +13,41 @@ class UserManagement extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.state={
-            validatedUsers: new Map(),
-            blockedUsers: new Map()
+            validatedUsers: getValidatedUsers(),
+            blockedUsers: getBLockedUsers()
         }
     }
 
     componentDidMount() {
         if (this.props.security.validToken) {
-            this.props.getValidatedUsers();
-
-            this.props.UserManagement.map((user) => {
-                this.state.validatedUsers.set(user.id, user);
-            })
-
-            this.props.getBLockedUsers();
-
-            this.props.UserManagement.map((user) => {
-                this.state.blockedUsers.set(user.id, user);
-            })
+            this.validatedUsers = this.props.getValidatedUsers();
+            this.blockedUsers = this.props.getBLockedUsers();
         }
     }
 
     onChange(e) {
         const updatedValidatedUsers = new Map(this.state.validatedUsers);
-        const updatedBlockedUsers = new Map(this.state.validatedUsers);
+        const updatedBlockedUsers = new Map(this.state.blockedUsers);
 
     }
 
     render() {
-        this.props.cart.map((user) => {
-            this.state.validatedUsers.set(user.id, user);
-        })
         
         return(
             <div className="container">
                 <div className="validated-users">
-                    {
-                        this.props.validatedUsers.map((user) => (
-                            <div>
-                                {user.id}
-                                {user.username}
-                                {user.status}
-                            </div>
-                        ))
-                    }
+                    <>
+                      {this.validatedUsers}  
+                    </>
                     <div className="user">
 
                     
                     </div>
                 </div>
                 <div className="blocked-users">
-
+                    <>
+                        {this.blockedUsers}
+                    </>
 
                 </div>
             </div>
