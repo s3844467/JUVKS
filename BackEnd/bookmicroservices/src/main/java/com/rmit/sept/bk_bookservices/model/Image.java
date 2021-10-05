@@ -23,8 +23,17 @@ public class Image {
     @NotNull(message = "Image must be uploaded")
     String type;
 
+    String name;
 
     public Image() {
+    }
+
+    public Image(Long id, String fileName, String contentType, byte[] bytes) {
+        this.id = id;
+        this.name = fileName;
+        this.type = contentType;
+        this.content = bytes;
+
     }
 
     public Long getId() {
@@ -46,6 +55,13 @@ public class Image {
     }
     public void setType(String type) {
     	this.type = type;
+    }
+
+    public String getName() {
+    	return this.name;
+    }
+    public void setName(String name) {
+    	this.name = name;
     }
 
     

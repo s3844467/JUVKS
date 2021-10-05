@@ -20,7 +20,7 @@
     box-shadow: 0 0 12px #bbb;
     width: 100%;
     max-width:380px;
-    height: 240px;
+    height: 100%;
     color: #333;
 
     transition: transform 0.2s;
@@ -34,8 +34,9 @@
 
 .book-img {
     background: #999;
-    height: calc(100% - 48px);
+    height: calc(100% - 30px);
     border-radius: 8px 8px 0 0;
+    background-size: cover;
 }
 
 .book-img span {

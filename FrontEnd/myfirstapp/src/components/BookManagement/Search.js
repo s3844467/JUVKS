@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { getAllBooks,searchAllBooks} from "../../actions/bookActions";
 import { connect } from "react-redux";
+import axios from "axios";
 
 import "../Styles/Search.css";
 import { Link } from 'react-router-dom';
@@ -13,7 +14,8 @@ class Search extends Component {
         this.onChange = this.onChange.bind(this);
         this.onClick = this.onClick.bind(this);
         this.state={
-            search:""
+            search:"",
+            images:{}
         }
 
     }
@@ -58,6 +60,7 @@ class Search extends Component {
                                 <Link to={{pathname: `/books/${book.id}`}}>
                                     <div className="book-card">
                                         <div className="book-img">
+                                        <img className="book-img" src={"http://localhost:8081/api/images/files/"+book.id} alt={book.title}/>
                                             <span>{book.category}</span>
                                             <span style={{float:"right"}}>({book.book_status})</span>
                                         </div>

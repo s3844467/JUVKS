@@ -3,6 +3,7 @@ package com.rmit.sept.bk_bookservices.web;
 
 import java.util.List;
 
+import javax.print.attribute.standard.Media;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -34,10 +35,11 @@ public class ImageController {
     private ImageService imageService;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
-      String message = "";
+    public ResponseEntity<?> uploadFile(String name, @RequestParam("file") MultipartFile file) {
     //   try {
-        Image image = imageService.store(file);
+        System.out.println(name);
+        Long id = (long) 1;
+        Image image = imageService.store(file, id);
   
         // message = "Uploaded the file successfully: " + file.getOriginalFilename();
         return new ResponseEntity<Image>(image, HttpStatus.CREATED);
@@ -68,11 +70,16 @@ public class ImageController {
   
     @GetMapping("/files/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable String id) {
-        Long id_l = Long.parseLong(id);
-        Image image = imageService.getFile(id_l);
-  
-        return ResponseEntity.ok()
-          .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + image.getType() + "\"")
-          .body(image.getContent());
+      Long l_id = Long.parseLong(id);
+      Image image = imageService.getFile(l_id);
+
+      // return ResponseEntity.ok()
+      //   .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + image.getName() + "\"")
+      //   .body(image.getContent());
+
+      return ResponseEntity.ok()
+        .contentType(MediaType.IMAGE_PNG).body(image.getContent());
+        // .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + image.getName() + "\"")
+        // .body(image.getContent());
     }
 }

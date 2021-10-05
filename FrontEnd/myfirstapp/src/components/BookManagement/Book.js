@@ -20,6 +20,7 @@ class Book extends Component {
             <div className="container">
                 <div className="details-section">
                     <div className="details-img">
+                    <img className="details-img" src={"http://localhost:8081/api/images/files/"+book.id} alt={book.title}/>
 
                     </div>
                     <div className="details-info">

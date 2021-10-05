@@ -61,6 +61,26 @@ export const addBook = (book) => async dispatch => {
       type: GET_BOOK,
       payload: res.data
     });
+    dispatch({
+      type: GET_ERRORS,
+      payload: {}
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_BOOK,
+      payload: {}
+    });
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response
+    });
+  }
+};
+
+export const addImage = (image) => async dispatch => {
+  try {
+    const res = await axios.post("http://localhost:8081/api/images/upload", image);
+  
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
@@ -68,6 +88,16 @@ export const addBook = (book) => async dispatch => {
     });
   }
 };
+
+export const getImageByBookId = () => async dispatch => {
+  const res = await axios.get("http://localhost:8081/api/categories/getAllCategories");
+  dispatch({
+    type: GET_CATEGORIES,
+    payload: res.data
+  });
+};
+
+
 export const getAllCategories = () => async dispatch => {
   const res = await axios.get("http://localhost:8081/api/categories/getAllCategories");
   dispatch({

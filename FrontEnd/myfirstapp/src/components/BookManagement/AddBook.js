@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getAllCategories, addBook} from "../../actions/bookActions";
+import { getAllCategories, addBook, addImage} from "../../actions/bookActions";
 import { connect } from "react-redux";
 
 
@@ -8,6 +8,8 @@ class AddBook extends Component {
         super(props);
 
         this.onChange = this.onChange.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
+        this.addImage = this.addImage.bind(this);
         this.addBook = this.addBook.bind(this);
         this.state={
             addBook_title: "",
@@ -19,7 +21,7 @@ class AddBook extends Component {
             addBook_image: "",
             addBook_status: "used",
             addBook_description: "",
-            message:""
+            message:false
         }
     }
 
@@ -39,25 +41,43 @@ class AddBook extends Component {
             description: this.state.addBook_description,
             owner_user_id: this.props.security.user.id,
             price: this.state.addBook_price,
-            quantity: this.state.addBook_quantity
-
+            quantity: this.state.addBook_quantity,
+            images: this.state.addBook_image
         };
-        this.props.addBook(addBookRequest);
+        const json = JSON.stringify(addBookRequest);
+        const blob = new Blob([json], {type: 'application/json'});
 
-        if (! this.props.errors){
-            this.setState({message: "Book is added sucessfully"})
+
+        const formData = new FormData();
+
+        formData.append('file', this.state.addBook_image);
+        formData.append('book', json);
+        this.props.addBook( formData);
+
+        if (this.props.books){
+            this.setState({message: true})
         }else{
-            this.setState({message: "There was error adding the book"})
+            this.setState({message: false})
         }
 
-        // window.location.href = "/addbook";
 
-        
+    }
+    addImage(e){
+        const formData = new FormData();
+
+        formData.append('file', this.state.addBook_image);
+        formData.append('name', 'Example submit');
+
+        this.props.addImage(formData);
 
     }
 
     onChange(e){
         this.setState({[e.target.name]: e.target.value });
+    }
+
+    onChangeImage(e){
+        this.setState({addBook_image: e.target.files[0]});
     }
 
     render() {
@@ -71,10 +91,10 @@ class AddBook extends Component {
             <h3>Add book</h3>
 
             {this.state.message && errors.data &&(
-                <div className="alert alert-danger">{this.state.message}</div>
+                <div className="alert alert-danger">There was error adding the book</div>
             )}
             {this.state.message && ! errors.data &&(
-                <div className="alert alert-success">{this.state.message}</div>
+                <div className="alert alert-success">Book is added sucessfully</div>
             )}
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Title</label>
@@ -134,7 +154,7 @@ class AddBook extends Component {
                     <input 
                         type="number" 
                         className="form-control" 
-                        defaultValue="1"
+                        min="1"
                         name="addBook_quantity"
                         value={this.state.addBook_quantity}
                         onChange = {this.onChange}
@@ -151,7 +171,7 @@ class AddBook extends Component {
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Publisher (ISBN)</label>
                 <input 
-                    type="text" 
+                    type="number" 
                     className="form-control" 
                     placeholder="ISBN"
                     name="addBook_isbn"
@@ -189,13 +209,14 @@ class AddBook extends Component {
                     formEncType="multipart/form-data"
                     className="form-control-file" 
                     name="addBook_image"
-                    value={this.state.addBook_image}
-                    onChange = {this.onChange}
+                    onChange = {this.onChangeImage}
+                    required
                 />
             </div>
-            {errors.data && errors.data.image &&(
-                <div className="text-danger">{errors.data.image}</div>
+            {errors.data && errors.data.file &&(
+                <div className="text-danger">{errors.data.file}</div>
             )}
+            <button className="btn btn-primary mb-2" onClick={this.addImage}>Submit</button>
 
             <div className="row">
             <div className="col">
@@ -279,5 +300,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     getAllCategories,
     addBook,
+    addImage
 })(AddBook);
   
