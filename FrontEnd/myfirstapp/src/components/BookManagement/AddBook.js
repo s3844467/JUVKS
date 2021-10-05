@@ -70,6 +70,7 @@ class AddBook extends Component {
 
         this.props.addImage(formData);
 
+        // window.location.href = "/dashboard";
     }
 
     onChange(e){
@@ -248,9 +249,9 @@ class AddBook extends Component {
                 >
                 <option defaultValue key="used" value="used">Used</option>
 
-                {security.validToken && security.user.accountType == "public" ?
+                {security.validToken && security.user.accountType === "public" ?
                 <>
-                    <option key="new" value="new" disabled>New</option>
+                    <option key="new" value="new" disabled={true}>New</option>
                 </>
                 :
                 <>
@@ -265,16 +266,7 @@ class AddBook extends Component {
            
             </div>
             </div>
-            
-            {/* Submit if user is logged in */}
-            {security.validToken ?
-            <>
-                <button className="btn btn-primary mb-2" onClick={this.addBook}>Submit</button>
-            
-            </>:
-                <button className="btn btn-primary mb-2" onClick={this.addBook} disabled>Submit</button>
-            }
-            
+            <button className="btn btn-primary mb-2" onClick={this.addBook}>Submit</button>
             {errors.data && errors.data.message && (
                 <div className="text-danger">{errors.data.message}</div>
             )}

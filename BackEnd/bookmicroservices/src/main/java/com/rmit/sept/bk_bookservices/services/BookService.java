@@ -4,6 +4,7 @@ package com.rmit.sept.bk_bookservices.services;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,17 +20,8 @@ public class BookService {
     private BookRepository bookRepository;
 
     public Book saveBook (Book newBook){
-
-      /*  newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
-        //Username has to be unique (exception)
-        // Make sure that password and confirmPassword match
-        // We don't persist or show the confirmPassword
-        return userRepository.save(newUser);
-       */
         try{
-
             return bookRepository.save(newBook);
-
         }catch (Exception e){
             throw new IsbnAlreadyExistsException("The book already exists in database");
         }
@@ -48,15 +40,27 @@ public class BookService {
     	return bookRepository.findByAuthor(author);
     }
 
-    public List<Book> searchByIsbn(String isbn){
-    	return bookRepository.findByIsbn(isbn);
+    public Book searchByIsbn(String isbn){
+    	return bookRepository.findBookByIsbn(isbn);
     }
 
     public List<Book> searchBook(String query){
         return bookRepository.findBook(query);
     }
 
-    public Book searchById(long id){
+    public List<Book> searchById(long id){
         return bookRepository.findBookById(id);
+    }
+
+    public List<Book> searchByUserId(long userId) {
+        return bookRepository.findBooksByUserId(userId);
+    }
+
+    public void deleteBookById(long bookId) {
+        bookRepository.deleteById(bookId);
+    }
+
+    public void updateBook(Book book) {
+        bookRepository.save(book);
     }
 }

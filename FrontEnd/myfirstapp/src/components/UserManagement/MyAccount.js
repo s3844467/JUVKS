@@ -4,11 +4,6 @@ import { connect } from "react-redux";
 import "../Styles/MyAccount.css";
 
 class MyAccount extends Component {
-    constructor(props){
-        super(props);
-
-    }
-
     render() {
         const {security} = this.props;
         return (

@@ -11,6 +11,10 @@
     border-radius: 4px;
 }
 
+.books-container > a:hover {
+    text-decoration: none;
+}
+
 .book-card {
     display: flex;
     flex-direction: column;
@@ -60,6 +64,10 @@
     justify-content: space-between;
     flex-direction: row;
     overflow: hidden;
+}
+
+#book-price {
+    margin-left: 32px;
 }
 
 .book-info-bot {
