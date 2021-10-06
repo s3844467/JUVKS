@@ -212,9 +212,9 @@ CREATE TABLE `users` (
   `username` varchar(45) NOT NULL,
   `fullname` varchar(45) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `phone` int DEFAULT NULL,
+  `phone_num` int DEFAULT NULL,
   `account_type` varchar(45) NOT NULL DEFAULT 'public',
-  `status` tinyint NOT NULL DEFAULT '1',
+  `status` varchar(45) NOT NULL DEFAULT 'validated',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(255) DEFAULT NULL,
@@ -231,7 +231,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (4,'example2@email.com','Example name anem',NULL,NULL,'public',1,'2021-09-14 00:23:15','2021-09-14 00:23:15','$2a$10$DkMhJKQMHKypYAG0WPJZ3u3fJlEUSuCb2molZpVU5w4n0thsuxu3.',NULL),(5,'example@gmail.com','name name',NULL,NULL,'public',1,'2021-09-14 00:32:45','2021-09-14 00:32:45','$2a$10$8VW8ixyq6hkiXb1nnxFaU.GsBS7Is1dSI2PFH8RWWeavlwjfE9dn2',NULL),(7,'example3@gmail.com','Example user 3',NULL,NULL,'public',1,'2021-09-16 23:09:52','2021-09-16 23:09:52','$2a$10$NZcH./Li5HJxhLR.bujQLO3T0uY9kPIEzZQ23QSqt47w2L1HjubMK',NULL),(8,'publisher@email.com','Publisher',NULL,NULL,'shop',1,'2021-09-17 01:38:10','2021-09-17 01:38:10','$2a$10$khrUyBlmAOUmL6xIaWLTbO0jlu5QTB4x/AamMde8wBQlZ0w4rMhiO',NULL),(9,'admin@mail.com','Admin',NULL,NULL,'admin',1,'2021-09-17 02:00:30','2021-09-17 02:00:30','$2a$10$yO1oo3d/BzNIBHh0FTBVNOTNraiN3nbVUkDTX4Q.V2kCYyN28B6DS',NULL);
+INSERT INTO `users` VALUES (4,'example2@email.com','Example name anem',NULL,NULL,'public','validated','2021-09-14 00:23:15','2021-09-14 00:23:15','$2a$10$DkMhJKQMHKypYAG0WPJZ3u3fJlEUSuCb2molZpVU5w4n0thsuxu3.',NULL),(5,'example@gmail.com','name name',NULL,NULL,'public','validated','2021-09-14 00:32:45','2021-09-14 00:32:45','$2a$10$8VW8ixyq6hkiXb1nnxFaU.GsBS7Is1dSI2PFH8RWWeavlwjfE9dn2',NULL),(7,'example3@gmail.com','Example user 3',NULL,NULL,'public','validated','2021-09-16 23:09:52','2021-09-16 23:09:52','$2a$10$NZcH./Li5HJxhLR.bujQLO3T0uY9kPIEzZQ23QSqt47w2L1HjubMK',NULL),(8,'publisher@email.com','Publisher',NULL,NULL,'shop','validated','2021-09-17 01:38:10','2021-09-17 01:38:10','$2a$10$khrUyBlmAOUmL6xIaWLTbO0jlu5QTB4x/AamMde8wBQlZ0w4rMhiO',NULL),(9,'admin@mail.com','Admin',NULL,NULL,'admin','validated','2021-09-17 02:00:30','2021-09-17 02:00:30','$2a$10$yO1oo3d/BzNIBHh0FTBVNOTNraiN3nbVUkDTX4Q.V2kCYyN28B6DS',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
