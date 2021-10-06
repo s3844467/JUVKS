@@ -8,6 +8,8 @@ class AddBook extends Component {
         super(props);
 
         this.onChange = this.onChange.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
+        // this.addImage = this.addImage.bind(this);
         this.addBook = this.addBook.bind(this);
         this.state={
             addBook_title: "",
@@ -18,9 +20,9 @@ class AddBook extends Component {
             addBook_isbn: "",
             addBook_image: "",
             addBook_status: "used",
-            addBook_description: ""
+            addBook_description: "",
+            message:false
         }
-
     }
 
 
@@ -39,19 +41,45 @@ class AddBook extends Component {
             description: this.state.addBook_description,
             owner_user_id: this.props.security.user.id,
             price: this.state.addBook_price,
-            quantity: this.state.addBook_quantity
+            quantity: this.state.addBook_quantity,
+            images: this.state.addBook_image
         };
-        this.props.addBook(addBookRequest);
+        const json = JSON.stringify(addBookRequest);
+        const formData = new FormData();
 
-        window.location.href = "/dashboard";
+        formData.append('file', this.state.addBook_image);
+        formData.append('book', json);
+        this.props.addBook( formData);
+
+        if (this.props.books){
+            this.setState({message: true})
+        }else{
+            this.setState({message: false})
+        }
+
+
     }
+    // addImage(e){
+    //     const formData = new FormData();
+
+    //     formData.append('file', this.state.addBook_image);
+    //     formData.append('name', 'Example submit');
+
+    //     this.props.addImage(formData);
+
+    //     // window.location.href = "/dashboard";
+    // }
 
     onChange(e){
         this.setState({[e.target.name]: e.target.value });
     }
 
+    onChangeImage(e){
+        this.setState({addBook_image: e.target.files[0]});
+    }
+
     render() {
-        const {category, errors, security} = this.props;
+        const {category, errors, security, books} = this.props;
         return (
             
         <div className="container">
@@ -59,7 +87,13 @@ class AddBook extends Component {
         <div className="row">
             <div className="col-md-8 m-auto">
             <h3>Add book</h3>
-            
+
+            {this.state.message && errors.data &&(
+                <div className="alert alert-danger">There was error adding the book</div>
+            )}
+            {this.state.message && ! errors.data &&(
+                <div className="alert alert-success">Book is added sucessfully</div>
+            )}
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Title</label>
                 <input 
@@ -135,7 +169,7 @@ class AddBook extends Component {
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Publisher (ISBN)</label>
                 <input 
-                    type="text" 
+                    type="number" 
                     className="form-control" 
                     placeholder="ISBN"
                     name="addBook_isbn"
@@ -169,14 +203,16 @@ class AddBook extends Component {
                 <label htmlFor="formGroupExampleInput">Upload Image</label>
                 <input 
                     type="file" 
+                    accept="image/png, image/jpeg"
+                    formEncType="multipart/form-data"
                     className="form-control-file" 
                     name="addBook_image"
-                    value={this.state.addBook_image}
-                    onChange = {this.onChange}
+                    onChange = {this.onChangeImage}
+                    required
                 />
             </div>
-            {errors.data && errors.data.image &&(
-                <div className="text-danger">{errors.data.image}</div>
+            {errors.data && errors.data.file &&(
+                <div className="text-danger">{errors.data.file}</div>
             )}
 
             <div className="row">
@@ -244,12 +280,14 @@ const mapStateToProps = (state) => {
     return {
         category:state.category,
         errors: state.errors,
-        security: state.security
+        security: state.security,
+        books: state.books
     };
   };
 
 export default connect(mapStateToProps, {
     getAllCategories,
-    addBook,
+    addBook
+    // addImage
 })(AddBook);
   

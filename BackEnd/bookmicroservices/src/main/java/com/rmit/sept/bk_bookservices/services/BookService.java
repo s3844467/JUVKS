@@ -52,6 +52,10 @@ public class BookService {
         return bookRepository.findBookById(id);
     }
 
+    public List<Book> searchByUserId(long userId) {
+        return bookRepository.findBooksByUserId(userId);
+    }
+
     public void deleteBookById(long bookId) {
         bookRepository.deleteById(bookId);
     }
