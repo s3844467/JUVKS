@@ -104,7 +104,10 @@ class ManageBooks extends Component {
                                     })
                                 }}>
                                     <div className="product-img">
-                                        <img className="product-img" src={"http://localhost:8081/api/images/files/"+book.id} alt={book.title}/>
+                                        <img 
+                                        className="product-img" 
+                                        src={"http://localhost:8081/api/images/files/"+book.id} 
+                                        alt={book.title}/>
                                     </div>
                                     <div className="product-details">
                                         <div className="product-header">
@@ -227,62 +230,65 @@ class ManageBooks extends Component {
                                         <div className="text-danger">{errors.data.description}</div>
                                     )}
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="formGroupExampleInput">Upload Image</label>
-                                        <input 
-                                            type="file" 
-                                            className="form-control-file" 
-                                            name="updateBook_image"
-                                            value={this.state.updateBook_image}
-                                            onChange = {this.onChange}
-                                        />
-                                    </div>
-                                    {errors.data && errors.data.image &&(
-                                        <div className="text-danger">{errors.data.image}</div>
-                                    )}
-
-                                    <div className="row">
-                                        <div className="col">
-                                    
-                                            <div className="form-group">
-                                                <label htmlFor="formGroupExampleInput">Category</label>
-                                                <select className="form-control" 
-                                                    name="updateBook_category" 
+                                    <div className="d-flex">
+                                        <div className="product-img mb-3 mr-3">
+                                            <img 
+                                            src={"http://localhost:8081/api/images/files/"+this.state.updateBook_id} 
+                                            alt={this.state.updateBook_title}/>
+                                        </div>
+                                        <div>
+                                            <div className="form-group col">
+                                                <label htmlFor="formGroupExampleInput">Upload Image</label>
+                                                <input 
+                                                    type="file" 
+                                                    className="form-control-file" 
+                                                    name="updateBook_image"
+                                                    value={this.state.updateBook_image}
                                                     onChange = {this.onChange}
-                                                    required
-                                                >
-                                                <option defaultValue>{this.state.updateBook_category}</option>
-                                                {category && category.map((c) => (
-                                                    <option key={c.categoryName} value={c.categoryName}>{c.categoryName}</option>
-                                                ))}
-                                                </select>
-                                                {errors.data && errors.data.category &&(
-                                                    <div className="text-danger">{errors.data.category}</div>
-                                                )}
+                                                />
+                                            </div>
+                                            {errors.data && errors.data.image &&(
+                                                <div className="text-danger">{errors.data.image}</div>
+                                            )}
+                                            <div className="d-flex">
+                                                <div className="col form-group">
+                                                    <label htmlFor="formGroupExampleInput">Category</label>
+                                                    <select className="form-control" 
+                                                        name="updateBook_category" 
+                                                        onChange = {this.onChange}
+                                                        required
+                                                    >
+                                                    <option defaultValue>{this.state.updateBook_category}</option>
+                                                    {category && category.map((c) => (
+                                                        <option key={c.categoryName} value={c.categoryName}>{c.categoryName}</option>
+                                                    ))}
+                                                    </select>
+                                                    {errors.data && errors.data.category &&(
+                                                        <div className="text-danger">{errors.data.category}</div>
+                                                    )}
+                                                </div>
+                                                <div className="col form-group">
+                                                    <label htmlFor="formGroupExampleInput">Book status</label>
+                                                    <select className="form-control" 
+                                                        name="updateBook_status" 
+                                                        onChange = {this.onChange}
+                                                    >
+                                                    <option defaultValue key="used" value="used">Used</option>
+                                                    {security.validToken && security.user.accountType === "public" ?
+                                                    <>
+                                                        <option key="new" value="new" disabled={true}>New</option>
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <option key="new" value="new">New</option>
+                                                    </>
+                                                    }
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="col">
-                                            <div className="form-group">
-                                                <label htmlFor="formGroupExampleInput">Book status</label>
-                                                <select className="form-control" 
-                                                    name="updateBook_status" 
-                                                    onChange = {this.onChange}
-                                                >
-                                                <option defaultValue key="used" value="used">Used</option>
-                                                {security.validToken && security.user.accountType === "public" ?
-                                                <>
-                                                    <option key="new" value="new" disabled={true}>New</option>
-                                                </>
-                                                :
-                                                <>
-                                                    <option key="new" value="new">New</option>
-                                                </>
-                                                }
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <button className="btn btn-primary mb-2" onClick={this.updateBook}>Submit</button>
+                                    <button className="btn btn-primary mb-2" onClick={this.updateBook}>Update</button>
                                     
                                     {errors.data && errors.data.message && (
                                         <div className="text-danger">{errors.data.message}</div>
