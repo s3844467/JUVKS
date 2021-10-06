@@ -46,6 +46,7 @@ class ManageBooks extends Component {
                 updateBook_author: nextProps.books[0].author,
                 updateBook_category: nextProps.books[0].category,
                 updateBook_isbn: nextProps.books[0].isbn,
+                updateBook_image: nextProps.books[0].image,
                 updateBook_status: nextProps.books[0].book_status,
                 updateBook_description: nextProps.books[0].description
             });
@@ -83,7 +84,6 @@ class ManageBooks extends Component {
         return (
             <div className="main">
                 <SideMenu/>
-                <div className="row">
                 <div className="main-content">
                     <div className="product-container">
                         {(books && books.length > 0) &&
@@ -195,20 +195,22 @@ class ManageBooks extends Component {
                                             )}
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="formGroupExampleInput">Publisher (ISBN)</label>
-                                        <input 
-                                            type="text" 
-                                            className="form-control" 
-                                            placeholder={this.state.activeProduct.isbn}
-                                            name="updateBook_isbn"
-                                            value={this.state.updateBook_isbn}
-                                            onChange = {this.onChange}
-                                        />
-                                        {errors.data && errors.data.isbn &&(
-                                        <div className="text-danger">{errors.data.isbn}</div>
-                                        )}
+                                        <div className="col">
+                                            <div className="form-group">
+                                                <label htmlFor="formGroupExampleInput">Publisher (ISBN)</label>
+                                                <input 
+                                                    type="text" 
+                                                    className="form-control" 
+                                                    placeholder={this.state.activeProduct.isbn}
+                                                    name="updateBook_isbn"
+                                                    value={this.state.updateBook_isbn}
+                                                    onChange = {this.onChange}
+                                                />
+                                                {errors.data && errors.data.isbn &&(
+                                                <div className="text-danger">{errors.data.isbn}</div>
+                                                )}
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="formGroupExampleInput">Description</label>
@@ -287,7 +289,6 @@ class ManageBooks extends Component {
                                     )}
                                 </div> 
                             </>}
-                        </div>
                         </div>
                     </div>
                 </div>
