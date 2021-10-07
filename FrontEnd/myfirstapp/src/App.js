@@ -20,6 +20,7 @@ import ManageBooks from "./components/BookManagement/ManageBooks";
 import ManageUsers from "./components/UserManagement/ManageUsers";
 import Cart from "./components/OrderManagement/Cart";
 import MyAccount from "./components/UserManagement/MyAccount";
+import Contact from "./components/UserManagement/Contact";
 
 import jwt_decode from "jwt-decode";
 import setJWTToken from "./securityUtils/setJWTToken";
@@ -64,6 +65,7 @@ class App extends Component {
             <SecuredRoute exact path="/manage/books" component={ManageBooks} />
             <Route exact path="/search=:query?" component={Search} />
             <Route exact path="/books/:id" component={Book} />
+            <Route exact path="/contact" component={Contact} />
             <SecuredRoute exact path="/addbook" component={AddBook}/>
             <SecuredRoute exact path="/my_account" component={MyAccount}/>            
 
