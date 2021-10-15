@@ -36,6 +36,7 @@ export const getBLockedUsers = () => async dispatch => {
   };
 
   export const unblockUser = (userId) => async dispatch => {
+    console.log("unblock request")
     const res = await axios.post("http://localhost:8080/api/users/unblockUser/" + userId);
     dispatch({
       type: GET_ERRORS,

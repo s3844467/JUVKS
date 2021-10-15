@@ -10,7 +10,8 @@ class ManageUsers extends Component {
 
         // this.onCheckOut = this.onCheckOut.bind(this);
         this.onChange = this.onChange.bind(this);
-
+        this.blockUser = this.blockUser.bind(this);
+        this.unblockUser = this.unblockUser.bind(this);
     }
 
     componentDidMount() {
@@ -26,8 +27,14 @@ class ManageUsers extends Component {
 
     }
 
-    blockUser(e){
-        e.preventDefault();
+    blockUser(id){
+        console.log("blockUser" + id)
+        this.props.blockUser(id)
+    }
+
+    unblockUser(id){
+        console.log("unblockUser" + id)
+        this.props.unblockUser(id)
     }
 
     render() {
@@ -49,7 +56,9 @@ class ManageUsers extends Component {
                                         <span>{user.username}</span>
                                         <span>{user.status}</span>
                                         <span>{user.accountType}</span>
-                                        <span><button>Block</button></span>
+                                        <span>
+                                            <button onClick={this.blockUser(user.id)}>
+                                            Block</button></span>
                                     </div>
                         
                                 </div>
@@ -72,7 +81,7 @@ class ManageUsers extends Component {
                                         <span>{user.username}</span>
                                         <span>{user.status}</span>
                                         <span>{user.accountType}</span>
-                                        <span><button>Unblock</button></span>
+                                        <span><button onClick={this.unblockUser(user.id)}>Unblock</button></span>
                                     </div>
                         
                                 </div>
@@ -95,5 +104,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     getValidatedUsers,
-    getBLockedUsers
+    getBLockedUsers,
+    blockUser,
+    unblockUser
 })(ManageUsers);
