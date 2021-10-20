@@ -1,0 +1,8 @@
+com\rmit\sept\bk_bookservices\model\Image.class
+com\rmit\sept\bk_bookservices\image_response\ResponseImage.class
+com\rmit\sept\bk_bookservices\Repositories\ImageRepository.class
+com\rmit\sept\bk_bookservices\validator\ImageValidator.class
+com\rmit\sept\bk_bookservices\model\File.class
+com\rmit\sept\bk_bookservices\propertyEditor\BookEditor.class
+com\rmit\sept\bk_bookservices\services\ImageService.class
+com\rmit\sept\bk_bookservices\web\ImageController.class
