@@ -17,7 +17,10 @@ import Search from "./components/BookManagement/Search";
 import Book from "./components/BookManagement/Book";
 import AddBook from "./components/BookManagement/AddBook";
 import ManageBooks from "./components/BookManagement/ManageBooks";
-import ManageUsers from "./components/UserManagement/ManageUsers";
+import ManageUsers from "./components/AdminManagement/ManageUsers";
+import ManageOrders from "./components/UserManagement/ManageOrders";
+import ManageTransactions from "./components/UserManagement/ManageTransactions";
+import UpgradeRequests from "./components/AdminManagement/UpgradeRequest";
 import Cart from "./components/OrderManagement/Cart";
 import MyAccount from "./components/UserManagement/MyAccount";
 import Contact from "./components/UserManagement/Contact";
@@ -63,6 +66,9 @@ class App extends Component {
             {/* <SecuredRoute exact path="/update/account=:id" component={UpdateBook} /> */}
             <SecuredRoute exact path="/manage/users" component={ManageUsers} />
             <SecuredRoute exact path="/manage/books" component={ManageBooks} />
+            <SecuredRoute exact path="/manage/upgrade-requests" component={UpgradeRequests} />
+            <SecuredRoute exact path="/manage/orders" component={ManageOrders} />
+            <SecuredRoute exact path="/manage/transactions" component={ManageTransactions} />
             <Route exact path="/search=:query?" component={Search} />
             <Route exact path="/books/:id" component={Book} />
             <Route exact path="/contact" component={Contact} />
