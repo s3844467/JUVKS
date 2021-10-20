@@ -16,11 +16,11 @@ import Dashboard from "./components/AdminManagement/AdminDashboard";
 import Search from "./components/BookManagement/Search";
 import Book from "./components/BookManagement/Book";
 import AddBook from "./components/BookManagement/AddBook";
-import UpdateBook from "./components/BookManagement/UpdateBook";
 import ManageBooks from "./components/BookManagement/ManageBooks";
 import ManageUsers from "./components/UserManagement/ManageUsers";
 import Cart from "./components/OrderManagement/Cart";
 import MyAccount from "./components/UserManagement/MyAccount";
+import Contact from "./components/UserManagement/Contact";
 
 import jwt_decode from "jwt-decode";
 import setJWTToken from "./securityUtils/setJWTToken";
@@ -60,12 +60,12 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <SecuredRoute exact path="/cart" component={Cart} />            
             <SecuredRoute exact path="/dashboard" component={Dashboard} />
-            <SecuredRoute exact path="/update/book=:id" component={UpdateBook} />
-            <SecuredRoute exact path="/update/account=:id" component={UpdateBook} />
+            {/* <SecuredRoute exact path="/update/account=:id" component={UpdateBook} /> */}
             <SecuredRoute exact path="/manage/users" component={ManageUsers} />
             <SecuredRoute exact path="/manage/books" component={ManageBooks} />
             <Route exact path="/search=:query?" component={Search} />
             <Route exact path="/books/:id" component={Book} />
+            <Route exact path="/contact" component={Contact} />
             <SecuredRoute exact path="/addbook" component={AddBook}/>
             <SecuredRoute exact path="/my_account" component={MyAccount}/>            
 
