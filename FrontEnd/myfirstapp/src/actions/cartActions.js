@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GET_CART_ITEMS, GET_ALL_CART_ITEMS, GET_ERRORS} from "./types";
+import {GET_CART_ITEMS, GET_ALL_CART_ITEMS, GET_ERRORS, GET_CART_TOTAL} from "./types";
 
 export const getAllCartItems = () => async dispatch => {
     const res = await axios.get("http://localhost:8083/api/carts/getAllCartItems");
@@ -39,4 +39,13 @@ export const deleteCartItem = (cartItemId) => async dispatch => {
     try {
       await axios.delete("http://localhost:8083/api/carts/deleteCartItem/"+cartItemId);
     } catch(err) {}
+};
+
+export const getCartTotal = (userId) => async dispatch => {
+    const res = await axios.get("http://localhost:8083/api/carts/getCartTotal/"+userId);
+    dispatch({
+        type: GET_CART_TOTAL,
+        payload: res.data
+    });
+    console.log(res.data);
 };

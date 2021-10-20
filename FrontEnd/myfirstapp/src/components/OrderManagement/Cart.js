@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { searchUserId, deleteCartItem, updateCartItemQuantity } from "../../actions/cartActions";
+import { searchUserId, deleteCartItem, updateCartItemQuantity, getCartTotal } from "../../actions/cartActions";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
+import PayPalApp from "../OrderManagement/PayPal";
 
 import "../Styles/Cart.css";
 
@@ -13,7 +14,8 @@ class Cart extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.state={
-            cartItems: new Map()
+            cartItems: new Map(),
+            cartTotal: 0
         }
     }
 
@@ -24,6 +26,7 @@ class Cart extends Component {
             this.props.cart.map((cartItem) => {
                 this.state.cartItems.set(cartItem.id, cartItem);
             })
+
         }
     }
 
@@ -117,6 +120,12 @@ class Cart extends Component {
                     
                     <div className="cart-checkout">
                         <button className="btn primary-btn" onClick={this.onCheckOut}>Checkout</button>
+                        {/* <p>{this.props.getCartTotal(this.props.security.user.id)}</p> */}
+                        <PayPalApp  
+                            total={2}
+                            //clearCart = {clearCart}
+                            // history={history}
+                        />
                     </div>
                 </div>
             </div>
@@ -134,7 +143,8 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     searchUserId,
     deleteCartItem,
-    updateCartItemQuantity
+    updateCartItemQuantity,
+    getCartTotal
 })(Cart);
 // export default Dashboard;
         

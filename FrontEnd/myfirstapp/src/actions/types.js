@@ -18,3 +18,4 @@ export const GET_REVIEW = "GET_REVIEW";
 
 export const GET_ALL_CART_ITEMS = "GET_ALL_CART_ITEMS";
 export const GET_CART_ITEMS = "GET_CART_ITEMS";
+export const GET_CART_TOTAL = "GET_CART_TOTAL";
