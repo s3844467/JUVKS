@@ -1,0 +1,36 @@
+.checkout-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    background: #ccc;
+    padding: 16px 32px;
+    color: #333;
+    border-radius: 4px;
+}
+
+.checkout-form {
+    height: 100%;
+}
+
+.checkout-section {
+    flex-grow: 1;
+}
+
+#your-details {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #bbb;
+}
+
+.checkout-summary {
+    background: #eee;
+    border-radius: 8px;
+    padding: 16px 24px;
+    margin: 8px 0;
+}
+
+.checkout-summary h3 {
+    text-align: center;
+    margin: 12px 0 24px 0;
+}
