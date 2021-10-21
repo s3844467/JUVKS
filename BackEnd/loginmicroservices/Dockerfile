@@ -7,8 +7,7 @@ WORKDIR /BackEnd/loginmicroservices
 COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
-RUN apt-get update && apt-get install dos2unix
-RUN dos2unix mvnw
+RUN /bin/sh -c “mvnw clean install”
 RUN chmod +x ./mvnw
 # download the dependency if needed or if the pom file is changed
 
