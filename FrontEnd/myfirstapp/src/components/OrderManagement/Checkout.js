@@ -10,6 +10,7 @@ class Cart extends Component {
         super(props);
 
         this.onChange = this.onChange.bind(this);
+        this.createOrder = this.createOrder();
 
         this.state = {
             orderName: "",
@@ -49,6 +50,10 @@ class Cart extends Component {
 
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
+    }
+
+    createOrder() {
+        // Create new order object when successful payment
     }
 
     render() {
@@ -137,11 +142,11 @@ class Cart extends Component {
                                             onChange={this.onChange}
                                             className="form-control"
                                             >
+                                                <option value={this.state.orderState}>Victoria</option>
                                                 <option value={this.state.orderState}>Queensland</option>
                                                 <option value={this.state.orderState}>New South Wales</option>
                                                 <option value={this.state.orderState}>South Australia</option>
                                                 <option value={this.state.orderState}>Tasmania</option>
-                                                <option value={this.state.orderState}>Victoria</option>
                                                 <option value={this.state.orderState}>Western Australia</option>
                                             </select>
                                         </div>
@@ -178,15 +183,24 @@ class Cart extends Component {
                     </div>
                     <div className="checkout-summary checkout-section">
                         <h3>Checkout Summary</h3>
-                        <h5>Items in your cart</h5>
-                        <div className="item-list">
-                            {cart.map((cartItem) => {
-                                console.log(cartItem);
-                                <span>{cartItem.title}</span>
-                            })}
+                        <div className="summary-items summary-section">
+                            <h5>Items in your cart</h5>
+                            <div className="item-list">
+                                {cart.map((cartItem) => {
+                                    console.log(cartItem.title);
+                                    return (
+                                    <span className="checkout-item">{cartItem.quantity} x {cartItem.title}</span>
+                                    )
+                                })}
+                            </div>
                         </div>
-                        <span>Total</span><span>${this.state.orderTotal}</span>
-                        <button>Pay with PayPal</button>
+                        <div className="summary-payment summary-section">
+                            <h5>Payment</h5>
+                            <div className="payment-total">
+                                <b><span>Total</span></b><b><span>${this.state.orderTotal}</span></b>
+                            </div>
+                            <button>Pay with PayPal</button>
+                        </div>
                     </div>
                 </div>
             </div>

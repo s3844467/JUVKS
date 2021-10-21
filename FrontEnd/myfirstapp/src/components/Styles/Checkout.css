@@ -34,3 +34,31 @@
     text-align: center;
     margin: 12px 0 24px 0;
 }
+
+.summary-section {
+    padding: 12px 0;
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+}
+
+.summary-section h5 {
+    margin-bottom: 18px;
+}
+
+.checkout-item {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.checkout-item:last-child {
+    margin-bottom: 0;
+}
+
+.payment-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 18px 0;
+}
