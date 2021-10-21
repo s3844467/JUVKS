@@ -2,13 +2,13 @@ FROM openjdk:8-jdk-alpine as build
 
 WORKDIR /BackEnd/loginmicroservices
 
-RUN mvn clean install
 
 
 COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
-
+RUN apt-get update && apt-get install dos2unix
+RUN dos2unix mvnw
 RUN chmod +x ./mvnw
 # download the dependency if needed or if the pom file is changed
 
