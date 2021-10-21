@@ -6,8 +6,8 @@ export default class PayPalApp  extends React.Component {
         const onSuccess = (payment) => {
             // Congratulation, it came here means everything's fine!
             console.log("The payment was succeeded!", payment);
-            this.props.clearCart();
-            this.props.history.push('/');
+            //this.props.clearCart();
+            //this.props.history.push('/');
             // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
         }
         const onCancel = (data) => {
@@ -25,6 +25,7 @@ export default class PayPalApp  extends React.Component {
         let currency = 'AUD'; // or you can set this value from your props or state
         let total = 100; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
         // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
+        let purchase_details = 'something'
         const client = {
             sandbox: 'AbRUATMOekIIbize9ftbWSI9kLM7RoF7-VW8XIKAtxk2BzqjRY8DYhJ2f0O2LiExZie6COszL5xKmvvA',
             production: 'YOUR-PRODUCTION-APP-ID',
@@ -40,7 +41,9 @@ export default class PayPalApp  extends React.Component {
                 env={env} 
                 client={client} 
                 currency={currency} 
-                total={this.props.total} 
+                paymentOptions = {this.props.paymentOptions}
+                
+
                 onError={onError}
                 onSuccess={onSuccess} 
                 onCancel={onCancel} />
