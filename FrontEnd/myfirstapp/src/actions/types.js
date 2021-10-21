@@ -4,6 +4,7 @@ export const GET_PERSON = "GET_PERSON";
 
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const GET_ALL_USERS = "GET_ALL_USERS";
 
 
 export const GET_ALLBOOKS = "GET_ALLBOOKS";

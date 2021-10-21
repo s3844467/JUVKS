@@ -15,6 +15,7 @@ class AdminDashboard extends Component {
         return (
             <div className="main">
                 <SideMenu/>
+                <h1>Test</h1>
                 <div className="container">
 
                 </div>
