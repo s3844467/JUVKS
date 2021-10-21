@@ -7,9 +7,9 @@ WORKDIR /BackEnd/loginmicroservices
 COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
-RUN /bin/sh -c “mvnw clean install”
 RUN chmod +x ./mvnw
 # download the dependency if needed or if the pom file is changed
+RUN dos2unix mvnw
 
 
 RUN ./mvnw dependency:go-offline -B
