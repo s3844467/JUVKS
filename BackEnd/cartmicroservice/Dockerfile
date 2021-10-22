@@ -17,13 +17,13 @@ COPY src src
 RUN ./mvnw package -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-# COPY target/cartmicroservices-0.0.1.jar cartmicroservices.jar
+RUN cp target/cartmicroservices-0.0.1.jar cartmicroservices.jar
 
 
 EXPOSE 8083
 
 # Run the Spring boot application
-ENTRYPOINT ["java", "-jar", "/BackEnd/cartmicroservices/target/dependency/cartmicroservices-0.0.1.jar"]
+ENTRYPOINT ["java", "-jar", "/BackEnd/cartmicroservices/cartmicroservices.jar"]
 
 
 # RUN mvn clean install

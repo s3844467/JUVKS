@@ -17,13 +17,13 @@ COPY src src
 RUN ./mvnw package -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-# COPY target/bookmicroservices-0.0.1.jar bookmicroservices.jar
+RUN cp target/bookmicroservices-0.0.1.jar bookmicroservices.jar
 
 
 EXPOSE 8081
 
 # Run the Spring boot application
-ENTRYPOINT ["java", "-jar", "/BackEnd/bookmicroservices/target/dependency/bookmicroservices-0.0.1.jar"]
+ENTRYPOINT ["java", "-jar", "/BackEnd/bookmicroservices/bookmicroservices.jar"]
 
 
 # RUN mvn clean install

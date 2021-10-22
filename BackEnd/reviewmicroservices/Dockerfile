@@ -17,13 +17,13 @@ COPY src src
 RUN ./mvnw package -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-# COPY target/reviewmicroservices-0.0.1.jar reviewmicroservices.jar
+RUN cp target/reviewmicroservices-0.0.1.jar reviewmicroservices.jar
 
 
 EXPOSE 8082
 
 # Run the Spring boot application
-ENTRYPOINT ["java", "-jar", "/BackEnd/reviewmicroservices/target/dependency/reviewmicroservices-0.0.1.jar"]
+ENTRYPOINT ["java", "-jar", "/BackEnd/reviewmicroservices/reviewmicroservices.jar"]
 
 
 # RUN mvn clean install
