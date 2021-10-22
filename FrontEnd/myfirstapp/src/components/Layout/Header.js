@@ -66,7 +66,14 @@ class Header extends Component {
                                         <button className="navbar-btn"><ShoppingCartIcon/><span>Cart</span></button>
                                     </Link>
                                     <Link className="navbar-btn-link" to="/my_account">
-                                        <button className="navbar-btn"><AccountCircleIcon/><span>{security.user.fullName.slice(0, security.user.fullName.indexOf(' '))}</span></button>
+                                        <button className="navbar-btn"><AccountCircleIcon/>
+                                            <span>
+                                                {
+                                                    security.user.fullName[0].toUpperCase()
+                                                    + security.user.fullName.slice(1, security.user.fullName.indexOf(' '))
+                                                }
+                                            </span>
+                                        </button>
                                     </Link>
                                     <button className="navbar-btn" onClick={this.onLogoutClick}><LogoutIcon/><span>Logout</span></button>
                                 </div>
