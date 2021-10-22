@@ -35,7 +35,10 @@ public class User implements UserDetails {
     private String address;
     private String phoneNum;
     private String status;
-    
+
+   private String abn;
+   private String shopName;
+
     @Column(nullable = false)
     private Date created_at;
     @Column(nullable = false)
@@ -137,6 +140,22 @@ public class User implements UserDetails {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+   public String getAbn() {
+       return abn;
+   }
+
+   public void setAbn(String abn) {
+       this.abn = abn;
+   }
+   
+   public String getShopName() {
+       return shopName;
+   }
+
+   public void setShopName(String shopName) {
+       this.shopName = shopName;
+   }
 
 	@PrePersist
     protected void onCreate(){

@@ -45,8 +45,10 @@ public class UserService {
             newUser.setCreate_At(new Date());
             newUser.setAccountType(newUser.getAccountType());
             newUser.setPhoneNum(newUser.getPhoneNum());
-            if (newUser.getAccountType().equals("shop")) {
+            if (newUser.getAccountType().equals("shop") || newUser.getAccountType().equals("Publisher")) {
             	newUser.setStatus("pending");
+               newUser.setAbn(newUser.getAbn());
+               newUser.setShopName(newUser.getShopName());
             }else {
             	newUser.setStatus("validated");
             }
