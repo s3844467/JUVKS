@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { searchUserId, deleteCartItem, updateCartItemQuantity, getCartTotal } from "../../actions/cartActions";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import PayPalApp from "../OrderManagement/PayPal";
+
 
 import "../Styles/Cart.css";
 
@@ -141,51 +141,7 @@ class Cart extends Component {
                     
                     <div className="cart-checkout">
                         <button className="btn primary-btn" onClick={this.onCheckOut}>Checkout</button>
-                        
-                        <PayPalApp  
-                            total = {this.state.cartTotal}
-                            // paymentOptions={{
-                            //     "payer":
-                            //     {
-                            //       "payment_method": "paypal"
-                            //     },
-                            //     "transactions": [
-                            //     {
-                            //       "amount":
-                            //       {
-                            //         "total": "125",
-                            //         "currency": "AUD",
-                            //       },
-                            //       "item_list":
-                            //       {
-                            //         "items": [
-                            //         {
-                            //           "name": "book1",
-                            //           "description": "This is a book",
-                            //           "price": "22.00",
-                            //           "currency": "AUD",
-                            //           "quantity": 5
-                            //         },
-                            //         {
-                            //           "name": "book2",
-                            //           "description": "This is a 2nd book",
-                            //           "price": "15.00",
-                            //           "currency": "AUD",
-                            //           "quantity": 1
-                            //         }],
-                     
-                            //       },
-                            //       "related_resources": []
-                            //     }],
-                            //     "note_to_payer": "Contact us for any questions on your order.",
-                            //     "create_time": "2016-08-05T14:34:42Z",
-                                
-                            //   }
-                            //   }
 
-                            //clearCart = {clearCart}
-                            // history={history}
-                        />
                         <div>
                             <h2>Order Summary</h2>
                             <div className="summary-details">

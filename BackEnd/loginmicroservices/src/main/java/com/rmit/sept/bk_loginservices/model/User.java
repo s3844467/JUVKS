@@ -31,7 +31,11 @@ public class User implements UserDetails {
     private String password;
     @Transient
     private String confirmPassword;
-
+    
+    private String address;
+    private String phoneNum;
+    private String status;
+    
     @Column(nullable = false)
     private Date created_at;
     @Column(nullable = false)
@@ -110,7 +114,31 @@ public class User implements UserDetails {
         this.account_type = account_type;
     }
 
-    @PrePersist
+    public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@PrePersist
     protected void onCreate(){
         this.created_at = new Date();
     }

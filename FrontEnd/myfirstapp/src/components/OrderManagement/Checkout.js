@@ -202,47 +202,6 @@ class Cart extends Component {
                                                     
                         <PayPalApp  
                             total = {this.state.orderTotal}
-                            // paymentOptions={{
-                            //     "payer":
-                            //     {
-                            //       "payment_method": "paypal"
-                            //     },
-                            //     "transactions": [
-                            //     {
-                            //       "amount":
-                            //       {
-                            //         "total": "125",
-                            //         "currency": "AUD",
-                            //       },
-                            //       "item_list":
-                            //       {
-                            //         "items": [
-                            //         {
-                            //           "name": "book1",
-                            //           "description": "This is a book",
-                            //           "price": "22.00",
-                            //           "currency": "AUD",
-                            //           "quantity": 5
-                            //         },
-                            //         {
-                            //           "name": "book2",
-                            //           "description": "This is a 2nd book",
-                            //           "price": "15.00",
-                            //           "currency": "AUD",
-                            //           "quantity": 1
-                            //         }],
-                     
-                            //       },
-                            //       "related_resources": []
-                            //     }],
-                            //     "note_to_payer": "Contact us for any questions on your order.",
-                            //     "create_time": "2016-08-05T14:34:42Z",
-                                
-                            //   }
-                            //   }
-
-                            //clearCart = {clearCart}
-                            // history={history}
                         />
                         </div>
                     </div>
