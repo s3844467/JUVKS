@@ -3,6 +3,20 @@ import {GET_ERRORS, SET_CURRENT_USER} from "./types";
 import setJWTToken from "../securityUtils/setJWTToken";
 import jwt_decode from "jwt-decode";
 
+export const addProfileImage = (image) => async dispatch => {
+  try {
+    const res = await axios.post("http://localhost:8080/api/profileimages/upload", image);
+    dispatch({
+      type: GET_ERRORS,
+      payload: {}
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response
+    });
+  }
+};
 
 export const createNewUser = (newUser, history) => async dispatch => {
 

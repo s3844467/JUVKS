@@ -1,6 +1,5 @@
 package com.rmit.sept.bk_bookservices.services;
 
-import java.io.IOException;
 import java.util.stream.Stream;
 
 import com.rmit.sept.bk_bookservices.Repositories.ImageRepository;

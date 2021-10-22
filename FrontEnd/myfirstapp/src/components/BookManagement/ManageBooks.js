@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getAllCategories, updateBook, searchBooksUserId } from "../../actions/bookActions";
+import { getAllCategories, updateBook, searchBooksUserId, addImage } from "../../actions/bookActions";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,8 @@ class ManageBooks extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.updateBook = this.updateBook.bind(this);
+        this.updateImage = this.updateImage.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
 
         this.state={
             activeProduct: [],
@@ -51,6 +53,24 @@ class ManageBooks extends Component {
                 updateBook_description: nextProps.books[0].description
             });
         }
+    }
+
+    async updateImage(e){
+        const formData = new FormData();
+
+        formData.append('file', this.state.updateBook_image);
+        formData.append('id', this.state.updateBook_id);
+
+        await this.props.addImage(formData);
+        if(! this.props.errors.data){
+            window.location.href = "/manage/books";
+        }
+
+        
+    }
+
+    onChangeImage(e){
+        this.setState({updateBook_image: e.target.files[0]});
     }
 
     onChange(e){
@@ -230,14 +250,37 @@ class ManageBooks extends Component {
                                         <div className="text-danger">{errors.data.description}</div>
                                     )}
                                     </div>
-                                    <div className="d-flex">
+                                    
+
+                                    <div className="row">
+                                        <div className="col">
+                                    
+                                            <div className="form-group">
+                                                <label htmlFor="formGroupExampleInput">Category</label>
+                                                <select className="form-control" 
+                                                    name="updateBook_category" 
+                                                    onChange = {this.onChange}
+                                                    required
+                                                >
+                                                <option defaultValue>{this.state.updateBook_category}</option>
+                                                {category && category.map((c) => (
+                                                    <option key={c.categoryName} value={c.categoryName}>{c.categoryName}</option>
+                                                ))}
+                                                </select>
+                                                {errors.data && errors.data.category &&(
+                                                    <div className="text-danger">{errors.data.category}</div>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className="d-flex">
                                         <div className="product-img mb-3 mr-3">
                                             <img 
                                             src={"http://localhost:8081/api/images/files/"+this.state.updateBook_id} 
                                             alt={this.state.updateBook_title}/>
                                         </div>
+                                        </div>
                                         <div>
-                                            <div className="form-group col">
+                                            {/* <div className="form-group col">
                                                 <label htmlFor="formGroupExampleInput">Upload Image</label>
                                                 <input 
                                                     type="file" 
@@ -249,7 +292,7 @@ class ManageBooks extends Component {
                                             </div>
                                             {errors.data && errors.data.image &&(
                                                 <div className="text-danger">{errors.data.image}</div>
-                                            )}
+                                            )} */}
                                             <div className="d-flex">
                                                 <div className="col form-group">
                                                     <label htmlFor="formGroupExampleInput">Category</label>
@@ -293,6 +336,27 @@ class ManageBooks extends Component {
                                     {errors.data && errors.data.message && (
                                         <div className="text-danger">{errors.data.message}</div>
                                     )}
+
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <div className="form-group">
+                                        <label htmlFor="formGroupExampleInput">Change Image</label>
+                                        <input 
+                                            type="file" 
+                                            accept="image/png, image/jpeg"
+                                            formEncType="multipart/form-data"
+                                            className="form-control-file" 
+                                            name="updateBook_image"
+                                            // value={this.state.updateBook_image}
+                                            onChange = {this.onChangeImage}
+                                        />
+                                    </div>
+                                    {errors.data && errors.data.file &&(
+                                        <div className="text-danger">{errors.data.file}</div>
+                                    )}
+                                    <button className="btn btn-primary mb-2" onClick={this.updateImage}>Upload Image</button>
+
                                 </div> 
                             </>}
                         </div>
@@ -315,5 +379,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     getAllCategories,
     updateBook,
-    searchBooksUserId
+    searchBooksUserId,
+    addImage
 })(ManageBooks);      

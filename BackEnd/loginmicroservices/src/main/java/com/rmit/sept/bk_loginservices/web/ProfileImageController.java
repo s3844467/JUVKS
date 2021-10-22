@@ -1,4 +1,4 @@
-package com.rmit.sept.bk_bookservices.web;
+package com.rmit.sept.bk_loginservices.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,28 +11,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
-import com.rmit.sept.bk_bookservices.model.File;
-import com.rmit.sept.bk_bookservices.model.Image;
-import com.rmit.sept.bk_bookservices.services.ImageService;
-import com.rmit.sept.bk_bookservices.services.MapValidationErrorService;
-import com.rmit.sept.bk_bookservices.validator.ImageValidator;
+import com.rmit.sept.bk_loginservices.model.File;
+import com.rmit.sept.bk_loginservices.model.ProfileImage;
+import com.rmit.sept.bk_loginservices.services.ProfileImageService;
+import com.rmit.sept.bk_loginservices.services.MapValidationErrorService;
+import com.rmit.sept.bk_loginservices.validator.ProfileImageValidator;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
-@RequestMapping("/api/images")
-public class ImageController {
+@RequestMapping("/api/profileimages")
+public class ProfileImageController {
     @Autowired
-    // ImageRepository imageRepository;
-    private ImageService imageService;
+    // ProfileImageRepository ProfileImageRepository;
+    private ProfileImageService ProfileImageService;
 
     @Autowired
-    private ImageValidator imageValidator;
+    private ProfileImageValidator ProfileImageValidator;
 
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
@@ -40,26 +38,26 @@ public class ImageController {
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFile(String id, @ModelAttribute("file") @Valid File file, BindingResult file_result) {
-        imageValidator.validate(file, file_result);
-        ResponseEntity<?> errorMapImage = mapValidationErrorService.MapValidationService(file_result);
+        ProfileImageValidator.validate(file, file_result);
+        ResponseEntity<?> errorMapProfileImage = mapValidationErrorService.MapValidationService(file_result);
         
-        if(errorMapImage != null){
-            return errorMapImage;
+        if(errorMapProfileImage != null){
+            return errorMapProfileImage;
         }
         
         Long l_id = Long.parseLong(id);
-        Image image = imageService.store(file.getFile(), l_id);
+        ProfileImage ProfileImage = ProfileImageService.store(file.getFile(), l_id);
   
-        return new ResponseEntity<Image>(image, HttpStatus.CREATED);
+        return new ResponseEntity<ProfileImage>(ProfileImage, HttpStatus.CREATED);
     }
   
   
     @GetMapping("/files/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable String id) {
       Long l_id = Long.parseLong(id);
-      Image image = imageService.getFile(l_id);
+      ProfileImage ProfileImage = ProfileImageService.getFile(l_id);
 
       return ResponseEntity.ok()
-        .contentType(MediaType.IMAGE_PNG).body(image.getContent());
+        .contentType(MediaType.IMAGE_PNG).body(ProfileImage.getContent());
     }
 }

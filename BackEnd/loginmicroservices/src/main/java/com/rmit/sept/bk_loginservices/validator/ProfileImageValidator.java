@@ -1,6 +1,6 @@
-package com.rmit.sept.bk_bookservices.validator;
+package com.rmit.sept.bk_loginservices.validator;
 
-import com.rmit.sept.bk_bookservices.model.File;
+import com.rmit.sept.bk_loginservices.model.File;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -8,7 +8,7 @@ import org.springframework.validation.Validator;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
-public class ImageValidator implements Validator{
+public class ProfileImageValidator implements Validator{
     
     @Override
     public boolean supports(Class<?> aClass) {

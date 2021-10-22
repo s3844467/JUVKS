@@ -1,4 +1,4 @@
-package com.rmit.sept.bk_bookservices.model;
+package com.rmit.sept.bk_loginservices.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,26 +7,26 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "images")
-public class Image {
+@Table(name = "profileimages")
+public class ProfileImage {
 
     // this matches with book_id
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Lob
     byte [] content;
 
-    @NotNull(message = "Image must be uploaded")
+    @NotNull(message = "Profile image must be uploaded")
     String type;
 
     String name;
 
-    public Image() {
+    public ProfileImage() {
     }
 
-    public Image(Long id, String fileName, String contentType, byte[] bytes) {
+    public ProfileImage(Long id, String fileName, String contentType, byte[] bytes) {
         this.id = id;
         this.name = fileName;
         this.type = contentType;
