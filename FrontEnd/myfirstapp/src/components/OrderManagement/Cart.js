@@ -12,6 +12,7 @@ class Cart extends Component {
 
         this.onCheckOut = this.onCheckOut.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.updateCartTotal = this.updateCartTotal;
 
         this.state={
             cartItems: new Map(),
@@ -30,6 +31,22 @@ class Cart extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.updateCartTotal(nextProps);
+    }
+
+    updateCartTotal(props) {
+        if (props.cart.length > 0) {
+            let cartTotal = 0;
+
+            props.cart.forEach((cartItem) => {
+                cartTotal += cartItem.total_price;
+            })
+
+            this.setState({cartTotal: cartTotal});
+        }
+    }
+
     onChange(e) {
         const updatedCartItems = new Map(this.state.cartItems);
         const updatedCartItem = updatedCartItems.get(parseInt(e.target.id));
@@ -38,8 +55,12 @@ class Cart extends Component {
         updatedCartItem.total_price = parseInt(e.target.value * updatedCartItem.price_per);
         updatedCartItems.set(updatedCartItem.id, updatedCartItem);
 
-        this.setState({cartItems: updatedCartItems});
+        this.setState({
+            cartItems: updatedCartItems
+        });
+
         this.props.updateCartItemQuantity(updatedCartItem.quantity, updatedCartItem.id);
+        this.updateCartTotal(this.props);
     }
 
     onCheckOut() {
@@ -120,50 +141,60 @@ class Cart extends Component {
                     
                     <div className="cart-checkout">
                         <button className="btn primary-btn" onClick={this.onCheckOut}>Checkout</button>
-                        {/* <p>{this.props.getCartTotal(this.props.security.user.id)}</p> */}
+                        
                         <PayPalApp  
-                            paymentOptions={{
-                                "payer":
-                                {
-                                  "payment_method": "paypal"
-                                },
-                                "transactions": [
-                                {
-                                  "amount":
-                                  {
-                                    "total": "125",
-                                    "currency": "AUD",
-                                  },
-                                  "item_list":
-                                  {
-                                    "items": [
-                                    {
-                                      "name": "book1",
-                                      "description": "This is a book",
-                                      "price": "22.00",
-                                      "currency": "AUD",
-                                      "quantity": 5
-                                    },
-                                    {
-                                      "name": "book2",
-                                      "description": "This is a 2nd book",
-                                      "price": "15.00",
-                                      "currency": "AUD",
-                                      "quantity": 1
-                                    }],
+                            total = {this.state.cartTotal}
+                            // paymentOptions={{
+                            //     "payer":
+                            //     {
+                            //       "payment_method": "paypal"
+                            //     },
+                            //     "transactions": [
+                            //     {
+                            //       "amount":
+                            //       {
+                            //         "total": "125",
+                            //         "currency": "AUD",
+                            //       },
+                            //       "item_list":
+                            //       {
+                            //         "items": [
+                            //         {
+                            //           "name": "book1",
+                            //           "description": "This is a book",
+                            //           "price": "22.00",
+                            //           "currency": "AUD",
+                            //           "quantity": 5
+                            //         },
+                            //         {
+                            //           "name": "book2",
+                            //           "description": "This is a 2nd book",
+                            //           "price": "15.00",
+                            //           "currency": "AUD",
+                            //           "quantity": 1
+                            //         }],
                      
-                                  },
-                                  "related_resources": []
-                                }],
-                                "note_to_payer": "Contact us for any questions on your order.",
-                                "create_time": "2016-08-05T14:34:42Z",
+                            //       },
+                            //       "related_resources": []
+                            //     }],
+                            //     "note_to_payer": "Contact us for any questions on your order.",
+                            //     "create_time": "2016-08-05T14:34:42Z",
                                 
-                              }
-                              }
+                            //   }
+                            //   }
 
                             //clearCart = {clearCart}
                             // history={history}
                         />
+                        <div>
+                            <h2>Order Summary</h2>
+                            <div className="summary-details">
+                                <b><span>Total</span></b><b><span>${this.state.cartTotal}</span></b>
+                            </div>
+                        </div>
+                        <Link to={{pathname: "/checkout"}}>
+                            <button className="btn btn-primary checkout-btn" onClick={this.onCheckOut}>Continue to Checkout</button>
+                        </Link>
                     </div>
                 </div>
             </div>

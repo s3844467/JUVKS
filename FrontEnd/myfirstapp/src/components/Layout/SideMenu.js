@@ -21,21 +21,27 @@ class SideMenu extends Component {
                     <ul className="side-menu-list">
                         {security.user.accountType.toLowerCase() === "admin" ? 
                         <>
-                            <li className="side-menu-row"> 
-                                <div id="icon"><PeopleIcon/></div>
-                                <div id="title">Manage Users</div>
-                            </li>
-                            <li className="side-menu-row"> 
-                                <div id="icon"><UpgradeIcon/></div>
-                                <div id="title">Upgrade Requests</div>
-                            </li>
+                            <Link to={{pathname: "/manage/users"}}>
+                                <li className="side-menu-row"> 
+                                    <div id="icon"><PeopleIcon/></div>
+                                    <div id="title">Manage Users</div>
+                                </li>
+                            </Link>
+                            <Link to={{pathname: "/manage/upgrade-requests"}}>
+                                <li className="side-menu-row"> 
+                                    <div id="icon"><UpgradeIcon/></div>
+                                    <div id="title">Upgrade Requests</div>
+                                </li>
+                            </Link>
                         </>
                         :
                         <>
-                            <li className="side-menu-row"> 
-                                <div id="icon"><PeopleIcon/></div>
-                                <div id="title">My Account</div>
-                            </li>
+                            <Link to={{pathname: "/my_account"}}>
+                                <li className="side-menu-row"> 
+                                    <div id="icon"><PeopleIcon/></div>
+                                    <div id="title">My Account</div>
+                                </li>
+                            </Link>
                         </>}
                             <Link to={{pathname: "/manage/books"}}>
                                 <li className="side-menu-row"> 
@@ -43,14 +49,18 @@ class SideMenu extends Component {
                                     <div id="title">Manage Products</div>
                                 </li>
                             </Link>
-                            <li className="side-menu-row"> 
-                                <div id="icon"><TimelineIcon/></div>
-                                <div id="title">Manage Orders</div>
-                            </li>
-                            <li className="side-menu-row"> 
-                                <div id="icon"><TransactionIcon/></div>
-                                <div id="title">Transaction History</div>
-                            </li>
+                            <Link to={{pathname: "/manage/orders"}}>
+                                <li className="side-menu-row"> 
+                                    <div id="icon"><TimelineIcon/></div>
+                                    <div id="title">Manage Orders</div>
+                                </li>
+                            </Link>
+                            <Link to={{pathname: "/manage/transactions"}}>
+                                <li className="side-menu-row"> 
+                                    <div id="icon"><TransactionIcon/></div>
+                                    <div id="title">Manage Transactions</div>
+                                </li>
+                            </Link>
                     </ul>
                 </div>
             </div>

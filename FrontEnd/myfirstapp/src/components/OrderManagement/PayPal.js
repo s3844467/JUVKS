@@ -41,8 +41,8 @@ export default class PayPalApp  extends React.Component {
                 env={env} 
                 client={client} 
                 currency={currency} 
-                paymentOptions = {this.props.paymentOptions}
-                
+                // paymentOptions = {this.props.paymentOptions}
+                total = {this.props.total}
 
                 onError={onError}
                 onSuccess={onSuccess} 
