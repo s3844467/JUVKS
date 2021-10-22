@@ -280,7 +280,7 @@ class ManageBooks extends Component {
                                         </div>
                                         </div>
                                         <div>
-                                            <div className="form-group col">
+                                            {/* <div className="form-group col">
                                                 <label htmlFor="formGroupExampleInput">Upload Image</label>
                                                 <input 
                                                     type="file" 
@@ -292,7 +292,7 @@ class ManageBooks extends Component {
                                             </div>
                                             {errors.data && errors.data.image &&(
                                                 <div className="text-danger">{errors.data.image}</div>
-                                            )}
+                                            )} */}
                                             <div className="d-flex">
                                                 <div className="col form-group">
                                                     <label htmlFor="formGroupExampleInput">Category</label>

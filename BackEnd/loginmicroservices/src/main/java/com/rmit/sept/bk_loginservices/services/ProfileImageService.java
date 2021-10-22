@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProfileImageService {
     
   @Autowired
-  private ProfileImageRepository ProfileImageRepository;
+  private ProfileImageRepository profileImageRepository;
 
   public ProfileImage store(MultipartFile file, Long id){
       try{
@@ -24,9 +24,10 @@ public class ProfileImageService {
           String content_type = file.getContentType();
           String s_id = Long.toString(id)+"."+content_type.substring(content_type.lastIndexOf("/")+1);
           System.out.println(s_id);
-          ProfileImage ProfileImage = new ProfileImage(id, s_id, file.getContentType(), file.getBytes());
-      
-          return ProfileImageRepository.save(ProfileImage);
+          ProfileImage profileImage = new ProfileImage(id, s_id, file.getContentType(), file.getBytes());
+          profileImage.setId(id);
+          System.out.println(profileImage.getId());
+          return profileImageRepository.saveAndFlush(profileImage);
       }
       catch(Exception e){
         throw new UsernameAlreadyExistsException("There was error adding ProfileImage");
@@ -34,10 +35,10 @@ public class ProfileImageService {
     }
   
     public ProfileImage getFile(Long id) {
-      return ProfileImageRepository.findById(id).get();
+      return profileImageRepository.findById(id).get();
     }
     
     public Stream<ProfileImage> getAllFiles() {
-      return ProfileImageRepository.findAll().stream();
+      return profileImageRepository.findAll().stream();
     }
 }
