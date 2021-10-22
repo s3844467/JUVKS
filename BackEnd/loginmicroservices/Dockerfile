@@ -19,7 +19,7 @@ COPY src src
 RUN ./mvnw package -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-COPY target/loginmicroservices-0.0.1.jar loginmicroservices.jar
+RUN cp target/loginmicroservices-0.0.1.jar loginmicroservices.jar
 # RUN mv target/dependency/loginmicroservices-0.0.1.jar loginmicroservices.jar
 
 
