@@ -152,7 +152,7 @@ class ManageBooks extends Component {
                         <div className="update-container">
                             {this.state.activeProduct && 
                             <>
-                                <div className="">
+                                <div>
                                     <div className="form-group">
                                         <label htmlFor="formGroupExampleInput">Title</label>
                                         <input 

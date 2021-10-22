@@ -32,6 +32,25 @@
     height:100%;
     background: #fff;
     border-radius: 4px;
+    padding: 16px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.cart-checkout h2 {
+    margin-bottom: 16px;
+}
+
+.checkout-btn {
+    width: 100%;
+}
+
+.summary-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .item-card {
