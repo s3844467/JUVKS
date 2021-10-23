@@ -10,7 +10,6 @@ class Cart extends Component {
         super(props);
 
         this.onChange = this.onChange.bind(this);
-        this.createOrder = this.createOrder();
 
         this.state = {
             orderName: "",
@@ -37,7 +36,8 @@ class Cart extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.cart.length > 0) {
+        console.log(nextProps);
+        if (nextProps.cart && nextProps.cart.length > 0) {
             let cartTotal = 0;
 
             nextProps.cart.forEach(cartItem => {
@@ -45,15 +45,13 @@ class Cart extends Component {
             })
 
             this.setState({orderTotal: cartTotal});
+        } else if (nextProps.cancelled && nextProps.cancelled != false) {
+
         }
     }
 
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
-    }
-
-    createOrder() {
-        // Create new order object when successful payment
     }
 
     render() {
@@ -65,7 +63,7 @@ class Cart extends Component {
         return(
             <div className="container">
                 <div className="checkout-container"> 
-                    <div className="checkout-form checkout-section">
+                    <form className="checkout-form checkout-section" onSubmit={this.createOrder}>
                         <div className="checkout-details form-group">
                             <div className="details-card" id="your-details">
                                 <h3>Enter your details</h3>
@@ -180,7 +178,7 @@ class Cart extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <div className="checkout-summary checkout-section">
                         <h3>Checkout Summary</h3>
                         <div className="summary-items summary-section">
@@ -212,6 +210,8 @@ class Cart extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
+
     return {
         cart: state.cart,
         security: state.security

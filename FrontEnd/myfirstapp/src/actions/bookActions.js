@@ -18,15 +18,6 @@ export const searchBookId = (id) => async dispatch => {
   console.log(res.data);
 };
 
-export const searchBooksTitle = (title) => async dispatch => {
-    const res = await axios.get("http://localhost:8081/api/books/searchByTitle/"+title);
-    dispatch({
-      type: GET_BOOKS,
-      payload: res.data
-    });
-    console.log(res.data);
-};
-
 
 export const searchBooksUserId = (userId) => async dispatch => {
     const res = await axios.get("http://localhost:8081/api/books/searchByUserId/"+userId);
@@ -35,24 +26,6 @@ export const searchBooksUserId = (userId) => async dispatch => {
       payload: res.data
     });
     console.log(res.data);
-};
-
-export const searchBooksAuthor = (author) => async dispatch => {
-  const res = await axios.get("http://localhost:8081/api/books/searchByAuthor/"+author);
-  dispatch({
-    type: GET_BOOKS,
-    payload: res.data
-  });
-  console.log(res.data);
-};
-
-export const searchBookIsbn = (isbn) => async dispatch => {
-  const res = await axios.get("http://localhost:8081/api/books/searchByIsbn/"+isbn);
-  dispatch({
-    type: GET_BOOK,
-    payload: res.data
-  });
-  console.log(res.data);
 };
 
 export const searchAllBooks = (query) => async dispatch => {

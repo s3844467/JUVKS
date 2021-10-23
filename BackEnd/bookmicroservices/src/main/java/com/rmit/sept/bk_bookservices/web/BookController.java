@@ -98,24 +98,6 @@ public class BookController {
     public ResponseEntity<List<Book>> getAllBooks(){
     	return new ResponseEntity<List<Book>>(bookService.getAllBooks(), HttpStatus.OK);
     }
-    
-    @GetMapping("/searchByTitle/{title}")
-    public ResponseEntity<List<Book>> searchByTitle(@PathVariable String title){
-    	//return title;
-		return new ResponseEntity<List<Book>>(bookService.searchByTitle(title.replace('+', ' ')), HttpStatus.ACCEPTED);
-    }
-
-    @GetMapping("/searchByAuthor/{author}")
-    public ResponseEntity<List<Book>> searchByAuthor(@PathVariable String author){
-    	//return title;
-		return new ResponseEntity<List<Book>>(bookService.searchByAuthor(author.replace('+', ' ')), HttpStatus.ACCEPTED);
-    }
-
-    @GetMapping("/searchByIsbn/{isbn}")
-    public ResponseEntity<Book> searchByIsbn(@PathVariable String isbn){
-    	//return title;
-		return new ResponseEntity<Book>(bookService.searchByIsbn(isbn), HttpStatus.ACCEPTED);
-    }
 
     @GetMapping("/searchById/{id}")
     public ResponseEntity<List<Book>> searchById(@PathVariable long id){

@@ -1,7 +1,44 @@
 import React from 'react';
+import { connect } from "react-redux";
+
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 
-export default class PayPalApp  extends React.Component {
+class PayPalApp  extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.createOrder = this.createOrder.bind(this);
+
+        this.state = {
+            orderName: "",
+            orderEmail: "",
+            orderPhone: "",
+            orderAddress: "",
+            orderCity: "",
+            orderState: "",
+            orderZipCode: "",
+            orderInstructions: "",
+            orderTotal: 0
+        }
+    }
+
+    createOrder() {
+        // Create new order object when successful payment
+        const orderRequest = {
+            orderNumber: "",
+            userId: this.props.security.user.id,
+            totalPrice: this.state.orderTotal,
+            fullName: this.state.orderName,
+            username: this.state.orderEmail,
+            phone: this.state.orderPhone,
+            address: this.state.orderAddress,
+            city: this.state.orderCity,
+            state: this.state.orderState,
+            zipCode: this.state.orderZipCode,
+            instructions: this.state.orderInstructions
+        }
+    }
+
     render() {
         const onSuccess = (payment) => {
             // Congratulation, it came here means everything's fine!
@@ -50,3 +87,12 @@ export default class PayPalApp  extends React.Component {
         );
     }
 }
+
+
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+    };
+  };
+export default connect(mapStateToProps, {
+})(PayPalApp);
