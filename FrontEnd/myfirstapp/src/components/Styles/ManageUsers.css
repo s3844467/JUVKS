@@ -1,4 +1,4 @@
-.users-container {
+/* .users-container {
   background: rgba(229, 229, 229, 0.1);
   border-radius: 4px;
   color: #333;
@@ -36,7 +36,7 @@ td {
 
 tr:nth-child(even) {
   background-color: #e9ecef;
-}
+} */
 
 span {
   display: inline-block;
