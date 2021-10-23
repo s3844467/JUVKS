@@ -1,0 +1,13 @@
+.update-user-container {
+    color: #333;
+    margin: 16px;
+    border-radius: 4px;
+    padding: 16px 32px;
+    background: #ccc;
+}
+
+.update-form {
+    padding-bottom: 16px;
+    border-bottom: 2px solid #bbb;
+    margin-bottom: 32px;
+}

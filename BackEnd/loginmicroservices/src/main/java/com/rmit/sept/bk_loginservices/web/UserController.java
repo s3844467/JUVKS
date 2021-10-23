@@ -19,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -94,4 +95,11 @@ public class UserController {
         return ResponseEntity.ok(new JWTLoginSucessReponse(true, jwt));
     }
 
+    
+    @PatchMapping("/updateUser")
+    public ResponseEntity<?> updateUser(@Valid @RequestBody User user, BindingResult result) {
+        User updatedUser = userService.updateUser(user);
+        
+        return new ResponseEntity<User>(updatedUser, HttpStatus.ACCEPTED);
+    }
 }

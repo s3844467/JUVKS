@@ -75,3 +75,14 @@ export const login = LoginRequest => async dispatch => {
     });
   };
   
+
+  export const updateUser = (user) => async dispatch => {
+    try {
+      await axios.patch("http://localhost:8080/api/users/updateUser", user);
+    } catch (err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    }
+  };

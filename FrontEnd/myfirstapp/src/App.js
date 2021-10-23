@@ -21,6 +21,7 @@ import ManageUsers from "./components/AdminManagement/ManageUsers";
 import ManageOrders from "./components/UserManagement/ManageOrders";
 import ManageTransactions from "./components/UserManagement/ManageTransactions";
 import UpgradeRequests from "./components/AdminManagement/UpgradeRequest";
+import UpdateUser from "./components/UserManagement/UpdateUser";
 import Cart from "./components/OrderManagement/Cart";
 import Checkout from "./components/OrderManagement/Checkout";
 import MyAccount from "./components/UserManagement/MyAccount";
@@ -74,7 +75,8 @@ class App extends Component {
             <Route exact path="/books/:id" component={Book} />
             <Route exact path="/contact" component={Contact} />
             <SecuredRoute exact path="/addbook" component={AddBook}/>
-            <SecuredRoute exact path="/my_account" component={MyAccount}/>            
+            <SecuredRoute exact path="/my_account" component={MyAccount}/>    
+            <SecuredRoute exact path="/update" component={UpdateUser}/>    
 
             {
               //Private Routes

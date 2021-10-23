@@ -32,10 +32,13 @@ public class User implements UserDetails {
     @Transient
     private String confirmPassword;
 
+    private String phone_num;
+    private String address;
+
     @Column(nullable = false)
-    private Date created_at;
-    @Column(nullable = false)
-    private Date updated_at;
+    private String created_at;
+
+    private String updated_at;
 
     @Column(nullable = false)
     @Value("${some.key:public}")
@@ -86,19 +89,35 @@ public class User implements UserDetails {
         this.confirmPassword = confirmPassword;
     }
 
-    public Date getCreate_At() {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNum() {
+        return phone_num;
+    }
+
+    public void setPhoneNum(String phone_num) {
+        this.phone_num = phone_num;
+    }
+
+    public String getCreatedAt() {
         return created_at;
     }
 
-    public void setCreate_At(Date created_at) {
+    public void setCreatedAt(String created_at) {
         this.created_at = created_at;
     }
 
-    public Date getUpdate_At() {
+    public String getUpdatedAt() {
         return updated_at;
     }
 
-    public void setUpdate_At(Date updated_at) {
+    public void setUpdatedAt(String updated_at) {
         this.updated_at = updated_at;
     }
 
@@ -108,16 +127,6 @@ public class User implements UserDetails {
 
     public void setAccountType(String account_type) {
         this.account_type = account_type;
-    }
-
-    @PrePersist
-    protected void onCreate(){
-        this.created_at = new Date();
-    }
-
-    @PreUpdate
-    protected void onUpdate(){
-        this.updated_at = new Date();
     }
 
     /*

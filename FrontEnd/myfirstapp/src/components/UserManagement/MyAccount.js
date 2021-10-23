@@ -58,8 +58,12 @@ class MyAccount extends Component {
                                             <span>{security.user.username}</span>
                                         </div>
                                         <div className="account-field">
-                                            <b><span className="account-label">Password</span></b>
-                                            <span>Filler Password</span>
+                                            <b><span className="account-label">Address</span></b>
+                                            <span>{security.user.address}</span>
+                                        </div>
+                                        <div className="account-field">
+                                            <b><span className="account-label">Phone Number</span></b>
+                                            <span>{security.user.phone}</span>
                                         </div>
                                     </div>
                                 </div>

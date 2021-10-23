@@ -89,6 +89,7 @@ public class UserControllerTest {
     public void registerNewUser() throws Exception {
         // Create test user
         // Date newDate = new Date();
+        String createdAt = "23/10/2021";
         User testUser = new User();
         testUser.setId((long) 1);
         testUser.setUsername("testuser@user.com");
@@ -96,8 +97,8 @@ public class UserControllerTest {
         testUser.setPassword("password");
         testUser.setConfirmPassword("password");
         testUser.setAccountType("Public");
-        testUser.setCreate_At(null);
-        testUser.setUpdate_At(null);
+        testUser.setCreatedAt(createdAt);
+        testUser.setUpdatedAt(null);
 
         List<User> allUsers = new ArrayList<>();
         allUsers.add(testUser);
