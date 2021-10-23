@@ -90,7 +90,10 @@ export const addBook = (book) => async dispatch => {
 export const addImage = (image) => async dispatch => {
   try {
     const res = await axios.post("http://localhost:8081/api/images/upload", image);
-  
+    dispatch({
+      type: GET_ERRORS,
+      payload: {}
+    });
   } catch (err) {
     dispatch({
       type: GET_ERRORS,

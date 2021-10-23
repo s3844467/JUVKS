@@ -1,10 +1,8 @@
 package com.rmit.sept.bk_bookservices.validator;
 
 import com.rmit.sept.bk_bookservices.model.File;
-import com.rmit.sept.bk_bookservices.model.Image;
 
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.multipart.MultipartFile;

@@ -16,7 +16,7 @@ class Register extends Component {
       phoneNum: "",
       accountType: "",
       abn: "",
-      businessName: "",
+      shopName: "",
 
       errors: {}
     };
@@ -35,7 +35,7 @@ class Register extends Component {
       phoneNum: this.state.phoneNum,
       accountType: this.state.accountType,
       abn: this.state.abn,
-      businessName: this.state.businessName,
+      shopName: this.state.shopName,
     };
 
     this.props.createNewUser(newUser, this.props.history);
@@ -169,8 +169,8 @@ class Register extends Component {
                       type="text"
                       className="form-control form-control-lg"
                       placeholder="Business Name"
-                      name="businessName"
-                      value={this.state.businessName}
+                      name="shopName"
+                      value={this.state.shopName}
                       onChange={this.onChange}
                     />
                   </div>
