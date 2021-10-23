@@ -140,8 +140,6 @@ class Cart extends Component {
                     </div>
                     
                     <div className="cart-checkout">
-                        <button className="btn primary-btn" onClick={this.onCheckOut}>Checkout</button>
-
                         <div>
                             <h2>Order Summary</h2>
                             <div className="summary-details">

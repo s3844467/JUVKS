@@ -23,7 +23,7 @@
     gap: 32px;
 }
 
-.my-account-details-section, .type-field {
+.details-summary, .type-field {
     flex-grow: 1;
 }
 

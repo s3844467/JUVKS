@@ -16,11 +16,8 @@ class MyAccount extends Component {
                 <SideMenu/>
                 <div className="container">
                     <div className="my-account-container">
-                        <h1>Welcome 
-                            {
-                            security.user.fullName[0].toUpperCase() 
-                            + security.user.fullName.slice(1, security.user.fullName.indexOf(' '))
-                            }
+                        <h1>Welcome {security.user.fullName[0].toUpperCase() 
+                            + security.user.fullName.slice(1, security.user.fullName.indexOf(' '))}
                         </h1>
                         <div className="my-account-details">
                             <div className="my-account-details-section">
@@ -32,7 +29,7 @@ class MyAccount extends Component {
                                     onError={(e)=>{e.target.src="http://localhost:8080/api/profileimages/files/1"}}/>
                                 </div>
                             </div>
-                            <div className="my-account-details-section">
+                            <div className="my-account-details-section details-summary">
                                 <div className="account-details account-section">
                                     <div id="details-main">
                                         <div className="account-field account-summary">
