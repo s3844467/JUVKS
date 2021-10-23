@@ -13,9 +13,8 @@ RUN npm install @material-ui/core
 RUN npm install @material-ui/icons
 RUN npm install @emotion/react
 RUN npm install @emotion/styled
-
 RUN  npm install emailjs-com - save
-
+RUN npm install --save --legacy-peer-deps react-paypal-express-checkout
 
 EXPOSE 3000
 

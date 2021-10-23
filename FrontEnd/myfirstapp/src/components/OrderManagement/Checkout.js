@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { searchUserId } from "../../actions/cartActions";
 import { connect } from "react-redux";
 // import { Link } from 'react-router-dom';
-
+import PayPalApp from "../OrderManagement/PayPal";
 import "../Styles/Checkout.css";
 
 class Cart extends Component {
@@ -199,7 +199,10 @@ class Cart extends Component {
                             <div className="payment-total">
                                 <b><span>Total</span></b><b><span>${this.state.orderTotal}</span></b>
                             </div>
-                            <button>Pay with PayPal</button>
+                                                    
+                        <PayPalApp  
+                            total = {this.state.orderTotal}
+                        />
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
 import java.util.Collection;
 
 
@@ -31,6 +30,11 @@ public class User implements UserDetails {
     private String password;
     @Transient
     private String confirmPassword;
+    
+    private String status;
+
+    private String abn;
+    private String shopName;
 
     private String phone_num;
     private String address;
@@ -127,6 +131,30 @@ public class User implements UserDetails {
 
     public void setAccountType(String account_type) {
         this.account_type = account_type;
+    }
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+    public String getAbn() {
+        return abn;
+    }
+
+    public void setAbn(String abn) {
+        this.abn = abn;
+    }
+    
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
 
     /*
