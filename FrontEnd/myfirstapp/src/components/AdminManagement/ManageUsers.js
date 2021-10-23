@@ -34,21 +34,35 @@ class ManageUsers extends Component {
             <div className="main">
                 <SideMenu/>
                 <div className="container">
-                    <h1>Testing Manage Users</h1>
-                    {
-                        users.length ?
-                        users.map((user) => 
-                        <div className="username-col">
-                            <h1>{user.username}</h1>
-                        </div>) :
-                        null
-                    }
+                    <div className="users-container">
+                        <table className="table-body">
+                            <thead>
+                                <tr>
+                                    <th> ID </th>
+                                    <th> Full Name </th>
+                                    <th> Username </th>
+                                    <th> Account Type </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                this.state.users.map(
+                                    user =>
+                                    <tr key= {user.id}>
+                                        <td>{user.id}</td>
+                                        <td>{user.fullName}</td>
+                                        <td>{user.username}</td>
+                                        <td>{user.accountType}</td>
+                                    </tr>
+                                )
+                            }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         );
     }
-
-    
 }
 
 const mapStateToProps = (state) => {
@@ -58,5 +72,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    getAllUsers
 })(ManageUsers);      
