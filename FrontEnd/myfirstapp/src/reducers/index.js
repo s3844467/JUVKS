@@ -8,6 +8,7 @@ import categoryReducer from "./categoryReducer";
 import userReviewReducer from "./userReviewReducer";
 import cartReducer from "./cartReducer";
 import adminReducer from "./adminReducer";
+import userReducer from "./userReducer";
 
 export default combineReducers({
   errors: errorReducer,
@@ -18,6 +19,7 @@ export default combineReducers({
   cart: cartReducer,
   reviews: reviewReducer,
   category: categoryReducer,
-  users: adminReducer
+  admin: adminReducer,
+  users: userReducer
 });
 

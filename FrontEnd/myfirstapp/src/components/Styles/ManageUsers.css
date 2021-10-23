@@ -2,3 +2,43 @@ span {
     display: inline-block;
     margin-bottom: 8px;
 }
+
+.users-container {
+  background: rgba(229, 229, 229, 0.1);
+  border-radius: 4px;
+  color: #333;
+  margin: 16px 0;
+  padding: 24px 32px;
+}
+
+tr {
+  color: black;
+}
+
+.table-body {
+  border-collapse: collapse;
+  box-shadow: 0 5px 10px #494949;
+  background-color: white;
+  text-align: left;
+  overflow: hidden;
+}
+
+thead {
+  box-shadow: 0 5px 10px #e5e5e5;
+}
+
+th {
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+td {
+  padding: 1rem 2rem;
+}
+
+tr:nth-child(even) {
+  background-color: #e9ecef;
+}
