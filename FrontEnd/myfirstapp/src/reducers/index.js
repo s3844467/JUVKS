@@ -7,7 +7,11 @@ import reviewReducer from "./reviewReducer";
 import categoryReducer from "./categoryReducer";
 import userReviewReducer from "./userReviewReducer";
 import cartReducer from "./cartReducer";
+<<<<<<< HEAD
 import userReducer from "./userReducer";
+=======
+import adminReducer from "./adminReducer";
+>>>>>>> milestone3
 
 export default combineReducers({
   errors: errorReducer,
@@ -18,6 +22,10 @@ export default combineReducers({
   cart: cartReducer,
   reviews: reviewReducer,
   category: categoryReducer,
+<<<<<<< HEAD
   users: userReducer
+=======
+  users: adminReducer
+>>>>>>> milestone3
 });
 

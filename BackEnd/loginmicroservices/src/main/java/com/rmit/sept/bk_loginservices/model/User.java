@@ -31,6 +31,13 @@ public class User implements UserDetails {
     private String password;
     @Transient
     private String confirmPassword;
+    
+    private String address;
+    private String phoneNum;
+    private String status;
+
+   private String abn;
+   private String shopName;
 
     @Column(nullable = false)
     private Date created_at;
@@ -110,7 +117,47 @@ public class User implements UserDetails {
         this.account_type = account_type;
     }
 
-    @PrePersist
+    public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+   public String getAbn() {
+       return abn;
+   }
+
+   public void setAbn(String abn) {
+       this.abn = abn;
+   }
+   
+   public String getShopName() {
+       return shopName;
+   }
+
+   public void setShopName(String shopName) {
+       this.shopName = shopName;
+   }
+
+	@PrePersist
     protected void onCreate(){
         this.created_at = new Date();
     }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { searchUserId, deleteCartItem, updateCartItemQuantity } from "../../actions/cartActions";
+import { searchUserId, deleteCartItem, updateCartItemQuantity, getCartTotal } from "../../actions/cartActions";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
+
 
 import "../Styles/Cart.css";
 
@@ -11,9 +12,11 @@ class Cart extends Component {
 
         this.onCheckOut = this.onCheckOut.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.updateCartTotal = this.updateCartTotal;
 
         this.state={
-            cartItems: new Map()
+            cartItems: new Map(),
+            cartTotal: 0
         }
     }
 
@@ -24,6 +27,23 @@ class Cart extends Component {
             this.props.cart.map((cartItem) => {
                 this.state.cartItems.set(cartItem.id, cartItem);
             })
+
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.updateCartTotal(nextProps);
+    }
+
+    updateCartTotal(props) {
+        if (props.cart.length > 0) {
+            let cartTotal = 0;
+
+            props.cart.forEach((cartItem) => {
+                cartTotal += cartItem.total_price;
+            })
+
+            this.setState({cartTotal: cartTotal});
         }
     }
 
@@ -35,8 +55,12 @@ class Cart extends Component {
         updatedCartItem.total_price = parseInt(e.target.value * updatedCartItem.price_per);
         updatedCartItems.set(updatedCartItem.id, updatedCartItem);
 
-        this.setState({cartItems: updatedCartItems});
+        this.setState({
+            cartItems: updatedCartItems
+        });
+
         this.props.updateCartItemQuantity(updatedCartItem.quantity, updatedCartItem.id);
+        this.updateCartTotal(this.props);
     }
 
     onCheckOut() {
@@ -117,6 +141,16 @@ class Cart extends Component {
                     
                     <div className="cart-checkout">
                         <button className="btn primary-btn" onClick={this.onCheckOut}>Checkout</button>
+
+                        <div>
+                            <h2>Order Summary</h2>
+                            <div className="summary-details">
+                                <b><span>Total</span></b><b><span>${this.state.cartTotal}</span></b>
+                            </div>
+                        </div>
+                        <Link to={{pathname: "/checkout"}}>
+                            <button className="btn btn-primary checkout-btn" onClick={this.onCheckOut}>Continue to Checkout</button>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -134,7 +168,8 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     searchUserId,
     deleteCartItem,
-    updateCartItemQuantity
+    updateCartItemQuantity,
+    getCartTotal
 })(Cart);
 // export default Dashboard;
         

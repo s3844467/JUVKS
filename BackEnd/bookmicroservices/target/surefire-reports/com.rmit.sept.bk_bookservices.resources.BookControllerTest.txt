@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: com.rmit.sept.bk_bookservices.resources.BookControllerTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.536 s - in com.rmit.sept.bk_bookservices.resources.BookControllerTest
+=======
+<<<<<<< HEAD
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.662 s - in com.rmit.sept.bk_bookservices.resources.BookControllerTest
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.483 s - in com.rmit.sept.bk_bookservices.resources.BookControllerTest
+>>>>>>> b19645b793988d80ffcb70e5b853fada9adf2061
+>>>>>>> milestone3

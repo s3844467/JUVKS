@@ -67,4 +67,15 @@ public class CartItemController {
         
         cartItemService.updateCartItemQuantity(newQuantityValue, cartItemId);
     }
+
+    @GetMapping("/getCartTotal/{userId}")
+    public ResponseEntity<Double> getCartTotal(@PathVariable long userId){
+        List<CartItem> items = cartItemService.searchByUserId(userId);
+        double total = 0;
+        for (CartItem item:items){
+            total += item.getTotal_price();
+        }
+        System.out.println("Total:" + total);
+    	return new ResponseEntity<Double>(total, HttpStatus.ACCEPTED);
+    }
 }

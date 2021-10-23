@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> milestone3
 D:\RMIT\2021 SEM 2\SEPT\Major Project\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\web\CategoryController.java
 D:\RMIT\2021 SEM 2\SEPT\Major Project\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\model\File.java
 D:\RMIT\2021 SEM 2\SEPT\Major Project\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\model\Image.java
@@ -23,3 +27,33 @@ D:\RMIT\2021 SEM 2\SEPT\Major Project\JUVKS\BackEnd\bookmicroservices\src\main\j
 D:\RMIT\2021 SEM 2\SEPT\Major Project\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\validator\ImageValidator.java
 D:\RMIT\2021 SEM 2\SEPT\Major Project\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\exceptions\IsbnAlreadyExistsException.java
 D:\RMIT\2021 SEM 2\SEPT\Major Project\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\image_response\ResponseImage.java
+<<<<<<< HEAD
+=======
+=======
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\validator\CategoryValidator.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\propertyEditor\BookEditor.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\model\File.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\ms_book.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\validator\ImageValidator.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\validator\BookValidator.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\Repositories\ImageRepository.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\model\Category.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\services\MapValidationErrorService.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\security\SecurityConfig.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\security\SecurityConstant.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\web\BookController.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\image_response\ResponseImage.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\services\BookService.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\Repositories\CategoryRepository.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\web\CategoryController.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\services\CategoryService.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\web\ImageController.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\model\Book.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\services\ImageService.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\exceptions\IsbnAlreadyExistsException.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\model\Image.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\Repositories\BookRepository.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\exceptions\CustomResponseEntityExceptionHandler.java
+C:\rmit\sept\JUVKS\BackEnd\bookmicroservices\src\main\java\com\rmit\sept\bk_bookservices\exceptions\IsbnAlreadyExistsResponse.java
+>>>>>>> b19645b793988d80ffcb70e5b853fada9adf2061
+>>>>>>> milestone3
